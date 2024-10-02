@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct Regret_VaccineApp: App {
+struct ChronoApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
