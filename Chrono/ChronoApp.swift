@@ -30,3 +30,4 @@ struct ChronoApp: App {
         .modelContainer(sharedModelContainer)
     }
 }
+

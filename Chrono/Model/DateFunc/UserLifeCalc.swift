@@ -4,6 +4,7 @@
 //
 //  Created by 윤무영 on 10/4/24.
 //
+import Foundation
 
 
 func calculateRemainingLife(user: UserLifeInfo) -> Int? {
