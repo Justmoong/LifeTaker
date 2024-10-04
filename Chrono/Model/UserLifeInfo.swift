@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class UserLifeInfo {
+final class UserLifeInfo: ObservableObject {
     @Attribute(.unique) var id: UUID
     var age: Int?
     var sex: String?
