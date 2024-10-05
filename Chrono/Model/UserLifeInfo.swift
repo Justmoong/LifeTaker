@@ -23,8 +23,24 @@ final class UserLifeInfo: ObservableObject {
         self.birthDate = birthDate
         self.endDate = endDate
     }
+    
+    // MARK: func RemainingLife
+    
+    /// Calculates the remaining life in days from today to the end date.
+    /// - Returns: The number of days remaining if both birthDate and endDate are set; otherwise, returns nil.
+    func remainingLife() -> Int? {
+        
+        let calendar = Calendar.current
+        let today = Date()
+        
+        // Calculate the number of days from today to the end date.
+        if today <= endDate! {
+            let remainingComponents = calendar.dateComponents([.day], from: today, to: endDate!)
+            return remainingComponents.day
+        } else {
+            return 0 // If the end date is in the past, return 0.
+        }
+    }
 }
-
-// MARK: func RemainingLife
 
 

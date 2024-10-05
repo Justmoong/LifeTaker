@@ -58,6 +58,7 @@ struct UserInfoHeaderView: View {
                            .progressViewStyle(LinearProgressViewStyle())
               
               let adjustedAge = calculateAge(from: birthDate) + 80
+              //더하는 값은 남성일 경우 80 여성일 경우 88로 조건 분기
               
               Text(adjustedAge.description)
                   
