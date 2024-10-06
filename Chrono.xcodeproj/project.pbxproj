@@ -6,27 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		F905328C2CA569220041E8AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F905326F2CA569200041E8AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F90532762CA569200041E8AB;
-			remoteInfo = "Regret Vaccine";
-		};
-		F90532962CA569220041E8AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F905326F2CA569200041E8AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F90532762CA569200041E8AB;
-			remoteInfo = "Regret Vaccine";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		F90532772CA569200041E8AB /* Chrono.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chrono.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F905328B2CA569220041E8AB /* ChronoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F90532952CA569220041E8AB /* ChronoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -48,34 +29,10 @@
 			path = Chrono;
 			sourceTree = "<group>";
 		};
-		F905328E2CA569220041E8AB /* Regret VaccineTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Regret VaccineTests";
-			sourceTree = "<group>";
-		};
-		F90532982CA569220041E8AB /* Regret VaccineUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Regret VaccineUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F90532742CA569200041E8AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F90532882CA569220041E8AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F90532922CA569220041E8AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,8 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				F90532792CA569200041E8AB /* Chrono */,
-				F905328E2CA569220041E8AB /* Regret VaccineTests */,
-				F90532982CA569220041E8AB /* Regret VaccineUITests */,
 				F90532782CA569200041E8AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,8 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				F90532772CA569200041E8AB /* Chrono.app */,
-				F905328B2CA569220041E8AB /* ChronoTests.xctest */,
-				F90532952CA569220041E8AB /* ChronoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,52 +83,6 @@
 			productReference = F90532772CA569200041E8AB /* Chrono.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F905328A2CA569220041E8AB /* ChronoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F90532A32CA569220041E8AB /* Build configuration list for PBXNativeTarget "ChronoTests" */;
-			buildPhases = (
-				F90532872CA569220041E8AB /* Sources */,
-				F90532882CA569220041E8AB /* Frameworks */,
-				F90532892CA569220041E8AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F905328D2CA569220041E8AB /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				F905328E2CA569220041E8AB /* Regret VaccineTests */,
-			);
-			name = ChronoTests;
-			packageProductDependencies = (
-			);
-			productName = "Regret VaccineTests";
-			productReference = F905328B2CA569220041E8AB /* ChronoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F90532942CA569220041E8AB /* ChronoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F90532A62CA569220041E8AB /* Build configuration list for PBXNativeTarget "ChronoUITests" */;
-			buildPhases = (
-				F90532912CA569220041E8AB /* Sources */,
-				F90532922CA569220041E8AB /* Frameworks */,
-				F90532932CA569220041E8AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F90532972CA569220041E8AB /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				F90532982CA569220041E8AB /* Regret VaccineUITests */,
-			);
-			name = ChronoUITests;
-			packageProductDependencies = (
-			);
-			productName = "Regret VaccineUITests";
-			productReference = F90532952CA569220041E8AB /* ChronoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,14 +95,6 @@
 				TargetAttributes = {
 					F90532762CA569200041E8AB = {
 						CreatedOnToolsVersion = 16.1;
-					};
-					F905328A2CA569220041E8AB = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = F90532762CA569200041E8AB;
-					};
-					F90532942CA569220041E8AB = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = F90532762CA569200041E8AB;
 					};
 				};
 			};
@@ -214,28 +113,12 @@
 			projectRoot = "";
 			targets = (
 				F90532762CA569200041E8AB /* Chrono */,
-				F905328A2CA569220041E8AB /* ChronoTests */,
-				F90532942CA569220041E8AB /* ChronoUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F90532752CA569200041E8AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F90532892CA569220041E8AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F90532932CA569220041E8AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,34 +135,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F90532872CA569220041E8AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F90532912CA569220041E8AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F905328D2CA569220041E8AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F90532762CA569200041E8AB /* Chrono */;
-			targetProxy = F905328C2CA569220041E8AB /* PBXContainerItemProxy */;
-		};
-		F90532972CA569220041E8AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F90532762CA569200041E8AB /* Chrono */;
-			targetProxy = F90532962CA569220041E8AB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F905329F2CA569220041E8AB /* Debug */ = {
@@ -475,78 +331,6 @@
 			};
 			name = Release;
 		};
-		F90532A42CA569220041E8AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5U49ST9XZH;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "RegretVaccine.Regret-VaccineTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chrono.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chrono";
-			};
-			name = Debug;
-		};
-		F90532A52CA569220041E8AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5U49ST9XZH;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "RegretVaccine.Regret-VaccineTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chrono.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chrono";
-			};
-			name = Release;
-		};
-		F90532A72CA569220041E8AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5U49ST9XZH;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "RegretVaccine.Regret-VaccineUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Regret Vaccine";
-			};
-			name = Debug;
-		};
-		F90532A82CA569220041E8AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5U49ST9XZH;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "RegretVaccine.Regret-VaccineUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Regret Vaccine";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -564,24 +348,6 @@
 			buildConfigurations = (
 				F905329F2CA569220041E8AB /* Debug */,
 				F90532A02CA569220041E8AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F90532A32CA569220041E8AB /* Build configuration list for PBXNativeTarget "ChronoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F90532A42CA569220041E8AB /* Debug */,
-				F90532A52CA569220041E8AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F90532A62CA569220041E8AB /* Build configuration list for PBXNativeTarget "ChronoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F90532A72CA569220041E8AB /* Debug */,
-				F90532A82CA569220041E8AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
