@@ -6,15 +6,25 @@
 //
 import Foundation
 
+//날짜 포맷 지정
+let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
+}()
 
-func calculateUserLife() {
-    
-    
+//현재 나이 구하기
+func calculateAge(from birthDate: Date) -> Int {
+        let calendar = Calendar.current
+        let today = Date()
+        let ageComponents = calendar.dateComponents([.year], from: birthDate, to: today)
+        return ageComponents.year ?? 0
+    }
+
+//나이를 일수로 계산
+func calculateAgeDays(start: Date, end: Date) -> Int {
+    return Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
 }
-
-
-
-
 
 
 

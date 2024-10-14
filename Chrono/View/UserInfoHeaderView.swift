@@ -20,11 +20,7 @@ struct UserInfoHeaderView: View {
           
           //상단에 유저 프로필 축
           HStack (alignment: .center) {
-//              Text("\(user.birthDate ?? Date(), formatter: dateFormatter)")
-//
-//                  
-              
-//              
+//              Text("\(user.birthDate ?? Date(), formatter: dateFormatter)")       
 //              Text("\(user.endDate ?? Date(), formatter: dateFormatter)")
 
               VStack (alignment: .leading) {
@@ -44,8 +40,8 @@ struct UserInfoHeaderView: View {
           }
           .padding()
           
-          let totalDays = calculateDaysBetween(start: birthDate, end: endDate)
-                     let currentDays = calculateDaysBetween(start: birthDate, end: Date())
+          let totalDays = calculateAgeDays(start: birthDate, end: endDate)
+          let currentDays = calculateAgeDays(start: birthDate, end: Date())
                      let progress = totalDays > 0 ? Double(currentDays) / Double(totalDays) : 0
           
           
@@ -61,7 +57,6 @@ struct UserInfoHeaderView: View {
               //더하는 값은 남성일 경우 80 여성일 경우 88로 조건 분기
               
               Text(adjustedAge.description)
-                  
                   .padding()
                   .font(.footnote)
           }
@@ -70,11 +65,7 @@ struct UserInfoHeaderView: View {
   }
 
 //날짜 포맷 지정
-let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter
-}()
+
 
 //let yearFormatter: DateFormatter = {
 //    let formatter = DateFormatter()
@@ -82,20 +73,11 @@ let dateFormatter: DateFormatter = {
 //    return formatter
 //}()
 
-//현재 나이 구하기
-func calculateAge(from birthDate: Date) -> Int {
-        let calendar = Calendar.current
-        let today = Date()
-        let ageComponents = calendar.dateComponents([.year], from: birthDate, to: today)
-        return ageComponents.year ?? 0
-    }
 
 
 
-//나이를 일수로 계산
-func calculateDaysBetween(start: Date, end: Date) -> Int {
-    return Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
-}
+
+
 
 
 #Preview {
