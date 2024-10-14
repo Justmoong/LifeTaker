@@ -35,12 +35,11 @@ struct TestView: View {
             }
 
             if let mondays = remainingMondays {
-                Text("남은 월요일의 개수: \(mondays)개")
+                Text("Remaining Mondays: \(mondays)")
                     .padding()
             } else {
-                Text("월요일을 계산할 수 없습니다.")
+                Text("Press Button")
                     .padding()
-                    .foregroundColor(.red)
             }
         }
         .padding()
