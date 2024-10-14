@@ -3,7 +3,7 @@ import SwiftUI
 
 let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     return formatter
 }()
 //남은 월요일 계산
@@ -28,18 +28,34 @@ func calculateRemainingMondays(birthday: String, lifeExpectancy: Int) -> Int? {
     
     return mondaysCount
 }
-var remainingMondays: Int = calculateRemainingMondays(birthday: "2002-05-04", lifeExpectancy: 80)!
+var remainingMondays: Int = calculateRemainingMondays(birthday: "2002-05-04 09:21:45", lifeExpectancy: 80)!
 print("남은 월요일: \(remainingMondays)")
 
 
 
 // Date 객체 생성
-let calendar = Calendar.current
+//let calendar = Calendar.current
 let referenceDateComponents = DateComponents(year: 2002, month: 5, day: 4)
 let referenceDate = calendar.date(from: referenceDateComponents)!
+// 날짜 구성 요소 추출
+let components =  calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: dateFormatter.date(from: "2002-05-04 09:21:45")!)
+
+// 각 구성 요소를 숫자로 사용
+let year = components.year
+let month = components.month
+let day = components.day
+let hour = components.hour
+let minute = components.minute
+let second = components.second
+
+print("Year: \(year), Month: \(month), Day: \(day)")
+print("Hour: \(hour), Minute: \(minute), Second: \(second)")
+
+
+
 
 // 현재 날짜
-let currentDate = Date()
+//let currentDate = Date()
 
 // 현재 날짜와 1900년 1월 1일 사이의 초 차이 계산
 let timeIntervalSince1900 = currentDate.timeIntervalSince(referenceDate)
@@ -67,3 +83,4 @@ print("남은 인생의 일: \(intDayStamp)")
 print("남은 인생의 주: \(intWeekStamp)")
 print("남은 인생의 월: \(intMonthStamp)")
 print("남은 인생의 분기: \(intQuarterStamp)")
+//출력 결과가 무언가 이상함
