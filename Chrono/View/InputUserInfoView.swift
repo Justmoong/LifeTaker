@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
+    
+    @State var userBirthday: Date
+    @State var userSex: String?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            DatePicker("Birthday", selection: $userBirthday, displayedComponents: .date)
+            HStack {
+                Picker("Select Sex", selection: $userSex) {
+                    Text("Male").tag("male")
+                    Text("Female").tag("female")
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+            }
+        }
+//        .padding()
     }
 }
 
+
 #Preview {
-    InputUserInfoView()
+    InputUserInfoView(userBirthday: Date(), userSex: "male")
 }

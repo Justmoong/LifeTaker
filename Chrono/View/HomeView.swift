@@ -8,18 +8,19 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct HomeView: View {
     
     
     var body: some View {
         List {
+            InputUserInfoView(userBirthday: Date(), userSex: "male")
             ToChristmasView()
         }
     }
 }
     
 #Preview {
-    ContentView()
+    HomeView()
     
 }
 

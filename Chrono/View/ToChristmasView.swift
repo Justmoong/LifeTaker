@@ -14,9 +14,9 @@ struct ToChristmasView: View {
         //캘린더 호출
         let calendar = Calendar.current
         //크리스마스 날짜를 컴포넌트로
-        let components = DateComponents(year: calendar.component(.year, from: Date()), month: 12, day: 25)
+        let eventDay = DateComponents(year: calendar.component(.year, from: Date()), month: 12, day: 25)
         //반환
-        return calendar.date(from: components)!
+        return calendar.date(from: eventDay)!
     }()
     
     var body: some View {
