@@ -34,7 +34,7 @@ print("남은 월요일: \(remainingMondays)")
 
 
 // Date 객체 생성
-//let calendar = Calendar.current
+let calendar = Calendar.current
 let referenceDateComponents = DateComponents(year: 2002, month: 5, day: 4)
 let referenceDate = calendar.date(from: referenceDateComponents)!
 // 날짜 구성 요소 추출
@@ -55,7 +55,7 @@ print("Hour: \(hour), Minute: \(minute), Second: \(second)")
 
 
 // 현재 날짜
-//let currentDate = Date()
+let currentDate = Date()
 
 // 현재 날짜와 1900년 1월 1일 사이의 초 차이 계산
 let timeIntervalSince1900 = currentDate.timeIntervalSince(referenceDate)
