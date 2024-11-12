@@ -10,11 +10,17 @@ import SwiftData
 
 struct HomeView: View {
     
+    @State var isPresented: Bool = false
     
     var body: some View {
         List {
-            InputUserInfoView(userBirthday: Date(), userSex: "male")
-            ToChristmasView()
+            UserProfileView(userProfile: UserProfile())
+                .onTapGesture {
+                    isPresented.toggle()
+                }
+                .sheet(isPresented: $isPresented) {
+                    InputUserInfoView()
+                }
         }
     }
 }

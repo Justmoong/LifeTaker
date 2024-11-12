@@ -8,27 +8,50 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
-    
-    @State var userBirthday: Date
-    @State var userSex: String?
-    
-    var body: some View {
-        VStack {
-            DatePicker("Birthday", selection: $userBirthday, displayedComponents: .date)
-            HStack {
-                Picker("Select Sex", selection: $userSex) {
-                    Text("Male").tag("male")
-                    Text("Female").tag("female")
-                }
-                .pickerStyle(.segmented)
-                .labelsHidden()
-            }
+
+    @StateObject private var userInfo = UserProfile()
+    @Environment(\.dismiss) private var dismiss
+    @State var inputedUserName: String = ""
+    @State var userBirthday: Date = .now
+    @State var userSex: String = "male"
+
+  var body: some View {
+      VStack (spacing: 64) {
+          HStack {
+              Spacer()
+              Button(action: {
+                dismiss()
+                userInfo.userName = inputedUserName
+              }) {
+                  Text("Done")
+              }
+              .padding()
+          }
+      }
+
+    VStack {
+      HStack {
+        TextField("Enter Name", text: $userInfo.userName)
+          .textFieldStyle(.roundedBorder)
+          .foregroundStyle(
+            inputedUserName.isEmpty ? .secondary : .primary
+          )
+          
+      }
+      DatePicker("Birthday", selection: $userBirthday, displayedComponents: .date)
+      HStack {
+        Picker("Select Sex", selection: $userSex) {
+          Text("Male").tag("male")
+          Text("Female").tag("female")
         }
-//        .padding()
-    }
+        .pickerStyle(.segmented)
+        .labelsHidden()
+      }
+    }.padding()
+      Spacer()
+  }
 }
 
-
-#Preview {
-    InputUserInfoView(userBirthday: Date(), userSex: "male")
+#Preview{
+  InputUserInfoView(userBirthday: Date(), userSex: "male")
 }
