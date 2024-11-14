@@ -25,11 +25,13 @@ struct ToChristmasView: View {
                     .padding()
                 
                 Text("\(daysUntilChristmas)")
+                    .foregroundStyle(Color.accentColor)
             }
             .frame(maxWidth: .infinity)
             .cornerRadius(12)
             .onAppear(perform: calculateDaysUntilChristmas)
             .padding()
+            
         }
 
     

@@ -11,27 +11,13 @@ import SwiftData
 class UserProfile: ObservableObject {
     @Published var userName: String {
         didSet {
-            UserDefaults.standard.set(userName, forKey: "userName")
+            print("Name changed to: \(userName)")
+            objectWillChange.send()
         }
     }
-    
-    @Published var userSex: String {
-        didSet {
-            UserDefaults.standard.set(userSex, forKey: "userSex")
-        }
-    }
-    
-    @Published var userBirthDate: Date {
-        didSet {
-            UserDefaults.standard.set(userBirthDate, forKey: "userBirthDate")
-        }
-    }
-    
-    @Published var userDeadDate: Date {
-        didSet {
-            UserDefaults.standard.set(userDeadDate, forKey: "userDeadDate")
-        }
-    }
+    @Published var userSex: String
+    @Published var userBirthDate: Date
+    @Published var userDeadDate: Date
     
     init() {
         self.userName = UserDefaults.standard.string(forKey: "userName") ?? ""

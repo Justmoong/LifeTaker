@@ -9,9 +9,9 @@ import SwiftUI
 
 struct UserProfileView: View {
     
-    @ObservedObject var userProfile : UserProfile
-//    @StateObject var userProfile = UserProfile()
-    @State var userName = UserProfile()
+    @StateObject var userProfile = UserProfile()
+//    @StateObject var userProfile = UserProfile
+//    @State var userName = UserProfile()
     @State var userAge: Float = 22
     @State var userDeadLine: Float = 89
     
@@ -23,7 +23,7 @@ struct UserProfileView: View {
                     .scaledToFill()
                     .frame(width:48 , height:  48)
                 VStack (alignment: .leading){
-                    Text("\($userProfile.userName)")
+                    Text("\(userProfile.userName)")
                         .font(.title3)
                         .fontWeight(.semibold)
                     Text("2002-05-04")
@@ -51,5 +51,5 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView(userProfile: UserProfile())
+    UserProfileView()
 }

@@ -48,8 +48,8 @@ let hour = components.hour
 let minute = components.minute
 let second = components.second
 
-print("Year: \(year), Month: \(month), Day: \(day)")
-print("Hour: \(hour), Minute: \(minute), Second: \(second)")
+print("Year: \(String(describing: year)), Month: \(String(describing: month)), Day: \(String(describing: day))")
+print("Hour: \(String(describing: hour)), Minute: \(String(describing: minute)), Second: \(String(describing: second))")
 
 
 

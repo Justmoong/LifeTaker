@@ -14,13 +14,18 @@ struct HomeView: View {
     
     var body: some View {
         List {
-            UserProfileView(userProfile: UserProfile())
-                .onTapGesture {
-                    isPresented.toggle()
-                }
-                .sheet(isPresented: $isPresented) {
-                    InputUserInfoView()
-                }
+            Section(header: EmptyView()) {
+                UserProfileView(userProfile: UserProfile())
+                    .onTapGesture {
+                        isPresented.toggle()
+                    }
+                    .sheet(isPresented: $isPresented) {
+                        InputUserInfoView()
+                    }
+            }
+            Section(header: Text("Events")) {
+                NextChristmasView()
+            }
         }
     }
 }
