@@ -9,18 +9,19 @@ import SwiftUI
 
 struct InputUserInfoView: View {
 
-    @StateObject private var userProfile = UserProfile()
     @Environment(\.dismiss) private var dismiss
-    @State var inputedUserName: String = ""
-    @State var userBirthday: Date = .now
-    @State var userSex: String = "male"
+    
+//    @Binding public var userName: String
+
+    @State public var inputedName: String = ""
+    @State public var userBirthday: Date = .now
+    @State public var userSex: String = "male"
 
   var body: some View {
       VStack (spacing: 64) {
           HStack {
               Spacer()
               Button(action: {
-                userProfile.userName = inputedUserName
                   dismiss()
               }) {
                   Text("Done")
@@ -31,10 +32,10 @@ struct InputUserInfoView: View {
 
     VStack {
       HStack {
-          TextField("Enter Name", text: $inputedUserName)
+          TextField("Enter Name", text: $inputedName)
           .textFieldStyle(.roundedBorder)
           .foregroundStyle(
-            inputedUserName.isEmpty ? .secondary : .primary
+            inputedName.isEmpty ? .secondary : .primary
           )
           
       }
@@ -53,5 +54,5 @@ struct InputUserInfoView: View {
 }
 
 #Preview{
-    InputUserInfoView(userBirthday: Date(), userSex: "male")
+    InputUserInfoView()
 }

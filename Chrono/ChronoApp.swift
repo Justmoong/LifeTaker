@@ -25,7 +25,7 @@ struct ChronoApp: App {
         
     var body: some Scene {
             WindowGroup {
-                HomeView()
+                HomeView(userName: "YUN", userAge: 21, expectedLifespan: 87, isPresented: false)
             }
 
         }

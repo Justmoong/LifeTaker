@@ -9,11 +9,11 @@ import SwiftUI
 
 struct UserProfileView: View {
     
-    @StateObject var userProfile = UserProfile()
+    @State var showingName : String
 //    @StateObject var userProfile = UserProfile
 //    @State var userName = UserProfile()
-    @State var userAge: Float = 22
-    @State var userDeadLine: Float = 89
+    @State var showingAge : Float
+    @State var showingExpectedLifespan : Float
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16){
@@ -23,7 +23,7 @@ struct UserProfileView: View {
                     .scaledToFill()
                     .frame(width:48 , height:  48)
                 VStack (alignment: .leading){
-                    Text("\(userProfile.userName)")
+                    Text("\(showingName)")
                         .font(.title3)
                         .fontWeight(.semibold)
                     Text("2002-05-04")
@@ -31,7 +31,7 @@ struct UserProfileView: View {
                         .foregroundStyle(Color.gray)
                 }
                 Spacer()
-                Gauge(value: userAge,  in: 0...userDeadLine){
+                Gauge(value: Double(showingAge),  in: 0...Double(showingExpectedLifespan)) {
                     Text("29%") //나이와 사망나이를 나누기
                         .font(.headline)
                 }
@@ -40,7 +40,7 @@ struct UserProfileView: View {
                 .tint(Color.accentColor)
             }
             HStack{
-                Gauge(value: userAge,  in: 0...userDeadLine) {
+                Gauge(value: showingAge,  in: 0...showingExpectedLifespan) {
                     
                 }
                 .gaugeStyle(.accessoryLinearCapacity)
@@ -51,5 +51,5 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView()
+    UserProfileView(showingName: "YUN", showingAge: 21, showingExpectedLifespan: 87)
 }

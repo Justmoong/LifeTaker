@@ -10,12 +10,16 @@ import SwiftData
 
 struct HomeView: View {
     
+    @State var userName: String
+    @State var userAge: Float
+    @State var expectedLifespan: Float
+    
     @State var isPresented: Bool = false
     
     var body: some View {
         List {
             Section(header: EmptyView()) {
-                UserProfileView(userProfile: UserProfile())
+                UserProfileView(showingName: userName, showingAge: userAge, showingExpectedLifespan: expectedLifespan)
                     .onTapGesture {
                         isPresented.toggle()
                     }
@@ -24,13 +28,13 @@ struct HomeView: View {
                     }
             }
             Section(header: Text("Events")) {
-                NextChristmasView()
+                RemainingChristmasView()
             }
         }
     }
 }
     
 #Preview {
-    HomeView()
+    HomeView(userName: "YUN", userAge: 21, expectedLifespan: 87)
 }
 
