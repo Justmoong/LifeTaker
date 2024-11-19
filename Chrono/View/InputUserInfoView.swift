@@ -8,51 +8,57 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
-
     @Environment(\.dismiss) private var dismiss
-    
-//    @Binding public var userName: String
+    @Binding public var inputedName: String
+    @Binding public var userBirthday: Date
+    @Binding public var userAge: Float
+    @Binding public var userSex: String
 
-    @State public var inputedName: String = ""
-    @State public var userBirthday: Date = .now
-    @State public var userSex: String = "male"
+    var body: some View {
+        VStack (spacing: 64) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    dismiss()
+                }) {
+                    Text("Done")
+                }
+                .padding()
+            }
 
-  var body: some View {
-      VStack (spacing: 64) {
-          HStack {
-              Spacer()
-              Button(action: {
-                  dismiss()
-              }) {
-                  Text("Done")
-              }
-              .padding()
-          }
-      }
-
-    VStack {
-      HStack {
-          TextField("Enter Name", text: $inputedName)
-          .textFieldStyle(.roundedBorder)
-          .foregroundStyle(
-            inputedName.isEmpty ? .secondary : .primary
-          )
-          
-      }
-      DatePicker("Birthday", selection: $userBirthday, displayedComponents: .date)
-      HStack {
-        Picker("Select Sex", selection: $userSex) {
-          Text("Male").tag("male")
-          Text("Female").tag("female")
+            VStack {
+                HStack {
+                    TextField("Enter Name", text: $inputedName)
+                        .textFieldStyle(.roundedBorder)
+                        .foregroundStyle(
+                            inputedName.isEmpty ? .secondary : .primary
+                        )
+                }
+                DatePicker("Your Birthday :", selection: $userBirthday, displayedComponents: .date)
+                    .onChange(of: userBirthday) {
+                        updateAge(birthday: userBirthday)
+                    }
+                HStack {
+                    Picker("Select Sex", selection: $userSex) {
+                        Text("Male").tag("male")
+                        Text("Female").tag("female")
+                    }
+                    .pickerStyle(.segmented)
+                    .labelsHidden()
+                }
+            }.padding()
+            Spacer()
         }
-        .pickerStyle(.segmented)
-        .labelsHidden()
-      }
-    }.padding()
-      Spacer()
-  }
+    }
+
+    private func updateAge(birthday: Date) {
+        let calendar = Calendar.current
+        let now = Date()
+        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+        userAge = Float(ageComponents.year ?? 0)
+    }
 }
 
 #Preview{
-    InputUserInfoView()
+    InputUserInfoView(inputedName: .constant(""), userBirthday: .constant(Date()), userAge: .constant(24), userSex: .constant(""))
 }

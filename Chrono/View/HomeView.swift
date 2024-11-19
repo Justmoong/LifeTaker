@@ -10,21 +10,26 @@ import SwiftData
 
 struct HomeView: View {
     
-    @State var userName: String
-    @State var userAge: Float
+    @State var userName: String = ""
+    @State var userAge: Float = 0
+    @State var userBirthDay: Date = Date()
     @State var expectedLifespan: Float
-    
     @State var isPresented: Bool = false
     
     var body: some View {
         List {
             Section(header: EmptyView()) {
-                UserProfileView(showingName: userName, showingAge: userAge, showingExpectedLifespan: expectedLifespan)
+                UserProfileView(showingName: $userName, userAge: $userAge, userBirthDay: $userBirthDay, userExpectedLifespan: $expectedLifespan)
                     .onTapGesture {
                         isPresented.toggle()
                     }
                     .sheet(isPresented: $isPresented) {
-                        InputUserInfoView()
+                        InputUserInfoView(
+                            inputedName: $userName,
+                            userBirthday: .constant(Date()), // 실제 데이터로 교체 필요
+                            userAge: $userAge,
+                            userSex: .constant("male") // 실제 데이터로 교체 필요
+                        )
                     }
             }
             Section(header: Text("Events")) {
@@ -35,6 +40,6 @@ struct HomeView: View {
 }
     
 #Preview {
-    HomeView(userName: "YUN", userAge: 21, expectedLifespan: 87)
+    HomeView(userAge: 21, expectedLifespan: 87)
 }
 
