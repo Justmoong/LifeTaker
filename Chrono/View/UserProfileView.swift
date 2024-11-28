@@ -37,12 +37,11 @@ struct UserProfileView: View {
                 }
                 Spacer()
                 Gauge(value: Double(userAge),  in: 0...Double(userExpectedLifespan)) {
-                    Text("\(userAge)") //나이가 표시되어야 한다.
-                        .font(.headline)
-                }
-                .gaugeStyle(.accessoryCircularCapacity)
-                .foregroundStyle(Color.accentColor)
-                .tint(Color.accentColor)
+                    Text(String(format: "%.0f", userAge))
+                        .font(.headline)                }
+                        .gaugeStyle(.accessoryCircularCapacity)
+                        .foregroundStyle(Color.accentColor)
+                        .tint(Color.accentColor)
             }
             HStack{
                 Gauge(value: userAge,  in: 0...userExpectedLifespan) {
@@ -58,7 +57,7 @@ struct UserProfileView: View {
 #Preview {
     UserProfileView(
         showingName: .constant(""),
-        userAge: .constant(29),
+        userAge: .constant(11),
         userBirthDay: .constant(Date()),
         userExpectedLifespan: .constant(100)
     )

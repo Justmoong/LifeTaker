@@ -64,3 +64,4 @@ let currentAge = 22
 let expectedLifespan = 89
 let remaining = remainingChristmases(currentAge: currentAge, expectedLifespan: expectedLifespan)
 print("남은 크리스마스의 수: \(remaining)")
+

@@ -40,8 +40,8 @@ struct InputUserInfoView: View {
                     }
                 HStack {
                     Picker("Select Sex", selection: $userSex) {
-                        Text("Male").tag("male")
-                        Text("Female").tag("female")
+                        Text("Male").tag("Male")
+                        Text("Female").tag("Female")
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
@@ -54,8 +54,23 @@ struct InputUserInfoView: View {
     private func updateAge(birthday: Date) {
         let calendar = Calendar.current
         let now = Date()
-        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
-        userAge = Float(ageComponents.year ?? 0)
+
+        // 생일이 지났는지 여부 확인
+        let birthComponents = calendar.dateComponents([.year, .month, .day], from: birthday)
+        let nowComponents = calendar.dateComponents([.year, .month, .day], from: now)
+
+        var age = (nowComponents.year ?? 0) - (birthComponents.year ?? 0)
+
+        // 현재 날짜가 생일 전이라면 나이에서 1을 뺌
+        if let nowMonth = nowComponents.month, let nowDay = nowComponents.day,
+           let birthMonth = birthComponents.month, let birthDay = birthComponents.day {
+            if nowMonth < birthMonth || (nowMonth == birthMonth && nowDay < birthDay) {
+                age -= 1
+            }
+        }
+
+        // 유효 범위 내로 값 제한
+        userAge = max(0, Float(age))
     }
 }
 
