@@ -9,21 +9,24 @@ import SwiftUI
 
 struct RemainingChristmasView: View {
     
-    @State var remaining = remainingChristmases(currentAge: 22, expectedLifespan: 81)
+    //이 뷰는 user와 무관한 뷰이므로 바인딩하지 않는다.
+    @State private var remainingChristmasDays: Int = daysUntilChristmas()
+    @State private var daysPassedThisYear: Int = daysPassedInYear()
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 16) {
+            
             HStack {
-                Text("Remaining Christmases")
+                Text("Next Christmas")
                     .font(.callout)
                 Spacer()
-                Text("\(remaining)")
+                Text("\(remainingChristmasDays)")
                     .foregroundStyle(Color.accentColor)
                     .font(.title3)
                     .fontWeight(.bold)
             }
-            Gauge(value: 100, in: 1...100){
-                
+            Gauge(value: Float(daysPassedThisYear), in: 1...365) {
+                Text("Progress to Christmas")
             }
             .gaugeStyle(.accessoryLinearCapacity)
             .foregroundStyle(Color.accentColor)
@@ -31,30 +34,53 @@ struct RemainingChristmasView: View {
             .labelsHidden()
         }
         .padding(.vertical, 8)
+        .onAppear {
+            // 매번 뷰가 나타날 때 날짜를 계산
+            remainingChristmasDays = daysUntilChristmas() + 1
+            //이유를 모르겠지만 계산 날짜가 하루 부족하여 1을 더하여 넘어간다.
+        }
     }
 }
 
 // MARK: Calculate Next Christmas
 
-public func remainingChristmases(currentAge: Int, expectedLifespan: Int) -> Int {
+func daysUntilChristmas() -> Int {
     let calendar = Calendar.current
     let now = Date()
-    let currentMonth = calendar.component(.month, from: now)
-    let currentDay = calendar.component(.day, from: now)
     
-    // 현재 연도에서 남은 생애 연도 계산
-    let remainingYears = expectedLifespan - currentAge
-    var remainingChristmases = remainingYears
+    // 현재 연도
+    let currentYear = calendar.component(.year, from: now)
     
-    // 현재 날짜가 12월 25일 이후인지 확인
-    if currentMonth > 12 || (currentMonth == 12 && currentDay > 25) {
-        remainingChristmases -= 1
+    // 크리스마스 날짜 (12월 25일)
+    guard let christmasDate = calendar.date(from: DateComponents(year: currentYear, month: 12, day: 25)) else {
+        return 0 // 날짜 계산 오류 시 0 반환
     }
     
-    return remainingChristmases
+    // 현재 날짜가 크리스마스 이후라면, 다음 해의 크리스마스를 계산
+    if now > christmasDate {
+        guard let nextChristmasDate = calendar.date(from: DateComponents(year: currentYear + 1, month: 12, day: 25)) else {
+            return 0
+        }
+        return calendar.dateComponents([.day], from: now, to: nextChristmasDate).day ?? 0
+    }
+    
+    // 크리스마스까지 남은 날짜 계산
+    return calendar.dateComponents([.day], from: now, to: christmasDate).day ?? 0
 }
 
-// 사용 예시
+// MARK: Calculate Days Passed in the Year
+func daysPassedInYear() -> Int {
+    let calendar = Calendar.current
+    let now = Date()
+    
+    // 현재 연도의 1월 1일 날짜 계산
+    guard let startOfYear = calendar.date(from: DateComponents(year: calendar.component(.year, from: now), month: 1, day: 1)) else {
+        return 0 // 날짜 계산 오류 시 0 반환
+    }
+    
+    // 현재 날짜와 1월 1일 사이의 일수 계산
+    return calendar.dateComponents([.day], from: startOfYear, to: now).day ?? 0
+}
 
 
 #Preview {

@@ -11,9 +11,9 @@ struct InputUserInfoView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding public var inputedName: String
     @Binding public var userBirthday: Date
-    @Binding public var userAge: Float
+    @Binding public var userAge: Int
     @Binding public var userSex: String
-    @Binding public var expectedLifespan: Float
+    @Binding public var expectedLifespan: Int
     
     var body: some View {
         VStack (spacing: 64) {
@@ -23,10 +23,10 @@ struct InputUserInfoView: View {
                     dismiss()
                 }) {
                     Text("Done")
+                        .fontWeight(.semibold)
                 }
                 .padding()
             }
-            
             VStack {
                 HStack {
                     TextField("Enter Name", text: $inputedName)
@@ -67,7 +67,6 @@ struct InputUserInfoView: View {
         // 생일이 지났는지 여부 확인
         let birthComponents = calendar.dateComponents([.year, .month, .day], from: birthday)
         let nowComponents = calendar.dateComponents([.year, .month, .day], from: now)
-        
         var age = (nowComponents.year ?? 0) - (birthComponents.year ?? 0)
         
         // 현재 날짜가 생일 전이라면 나이에서 1을 뺌
@@ -78,8 +77,9 @@ struct InputUserInfoView: View {
             }
         }
         // 유효 범위 내로 값 제한
-        userAge = max(0, Float(age))
+        userAge = max(0, Int(age))
     }
+    
     private func updateExpectedLifespan(for sex: String) {
         if sex == "Male" {
             expectedLifespan = 80 // 남성 기대 수명

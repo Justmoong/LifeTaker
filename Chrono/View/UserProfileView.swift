@@ -10,9 +10,9 @@ import SwiftUI
 struct UserProfileView: View {
     
     @Binding var showingName : String
-    @Binding var userAge : Float
+    @Binding var userAge : Int
     @Binding var userBirthDay : Date
-    @Binding var userExpectedLifespan : Float
+    @Binding var userExpectedLifespan : Int
     
     private static let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
@@ -31,20 +31,24 @@ struct UserProfileView: View {
                     Text(showingName)
                         .font(.title3)
                         .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Text(Self.dateFormatter.string(from: userBirthDay))
                         .font(.subheadline)
                         .foregroundStyle(Color.gray)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                Spacer()
+                // TODO: Sex Icon will place here!!!!!!
+                .frame(maxWidth: .infinity, alignment: .leading)
                 Gauge(value: Double(userAge),  in: 0...Double(userExpectedLifespan)) {
-                    Text(String(format: "%.0f", userAge))
-                        .font(.headline)                }
+                    Text(String(format: "%.0f", Double(userAge)))
+                        .font(.headline)
+                }
                         .gaugeStyle(.accessoryCircularCapacity)
                         .foregroundStyle(Color.accentColor)
                         .tint(Color.accentColor)
             }
             HStack{
-                Gauge(value: userAge,  in: 0...userExpectedLifespan) {
+                Gauge(value: Float(userAge),  in: 0...Float(userExpectedLifespan)) {
                     
                 }
                 .gaugeStyle(.accessoryLinearCapacity)

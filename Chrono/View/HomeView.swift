@@ -10,11 +10,12 @@ import SwiftData
 
 struct HomeView: View {
     
-    @State var userName: String = ""
-    @State var userAge: Float = 0
-    @State var userBirthDay: Date = Date()
-    @State var expectedLifespan: Float = 100
-    @State var userSex: String = "Male"
+    @AppStorage("userName", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userName: String = ""
+    @AppStorage("userAge", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userAge: Int = 0
+    @AppStorage("userBirthDay", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userBirthDay: Date = Date()
+    @AppStorage("expectedLifespan", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var expectedLifespan: Int = 100
+    @AppStorage("userSex", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userSex: String = "Male"
+        
     @State var isPresented: Bool = false
     
     var body: some View {
@@ -25,20 +26,21 @@ struct HomeView: View {
                                 userBirthDay: $userBirthDay,
                                 userExpectedLifespan: $expectedLifespan
                 )
-                    .onTapGesture {
-                        isPresented.toggle()
-                    }
-                    .sheet(isPresented: $isPresented) {
-                        InputUserInfoView(
-                            inputedName: $userName,
-                            userBirthday: $userBirthDay,
-                            userAge: $userAge,
-                            userSex: $userSex,
-                            expectedLifespan: $expectedLifespan
-                        )
-                    }
+                .sheet(isPresented: $isPresented) {
+                    InputUserInfoView(
+                        inputedName: $userName,
+                        userBirthday: $userBirthDay,
+                        userAge: $userAge,
+                        userSex: $userSex,
+                        expectedLifespan: $expectedLifespan)
+                }
+                .onTapGesture {
+                    isPresented.toggle()
+                }
             }
-            Section(header: Text("Events")) {
+            
+            
+            Section(header: Text("Annual Events")) {
                 RemainingChristmasView()
             }
         }
@@ -46,6 +48,6 @@ struct HomeView: View {
 }
     
 #Preview {
-    HomeView(userAge: 24, expectedLifespan: 87)
+    HomeView()
 }
 
