@@ -14,7 +14,7 @@ struct UserProfileView: View {
     @Binding var userBirthDay : Date
     @Binding var userExpectedLifespan : Int
     
-    private static let dateFormatter: DateFormatter = {
+    public static let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
            formatter.dateFormat = "yyyy-MM-dd"
            return formatter
@@ -61,8 +61,8 @@ struct UserProfileView: View {
 #Preview {
     UserProfileView(
         showingName: .constant(""),
-        userAge: .constant(11),
+        userAge: .constant(0),
         userBirthDay: .constant(Date()),
-        userExpectedLifespan: .constant(100)
+        userExpectedLifespan: .constant(80)
     )
 }

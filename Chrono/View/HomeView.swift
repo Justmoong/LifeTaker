@@ -16,7 +16,14 @@ struct HomeView: View {
     @AppStorage("expectedLifespan", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var expectedLifespan: Int = 100
     @AppStorage("userSex", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userSex: String = "Male"
         
+    //edit UserPrifle
     @State var isPresented: Bool = false
+    
+    //Annual Events model
+    @State private var event: [AnnualEvent] = [
+        AnnualEvent(name: "New Year", progressValue: 1, min: 1, max: 365),
+        AnnualEvent(name: "Christmas", progressValue: 1, min: 1, max: 365)
+    ]
     
     var body: some View {
         List {
@@ -38,10 +45,8 @@ struct HomeView: View {
                     isPresented.toggle()
                 }
             }
-            
-            
             Section(header: Text("Annual Events")) {
-                RemainingChristmasView()
+                AnnualEventsListView(event: $event)
             }
         }
     }

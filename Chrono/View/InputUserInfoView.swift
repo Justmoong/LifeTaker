@@ -16,7 +16,7 @@ struct InputUserInfoView: View {
     @Binding public var expectedLifespan: Int
     
     var body: some View {
-        VStack (spacing: 64) {
+        VStack {
             HStack {
                 Spacer()
                 Button(action: {
