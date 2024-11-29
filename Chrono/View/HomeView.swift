@@ -10,37 +10,21 @@ import SwiftData
 
 struct HomeView: View {
     
-    @AppStorage("userName", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userName: String = ""
+    @AppStorage("userName", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) public var userName: String = ""
     @AppStorage("userAge", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userAge: Int = 0
     @AppStorage("userBirthDay", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userBirthDay: Date = Date()
     @AppStorage("expectedLifespan", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var expectedLifespan: Int = 100
     @AppStorage("userSex", store: UserDefaults(suiteName: "group.com.moonglab.chrono")) var userSex: String = "Male"
-        
-    //edit UserPrifle
+    //edit UserPrifle mode on sheet
     @State var isPresented: Bool = false
-    
-    //Annual Events model
+    //Events model
     @State private var event: [Event] = [
         Event(
-            name: "New Year",
-            dDay: 5,
-            gaugeValue: 1,
-            min: 1,
-            max: 365
-        ),
-        Event(
-            name: "Christmas",
-            dDay: 5,
-            gaugeValue: 1,
-            min: 1,
-            max: 365
-        ),
-        Event(
             name: "Real Christmas",
-            dDay: remainingChristmasDays() + 1,
+            DDay: remainingChristmasDays() + 1,
             gaugeValue: daysPassedInYear(),
             min: 1,
-            max: 365
+            max: 365 //따지고 보면 윤년이 있으니 365로 하드코딩 하면 안 된다.
         )
     ]
     
@@ -67,31 +51,29 @@ struct HomeView: View {
             Section(header: Text("Annual Events")) {
                 EventsListView(event: $event)
                     .onAppear() //뷰가 표시될 때 변수들을 print로 출력
-                    {
-                        let copiedBirthDay = userBirthDay
-                        let copiedLifespan = expectedLifespan
-                        
-                        print("1st event name: \(event[0].name)")
-                        print("1st event progressValue: \(event[0].gaugeValue)")
-                        print("1st event min: \(event[0].min)")
-                        print("1st event max: \(event[0].max)\n")
-                        print("2nd event name: \(event[1].name)")
-                        print("2nd event progressValue: \(event[1].gaugeValue)")
-                        print("2nd event min: \(event[1].min)")
-                        print("2nd event max: \(event[1].max)\n")
-                        print("3rd event name: \(event[2].name)")
-                        print("3rd event progressValue: \(event[2].gaugeValue)")
-                        print("3rd event min: \(event[2].min)")
-                        print("3rd event max: \(event[2].max)\n")
-                        print("Total Mondays: \(totalMondays(userBirthDay: copiedBirthDay, userExpectedLifespan: copiedLifespan))")
-                        print("Past Mondays: \(pastMondays(userBirthDay: copiedBirthDay, userExpectedLifespan: copiedLifespan))")
-                        print("Remaining Mondays: \(remainingMondays(userBirthDay: copiedBirthDay, userExpectedLifespan: copiedLifespan))")
-                    }
+                {
+                    
+                    
+                    print("EventsArray.0.name set: \(event[0].name)")
+                    print("EventsArray.0.DDay set: \(event[0].DDay)")
+                    print("EventsArray.0.gaugeValue set: \(event[0].gaugeValue)")
+                    print("EventsArray.0.min set: \(event[0].min)")
+                    print("EventsArray.0.max set: \(event[0].max)\n")
+                    
+//                    print("EventsArray.1.name set: \(event[1].name)")
+//                    print("EventsArray.1.DDay set: \(event[1].DDay)")
+//                    print("EventsArray.1.gaugeValue set: \(event[1].gaugeValue)")
+//                    print("EventsArray.1.min set: \(event[1].min)")
+//                    print("EventsArray.1.max set: \(event[1].max)\n")
+                }
             }
         }
     }
+    
+
 }
     
+
 
 
 #Preview {

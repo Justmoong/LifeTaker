@@ -8,60 +8,51 @@
 import Foundation
 import SwiftUI
 
-//@Binding var totalMondays: Int
-//@Binding var pastMondays: Int
-//@Binding var remainingMondays: Int
-
-//private var debug_totalMondays: Int = calculateMondays(userBirthDay: Date(), userExpectedLifespan: 80, userAge: 0).totalMondays
-//private var debug_pastMondays: Int = calculateMondays(userBirthDay: Date(), userExpectedLifespan: 80, userAge: 0).pastMondays
-//private var debug_remainingMondays: Int = calculateMondays(userBirthDay: Date(), userExpectedLifespan: 80, userAge: 0).remainingMondays
-
-public func calculateMondays(userBirthDay: Date, userExpectedLifespan: Int, userAge: Int) -> (totalMondays: Int, pastMondays: Int, remainingMondays: Int) {
-    let calendar = Calendar.current
-
-    // 사용자 사망 예정일 계산
-    guard let deathDate = calendar.date(byAdding: .year, value: userExpectedLifespan, to: userBirthDay) else {
-        print("[calculateMondays] Failed to calculate death date.")
-        return (0, 0, 0)
+    // 총 월요일의 수를 계산, max
+    public func calculateTotalMondays() -> Int {
+        let userBirthDay = UserDefaults.standard.object(forKey: "userBirthDay") as? Date ?? Date()
+        let expectedLifespan = UserDefaults.standard.integer(forKey: "expectedLifespan")
+        
+        let calendar = Calendar.current
+        guard let deathDate = calendar.date(byAdding: .year, value: expectedLifespan, to: userBirthDay) else {
+            return 0
+        }
+        print("Debug info: [calculateTotalMondays].userBirthDay set:\(userBirthDay)")
+        print("Debug info: [calculateTotalMondays].deathDate set:\(deathDate)")
+        
+        var totalMondays = 0
+        var date = userBirthDay
+        while date <= deathDate {
+            if calendar.component(.weekday, from: date) == 2 { // 월요일
+                totalMondays += 1
+            }
+            date = calendar.date(byAdding: .day, value: 1, to: date)!
+        }
+        return totalMondays
     }
-    let now = Date()
-    var totalMondays = 0
-    var pastMondays = 0
-    // 날짜 순회 방법으로 계산
-    var date = userBirthDay
-    while date <= deathDate {
-        if calendar.component(.weekday, from: date) == 2 { // 월요일은 weekday = 2
-            totalMondays += 1
-            if date <= now {
+    
+    // 지금까지 지난 월요일의 수를 계산 gaugeValue
+    public func calculatePastMondays() -> Int {
+        let userBirthDay = UserDefaults.standard.object(forKey: "userBirthDay") as? Date ?? Date()
+        let now = Date()
+        let calendar = Calendar.current
+        
+        var pastMondays = 0
+        var date = userBirthDay
+        while date <= now {
+            if calendar.component(.weekday, from: date) == 2 { // 월요일
                 pastMondays += 1
             }
+            date = calendar.date(byAdding: .day, value: 1, to: date)!
         }
-        date = calendar.date(byAdding: .day, value: 1, to: date)!
+        return pastMondays
     }
-    let remainingMondays = totalMondays - pastMondays
-
-    return (totalMondays, pastMondays, remainingMondays)
-}
-
-//변수에 따로 저장하면 코드가 매우 구려지므로 분리 함수로 해결
-//사용할 때 var varName = func(Bindied value)로 사용
-public func totalMondays(userBirthDay: Date, userExpectedLifespan: Int) -> Int {
-    let result = calculateMondays(userBirthDay: userBirthDay, userExpectedLifespan: userExpectedLifespan, userAge: 0)
-    print("Total Mondays: \(result.totalMondays)")
-    return result.totalMondays
-}
-
-public func pastMondays(userBirthDay: Date, userExpectedLifespan: Int) -> Int {
-    let result = calculateMondays(userBirthDay: userBirthDay, userExpectedLifespan: userExpectedLifespan, userAge: 0)
-    print("Past Mondays: \(result.pastMondays)")
-    return result.pastMondays
-}
-
-public func remainingMondays(userBirthDay: Date, userExpectedLifespan: Int) -> Int {
-    let result = calculateMondays(userBirthDay: userBirthDay, userExpectedLifespan: userExpectedLifespan, userAge: 0)
-    print("Remaining Mondays: \(result.remainingMondays)")
-    return result.remainingMondays
-}
-
+    
+    // 앞으로 남은 월요일의 수를 계산 DDay
+    public func calculateRemainingMondays() -> Int {
+        let totalMondays = calculateTotalMondays()
+        let pastMondays = calculatePastMondays()
+        return totalMondays - pastMondays
+    }
 
 

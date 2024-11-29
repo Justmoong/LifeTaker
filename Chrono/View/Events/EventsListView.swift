@@ -16,7 +16,7 @@ struct EventsListView: View {
 
             ForEach(event) { event in
                 EventView(eventName: .constant(event.name),
-                                dDay: .constant(event.dDay),
+                                DDay: .constant(event.DDay),
                                 gaugeValue: .constant(event.gaugeValue),
                                 min: .constant(event.min),
                                 max: .constant(event.max))
@@ -27,8 +27,8 @@ struct EventsListView: View {
 #Preview {
     EventsListView(event: .constant(
         [
-            Event(name: "New Year", dDay: 5, gaugeValue: 1, min: 1, max: 365),
-        Event(name: "Christmas", dDay: 5, gaugeValue: 1, min: 1, max: 365)
+            Event(name: "New Year", DDay: 5, gaugeValue: 1, min: 1, max: 365),
+        Event(name: "Christmas", DDay: 5, gaugeValue: 1, min: 1, max: 365)
     ]
         )
     )

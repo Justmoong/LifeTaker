@@ -10,8 +10,9 @@ import Foundation
 struct Event: Identifiable, Codable {
     var id = UUID()
     var name: String
-    var dDay: Int
+    var DDay: Int
     var gaugeValue: Int
     var min: Int
     var max: Int
 }
+
