@@ -8,7 +8,7 @@
 import Foundation
 //디데이
 public func remainingChristmasDays() -> Int {
-    print("[remainingChristmasDays] Function started.")
+
     let calendar = Calendar.current
     let now = Date()
     let currentYear = calendar.component(.year, from: now)
@@ -34,7 +34,7 @@ public func remainingChristmasDays() -> Int {
 }
 //게이지의 값
 public func daysPassedInYear() -> Int {
-    print ("[daysPassedInYear] Function started.")
+
     let calendar = Calendar.current
     let now = Date()
 

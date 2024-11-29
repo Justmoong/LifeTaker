@@ -10,9 +10,9 @@ import SwiftUI
 struct UserProfileView: View {
     
     @Binding var showingName : String
-    @Binding var userAge : Int
-    @Binding var userBirthDay : Date
-    @Binding var userExpectedLifespan : Int
+    @Binding public var userAge : Int
+    @Binding public var userBirthDay : Date
+    @Binding public var userExpectedLifespan : Int
     
     public static let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
