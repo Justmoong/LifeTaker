@@ -16,7 +16,8 @@ struct AnnualEventsListView: View {
 
             ForEach(event) { event in
                 AnnualEventView(eventName: .constant(event.name),
-                                progressValue: .constant(event.progressValue),
+                                dDay: .constant(event.dDay),
+                                gaugeValue: .constant(event.gaugeValue),
                                 min: .constant(event.min),
                                 max: .constant(event.max))
         }
@@ -26,8 +27,8 @@ struct AnnualEventsListView: View {
 #Preview {
     AnnualEventsListView(event: .constant(
         [
-        AnnualEvent(name: "New Year", progressValue: 1, min: 1, max: 365),
-        AnnualEvent(name: "Christmas", progressValue: 1, min: 1, max: 365)
+            AnnualEvent(name: "New Year", dDay: 5, gaugeValue: 1, min: 1, max: 365),
+        AnnualEvent(name: "Christmas", dDay: 5, gaugeValue: 1, min: 1, max: 365)
     ]
         )
     )

@@ -10,14 +10,16 @@ import SwiftUI
 struct AnnualEventView: View {
     
     @Binding var eventName: String
-    @Binding var progressValue: Int
+    @Binding var dDay: Int
+    @Binding var gaugeValue: Int
     @Binding var min: Int
     @Binding var max: Int
     
     //Variable for gauge bcz gauge requires Double type
-    private var minDouble: Double { Double(min) }
-    private var maxDouble: Double { Double(max) }
-    private var progressValueDouble: Double { Double(progressValue) }
+    var minDouble: Double { Double(min) }
+    var maxDouble: Double { Double(max) }
+    var gaugeValueDouble: Double { Double(gaugeValue) }
+    var dDayDouble: Double { Double(dDay) }
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -26,12 +28,12 @@ struct AnnualEventView: View {
                 Text("\(eventName)")
                     .font(.callout)
                 Spacer()
-                Text("To D-Day")
+                Text("\(dDay)")
                     .foregroundStyle(Color.accentColor)
                     .font(.title3)
                     .fontWeight(.bold)
             }
-            Gauge(value: progressValueDouble, in: minDouble...maxDouble) {
+            Gauge(value: gaugeValueDouble, in: minDouble...maxDouble) {
                 Text("Hide it to LabelIsHidden")
             }
             .gaugeStyle(.accessoryLinearCapacity)
@@ -44,5 +46,5 @@ struct AnnualEventView: View {
 }
 
 #Preview {
-    AnnualEventView(eventName: .constant("Event Name"), progressValue: .constant(0), min: .constant(0), max: .constant(100))
+    AnnualEventView(eventName: .constant("Event Name"), dDay: .constant(5), gaugeValue: .constant(0), min: .constant(0), max: .constant(100))
 }

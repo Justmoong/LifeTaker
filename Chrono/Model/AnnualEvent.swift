@@ -10,7 +10,8 @@ import Foundation
 struct AnnualEvent: Identifiable, Codable {
     let id = UUID()
     var name: String
-    var progressValue: Int
+    var dDay: Int
+    var gaugeValue: Int
     var min: Int
     var max: Int
 }
