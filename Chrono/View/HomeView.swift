@@ -20,10 +20,28 @@ struct HomeView: View {
     @State var isPresented: Bool = false
     
     //Annual Events model
-    @State private var event: [AnnualEvent] = [
-        AnnualEvent(name: "New Year", dDay: 5, gaugeValue: 1, min: 1, max: 365),
-        AnnualEvent(name: "Christmas", dDay: 5, gaugeValue: 1, min: 1, max: 365),
-        AnnualEvent(name: "Real Christmas", dDay: remainingChristmasDays() + 1, gaugeValue: daysPassedInYear(), min: 1, max: 365)
+    @State private var event: [Event] = [
+        Event(
+            name: "New Year",
+            dDay: 5,
+            gaugeValue: 1,
+            min: 1,
+            max: 365
+        ),
+        Event(
+            name: "Christmas",
+            dDay: 5,
+            gaugeValue: 1,
+            min: 1,
+            max: 365
+        ),
+        Event(
+            name: "Real Christmas",
+            dDay: remainingChristmasDays() + 1,
+            gaugeValue: daysPassedInYear(),
+            min: 1,
+            max: 365
+        )
     ]
     
     var body: some View {
@@ -47,9 +65,12 @@ struct HomeView: View {
                 }
             }
             Section(header: Text("Annual Events")) {
-                AnnualEventsListView(event: $event)
+                EventsListView(event: $event)
                     .onAppear() //뷰가 표시될 때 변수들을 print로 출력
                     {
+                        let copiedBirthDay = userBirthDay
+                        let copiedLifespan = expectedLifespan
+                        
                         print("1st event name: \(event[0].name)")
                         print("1st event progressValue: \(event[0].gaugeValue)")
                         print("1st event min: \(event[0].min)")
@@ -62,13 +83,19 @@ struct HomeView: View {
                         print("3rd event progressValue: \(event[2].gaugeValue)")
                         print("3rd event min: \(event[2].min)")
                         print("3rd event max: \(event[2].max)\n")
+                        print("Total Mondays: \(totalMondays(userBirthDay: copiedBirthDay, userExpectedLifespan: copiedLifespan))")
+                        print("Past Mondays: \(pastMondays(userBirthDay: copiedBirthDay, userExpectedLifespan: copiedLifespan))")
+                        print("Remaining Mondays: \(remainingMondays(userBirthDay: copiedBirthDay, userExpectedLifespan: copiedLifespan))")
                     }
             }
         }
     }
 }
     
+
+
 #Preview {
     HomeView()
 }
 
+// EventsArray.0.name:

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AnnualEventView: View {
+struct EventView: View {
     
     @Binding var eventName: String
     @Binding var dDay: Int
@@ -46,5 +46,5 @@ struct AnnualEventView: View {
 }
 
 #Preview {
-    AnnualEventView(eventName: .constant("Event Name"), dDay: .constant(5), gaugeValue: .constant(0), min: .constant(0), max: .constant(100))
+    EventView(eventName: .constant("Event Name"), dDay: .constant(5), gaugeValue: .constant(0), min: .constant(0), max: .constant(100))
 }

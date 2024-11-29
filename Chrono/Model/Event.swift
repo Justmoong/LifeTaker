@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct AnnualEvent: Identifiable, Codable {
-    let id = UUID()
+struct Event: Identifiable, Codable {
+    var id = UUID()
     var name: String
     var dDay: Int
     var gaugeValue: Int
