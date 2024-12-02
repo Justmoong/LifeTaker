@@ -84,3 +84,4 @@ extension EventDataManager {
         print("Debug info: [updateMondayEvent] Monday event updated: \(mondayEvent)")
     }
 }
+

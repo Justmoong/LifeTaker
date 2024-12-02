@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-
-
     // 총 월요일의 수를 계산, max
     public func calculateTotalMondays() -> Int {
         let userBirthDay = UserDefaults.standard.object(forKey: "userBirthDay") as? Date ?? Date()
@@ -57,16 +55,4 @@ import SwiftUI
         return totalMondays - pastMondays
     }
 
-public func saveRemainingMondaysData() {
-    let totalMondays = calculateTotalMondays()
-    let pastMondays = calculatePastMondays()
-    let remainingMondays = calculateRemainingMondays()
-    
-    let userDefaults = UserDefaults(suiteName: "group.com.moonglab.chrono")
-    
-    userDefaults?.set(totalMondays, forKey: "totalMondays")
-    userDefaults?.set(pastMondays, forKey: "pastMondays")
-    userDefaults?.set(remainingMondays, forKey: "remainingMondays")
-    
-    print("Debug info: [saveRemainingMondaysData] Saved totalMondays: \(totalMondays), pastMondays: \(pastMondays), remainingMondays: \(remainingMondays)")
-}
+
