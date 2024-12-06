@@ -6,7 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		F9007C082D01B71400DA3EB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F905326F2CA569200041E8AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F90532762CA569200041E8AB;
+			remoteInfo = Chrono;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		F9007C042D01B71400DA3EB8 /* ChronoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90532772CA569200041E8AB /* Chrono.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chrono.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -21,6 +32,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F9007C052D01B71400DA3EB8 /* ChronoTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ChronoTests;
+			sourceTree = "<group>";
+		};
 		F90532792CA569200041E8AB /* Chrono */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +48,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F9007C012D01B71400DA3EB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F90532742CA569200041E8AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				F90532792CA569200041E8AB /* Chrono */,
+				F9007C052D01B71400DA3EB8 /* ChronoTests */,
 				F90532782CA569200041E8AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				F90532772CA569200041E8AB /* Chrono.app */,
+				F9007C042D01B71400DA3EB8 /* ChronoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +86,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F9007C032D01B71400DA3EB8 /* ChronoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9007C0C2D01B71400DA3EB8 /* Build configuration list for PBXNativeTarget "ChronoTests" */;
+			buildPhases = (
+				F9007C002D01B71400DA3EB8 /* Sources */,
+				F9007C012D01B71400DA3EB8 /* Frameworks */,
+				F9007C022D01B71400DA3EB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9007C092D01B71400DA3EB8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F9007C052D01B71400DA3EB8 /* ChronoTests */,
+			);
+			name = ChronoTests;
+			packageProductDependencies = (
+			);
+			productName = ChronoTests;
+			productReference = F9007C042D01B71400DA3EB8 /* ChronoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F90532762CA569200041E8AB /* Chrono */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F905329E2CA569220041E8AB /* Build configuration list for PBXNativeTarget "Chrono" */;
@@ -93,6 +141,10 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					F9007C032D01B71400DA3EB8 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = F90532762CA569200041E8AB;
+					};
 					F90532762CA569200041E8AB = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -107,17 +159,27 @@
 			);
 			mainGroup = F905326E2CA569200041E8AB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F90532782CA569200041E8AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F90532762CA569200041E8AB /* Chrono */,
+				F9007C032D01B71400DA3EB8 /* ChronoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F9007C022D01B71400DA3EB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F90532752CA569200041E8AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +190,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F9007C002D01B71400DA3EB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F90532732CA569200041E8AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +206,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F9007C092D01B71400DA3EB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F90532762CA569200041E8AB /* Chrono */;
+			targetProxy = F9007C082D01B71400DA3EB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F9007C0A2D01B71400DA3EB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5U49ST9XZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moonglab.chrono.ChronoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chrono.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chrono";
+			};
+			name = Debug;
+		};
+		F9007C0B2D01B71400DA3EB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5U49ST9XZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moonglab.chrono.ChronoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chrono.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chrono";
+			};
+			name = Release;
+		};
 		F905329F2CA569220041E8AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -332,6 +445,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F9007C0C2D01B71400DA3EB8 /* Build configuration list for PBXNativeTarget "ChronoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9007C0A2D01B71400DA3EB8 /* Debug */,
+				F9007C0B2D01B71400DA3EB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F90532722CA569200041E8AB /* Build configuration list for PBXProject "Chrono" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
