@@ -10,7 +10,8 @@ import SwiftUI
 
 struct EventsListView: View {
     
-    @Binding var event: [Event]
+    @StateObject var userDataModel: UserData
+    @StateObject var dateCount: DateCount
     
     var body: some View {
 
@@ -25,11 +26,5 @@ struct EventsListView: View {
 }
 
 #Preview {
-    EventsListView(event: .constant(
-        [
-            Event(name: "New Year", DDay: 5, gaugeValue: 1, min: 1, max: 365),
-        Event(name: "Christmas", DDay: 5, gaugeValue: 1, min: 1, max: 365)
-    ]
-        )
-    )
+    EventsListView()
 }
