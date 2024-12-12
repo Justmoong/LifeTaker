@@ -9,10 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     
-    @Binding var showingName : String
-    @Binding public var userAge : Int
-    @Binding public var userBirthDay : Date
-    @Binding public var userExpectedLifespan : Int
+    @StateObject var userData: UserData
     
     public static let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
@@ -28,19 +25,19 @@ struct UserProfileView: View {
                     .scaledToFill()
                     .frame(width:48 , height:  48)
                 VStack (alignment: .leading){
-                    Text(showingName)
+                    Text(userData.userName)
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(Self.dateFormatter.string(from: userBirthDay))
+                    Text(Self.dateFormatter.string(from: userData.userBirthday))
                         .font(.subheadline)
                         .foregroundStyle(Color.gray)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 // TODO: Sex Icon will place here!!!!!!
                 .frame(maxWidth: .infinity, alignment: .leading)
-                Gauge(value: Double(userAge),  in: 0...Double(userExpectedLifespan)) {
-                    Text(String(format: "%.0f", Double(userAge)))
+                Gauge(value: Double(userData.userAge),  in: 0...Double(userData.userExpectedLifespan)) {
+                    Text(String(format: "%.0f", Double(userData.userAge)))
                         .font(.headline)
                 }
                         .gaugeStyle(.accessoryCircularCapacity)
@@ -48,7 +45,7 @@ struct UserProfileView: View {
                         .tint(Color.accentColor)
             }
             HStack{
-                Gauge(value: Float(userAge),  in: 0...Float(userExpectedLifespan)) {
+                Gauge(value: Float(userData.userAge),  in: 0...Float(userData.userExpectedLifespan)) {
                     
                 }
                 .gaugeStyle(.accessoryLinearCapacity)
@@ -59,10 +56,5 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView(
-        showingName: .constant(""),
-        userAge: .constant(0),
-        userBirthDay: .constant(Date()),
-        userExpectedLifespan: .constant(80)
-    )
+    UserProfileView(userData: UserData(userName: "", userSex: "", userAge: 0, userBirthday: Date(), userDeathAge: 0, userExpectedLifespan: 0))
 }

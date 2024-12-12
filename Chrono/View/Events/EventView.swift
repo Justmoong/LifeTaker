@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct EventsProperties: Identifiable {
+    var id = UUID()
+    var name: String
+    var DDay: Int
+    var gaugeValue: Int
+    var min: Int
+    var max: Int
+}
+
 struct EventView: View {
     
     @Binding var eventName: String

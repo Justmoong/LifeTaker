@@ -8,6 +8,8 @@
 import Foundation
 import XCTest
 
+@testable import Chrono
+
 final class ChronoTests: XCTestCase {
 
     func testHelloWorld_ConstString_ConstString() {
@@ -40,5 +42,6 @@ final class ChronoTests: XCTestCase {
         //PostCondition && Assert
         XCTAssert(resultDate != nil)
     }
+
 
 }
