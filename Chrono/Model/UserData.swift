@@ -14,7 +14,7 @@ class UserData: ObservableObject, Codable {
     @Published var userBirthday: Date
     @Published var userDeathAge: Int
     @Published var userExpectedLifespan: Int
-
+    
     init(userName: String, userSex: String, userAge: Int, userBirthday: Date, userDeathAge: Int, userExpectedLifespan: Int) {
         self.userName = userName
         self.userSex = userSex
@@ -38,7 +38,7 @@ class UserData: ObservableObject, Codable {
         userDeathAge = try container.decode(Int.self, forKey: .userDeathAge)
         userExpectedLifespan = try container.decode(Int.self, forKey: .userExpectedLifespan)
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(userName, forKey: .userName)
@@ -49,3 +49,5 @@ class UserData: ObservableObject, Codable {
         try container.encode(userExpectedLifespan, forKey: .userExpectedLifespan)
     }
 }
+    
+ 

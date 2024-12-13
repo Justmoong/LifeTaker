@@ -46,17 +46,3 @@ public func daysPassedInYear() -> Int {
     return calendar.dateComponents([.day], from: startOfYear, to: now).day ?? 0
 }
 
-
-struct ChristmasEventProperties {
-    private var name: String = "Christmas"
-    private var DDay: Int
-    private var gaugeValue: Int
-    private var min: Int = 0
-    private var max: Int = 365
-}
-
-func createChristmasEvent() -> EventsProperties {
-    let DDay = remainingChristmasDays()
-    let gaugeValue = daysPassedInYear()
-    return EventsProperties(name: "Christmas", DDay: DDay, gaugeValue: gaugeValue, min: 0, max: 365)
-}

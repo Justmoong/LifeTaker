@@ -7,54 +7,33 @@
 
 import SwiftUI
 
-struct EventsProperties: Identifiable {
-    var id = UUID()
-    var name: String
-    var DDay: Int
-    var gaugeValue: Int
-    var min: Int
-    var max: Int
-}
-
 struct EventView: View {
     
-    @Binding var eventName: String
-    @Binding var DDay: Int
-    @Binding var gaugeValue: Int
-    @Binding var min: Int
-    @Binding var max: Int
-    
-    //Variable for gauge bcz gauge requires Double type
-    var minDouble: Double { Double(min) }
-    var maxDouble: Double { Double(max) }
-    var gaugeValueDouble: Double { Double(gaugeValue) }
-    var dDayDouble: Double { Double(DDay) }
+    @StateObject var eventStore: EventsProperties
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
-            
             HStack {
-                Text("\(eventName)")
+                Text(eventStore.name)
                     .font(.callout)
                 Spacer()
-                Text("\(DDay)")
+                Text("\(eventStore.DDay)")
                     .foregroundStyle(Color.accentColor)
                     .font(.title3)
                     .fontWeight(.bold)
             }
-            Gauge(value: gaugeValueDouble, in: minDouble...maxDouble) {
-                Text("Hide it to LabelIsHidden")
+            Gauge(value: Double(eventStore.gaugeValue), in: Double(eventStore.min)...Double(eventStore.max)) {
+                Text("Progress") // 레이블로 사용할 텍스트
             }
             .gaugeStyle(.accessoryLinearCapacity)
             .foregroundStyle(Color.accentColor)
             .tint(Color.accentColor)
             .labelsHidden()
-            
         }
         .padding(.vertical, 8)
     }
 }
 
 #Preview {
-    EventView(eventName: .constant("Event Name"), DDay: .constant(5), gaugeValue: .constant(0), min: .constant(0), max: .constant(100))
+    EventView(eventStore: EventsProperties(name: "Next Christmas", DDay: 1, gaugeValue: 1, min: 1, max: 1))
 }

@@ -48,3 +48,16 @@ class DateCount: ObservableObject, Codable {
         try container.encode(secCount, forKey: .secCount)
     }
 }
+
+public func lenghOfYear() -> Int {
+    let calendar = Calendar.current
+    let currentYear = calendar.component(.year, from: Date())
+    
+    if (currentYear % 4 == 0 && currentYear % 10 != 0 || currentYear % 400 == 0) {
+        print(#function, "\(currentYear) is leap year")
+        return 366
+    } else {
+        print(#function, "\(currentYear) is not leap year")
+        return 365
+    }
+}
