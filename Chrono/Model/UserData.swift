@@ -50,4 +50,12 @@ class UserData: ObservableObject, Codable {
     }
 }
     
- 
+class UserDataManager {
+    static func getUserBirthday() -> Date {
+        return UserDefaults.standard.object(forKey: "userBirthDay") as? Date ?? Date()
+    }
+
+    static func getExpectedLifespan() -> Int {
+        return UserDefaults.standard.integer(forKey: "expectedLifespan")
+    }
+}

@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 //디데이
 class ChrisrtmasProperties: ObservableObject {
-    @Published var DDays = 0
-    @Published var gaugeValue = 0
+    @Published var DDays: Int = 0
+    @Published var gaugeValue: Int = 0
+    @Published var gaugeMax: Int = 0
+    let calendar = ChronoCalendar()
     
     static func remainingChristmasDays() -> Int {
         
@@ -50,30 +52,10 @@ class ChrisrtmasProperties: ObservableObject {
         print("[daysPassedInYear] Passed days in this year calculated: \(calendar.dateComponents([.day], from: startOfYear, to: now).day ?? 0)")
         return calendar.dateComponents([.day], from: startOfYear, to: now).day ?? 0
     }
-}
-
-struct Christmas {
-    var dDays: Int
-    var gaugeValue: Int
-
-    init() {
-        // ChrisrtmasProperties의 메서드를 호출하여 값 초기화
-        self.dDays = ChrisrtmasProperties.remainingChristmasDays()
-        self.gaugeValue = ChrisrtmasProperties.daysPassedInYear()
-    }
     
-    // 값을 업데이트하는 메서드 제공
-    mutating func update() {
-        self.dDays = ChrisrtmasProperties.remainingChristmasDays()
-        self.gaugeValue = ChrisrtmasProperties.daysPassedInYear()
+    func update() {
+        DDays = ChrisrtmasProperties.remainingChristmasDays()
+        gaugeValue = ChrisrtmasProperties.daysPassedInYear()
+        gaugeMax = calendar.lengthOfYear()
     }
 }
-
-//// Christmas 구조체를 초기화하고, 값을 사용
-//var christmas = Christmas()
-//print("Days until Christmas: \(christmas.dDays)")
-//print("Days passed this year: \(christmas.gaugeValue)")
-//
-//// 값이 변경되었다고 가정할 경우 업데이트
-//christmas.update()
-//print("Updated days until Christmas: \(christmas.dDays)")

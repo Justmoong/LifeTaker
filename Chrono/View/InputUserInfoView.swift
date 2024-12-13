@@ -10,11 +10,15 @@ import SwiftUI
 struct InputUserInfoView: View {
     @StateObject var userInfo: UserData
     @Environment(\.dismiss) private var dismiss
+    
+    let updateMonday = MondayProperties()
+    let updateChristmas = ChrisrtmasProperties()
+    let updateEventsArray = EventsArray()
+    
     @Binding public var inputedName: String
-    @Binding public var userBirthday: Date
-    @Binding public var userAge: Int
-    @Binding public var userSex: String
-    @Binding public var expectedLifespan: Int
+    @Binding public var inputedBirthday: Date
+    @Binding public var inputedAge: Int
+    @Binding public var inputedSex: String
     
     var body: some View {
         VStack {
@@ -22,9 +26,12 @@ struct InputUserInfoView: View {
                 Spacer()
                 Button(action: {
                     userInfo.userName = inputedName
-                    userInfo.userBirthday = userBirthday
-                    userInfo.userSex = userSex
-                    userInfo.userAge = userAge
+                    userInfo.userBirthday = inputedBirthday
+                    userInfo.userSex = inputedSex
+                    userInfo.userAge = inputedAge
+                    updateMonday.update()
+                    updateChristmas.update()
+                    updateEventsArray.monday()
                     dismiss()
                 }) {
                     Text("Done")
@@ -40,21 +47,17 @@ struct InputUserInfoView: View {
                             inputedName.isEmpty ? .secondary : .primary
                         )
                 }
-                DatePicker("Your Birthday :", selection: $userBirthday, displayedComponents: .date)
-                    .onChange(of: userBirthday) {
-                        
-                        print("User birthday set to \(userBirthday)")
-                        print("User age set to \(userAge)")
-                    }
+                DatePicker("Your Birthday :", selection: $inputedBirthday, displayedComponents: .date)
                 HStack {
-                    Picker("Select Sex", selection: $userSex) {
+                    Picker("Select Sex", selection: $inputedSex) {
                         Text("Male").tag("Male")
                         Text("Female").tag("Female")
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
                 }
-            }.padding()
+            }
+            .padding()
             Spacer()
         }
     }

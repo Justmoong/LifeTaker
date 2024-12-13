@@ -11,11 +11,7 @@ struct UserProfileView: View {
     
     @StateObject var userData: UserData
     
-    public static let dateFormatter: DateFormatter = {
-           let formatter = DateFormatter()
-           formatter.dateFormat = "yyyy-MM-dd"
-           return formatter
-       }()
+    let calendar = ChronoCalendar()
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16){
@@ -29,7 +25,9 @@ struct UserProfileView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(Self.dateFormatter.string(from: userData.userBirthday))
+                    Text(
+                        calendar.dateFormatter.string(from: userData.userBirthday)
+                    )
                         .font(.subheadline)
                         .foregroundStyle(Color.gray)
                         .frame(maxWidth: .infinity, alignment: .leading)

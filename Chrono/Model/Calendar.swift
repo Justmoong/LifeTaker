@@ -6,52 +6,33 @@
 //
 import Foundation
 
-extension Calendar {
-    
-    var now: Date {
-        return Date()
-    }
-    
-    static func lengthOfYear() -> Int {
-        
-        let currentYear = Calendar.current.component(.year, from: Date())
-        
-        if (currentYear % 4 == 0 && currentYear % 10 != 0 || currentYear % 400 == 0) {
-            return 366
-        } else {
-            return 365
-        }
-    }
-}
-
 class ChronoCalendar {
-    let calendar: Calendar
-    let now: Date
     
-    let dateFormatter: DateFormatter = {
+    var calendar: Calendar
+    var now: Date
+
+    var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
     
-    func calculateMondays(from startDate: Date, to endDate: Date) -> Int {
-        var mondaysCount = 0
-        var date = startDate
-        while date <= endDate {
-            if calendar.component(.weekday, from: date) == 2 { // 월요일
-                mondaysCount += 1
-            }
-            date = calendar.date(byAdding: .day, value: 1, to: date)!
-        }
-        return mondaysCount
-    }
-    
-    func addYears(to date: Date, years: Int) -> Date? {
-        return calendar.date(byAdding: .year, value: years, to: date)
-    }
-    
     init() {
         calendar = Calendar.current
         now = Date()
+    }
+    
+    // 연도의 길이 계산
+    func lengthOfYear() -> Int {
+        let currentYear = calendar.component(.year, from: now)
+        if (currentYear % 4 == 0 && currentYear % 100 != 0) || currentYear % 400 == 0 {
+            return 366
+        } else {
+            return 365
+        }
+    }
+    // 특정 날짜에 연도 추가
+    func addYears(to date: Date, years: Int) -> Date? {
+        return calendar.date(byAdding: .year, value: years, to: date)
     }
 }

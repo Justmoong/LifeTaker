@@ -10,8 +10,6 @@ import SwiftUI
 struct EventView: View {
     
     @StateObject var eventStore: EventsProperties
-    var days = ChronoCalendar()
-    var dayss = Calendar.lengthOfYear()
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {

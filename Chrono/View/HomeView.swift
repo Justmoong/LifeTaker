@@ -24,14 +24,13 @@ struct HomeView: View {
                         InputUserInfoView(
                             userInfo: userDataModel,
                             inputedName: $userDataModel.userName,
-                            userBirthday: $userDataModel.userBirthday,
-                            userAge: $userDataModel.userAge,
-                            userSex: $userDataModel.userSex,
-                            expectedLifespan: $userDataModel.userExpectedLifespan
+                            inputedBirthday: $userDataModel.userBirthday,
+                            inputedAge: $userDataModel.userAge,
+                            inputedSex: $userDataModel.userSex
                         )
                     }
                     .onTapGesture {
-                        isPresented.toggle()
+                        isPresented = true
                         print(#function, "isPresented: \(isPresented)")
                     }
             }
