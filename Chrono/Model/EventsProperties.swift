@@ -7,11 +7,11 @@
 import Foundation
 
 class EventsProperties: Identifiable, ObservableObject {
-    var id = UUID()
-    var name = ""
-    var DDay = 0
-    var gaugeValue = 0
-    var min = 0
-    var max = 100
+    @Published var id = UUID()
+    @Published var name = ""
+    @Published var DDay = 0
+    @Published var gaugeValue = 0
+    @Published var min = 0
+    @Published var max = 100
     
 }

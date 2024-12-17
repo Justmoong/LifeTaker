@@ -11,7 +11,7 @@ struct InputUserInfoView: View {
     @StateObject var userInfo: UserData
     @Environment(\.dismiss) private var dismiss
     
-    let updateMonday = MondayProperties()
+    let updateMonday = AnnualMondayProperties()
     let updateChristmas = ChrisrtmasProperties()
     let updateEventsArray = EventsArray()
     
@@ -32,6 +32,7 @@ struct InputUserInfoView: View {
                     updateMonday.update()
                     updateChristmas.update()
                     updateEventsArray.monday()
+                    updateEventsArray.christmas()
                     dismiss()
                 }) {
                     Text("Done")

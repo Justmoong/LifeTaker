@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class MondayProperties: ObservableObject {
+class AnnualMondayProperties: ObservableObject {
     @Published var DDays: Int = 0
     @Published var gaugeValue: Int = 0
     @Published var gaugeMax: Int = 0
@@ -28,8 +28,8 @@ class MondayProperties: ObservableObject {
             print("[remainingMondaysInYear] Failed to calculate start or end of year.")
             return 0
         }
-        let mondaysPassed = MondayProperties().calculateMondays(from: startOfYear, to: now)
-        let totalMondays = MondayProperties().calculateMondays(from: startOfYear, to: endOfYear)
+        let mondaysPassed = AnnualMondayProperties().calculateMondays(from: startOfYear, to: now)
+        let totalMondays = AnnualMondayProperties().calculateMondays(from: startOfYear, to: endOfYear)
         return totalMondays - mondaysPassed
     }
 
@@ -42,7 +42,7 @@ class MondayProperties: ObservableObject {
             print("[totalMondaysInYear] Failed to calculate start or end of year.")
             return 0
         }
-        return MondayProperties().calculateMondays(from: startOfYear, to: endOfYear)
+        return AnnualMondayProperties().calculateMondays(from: startOfYear, to: endOfYear)
     }
 
     func calculateMondays(from startDate: Date, to endDate: Date) -> Int {
@@ -58,8 +58,8 @@ class MondayProperties: ObservableObject {
     }
 
     func update() {
-        DDays = MondayProperties.remainingMondaysInYear()
-        gaugeValue = MondayProperties.totalMondaysInYear() - MondayProperties.remainingMondaysInYear()
-        gaugeMax = MondayProperties.totalMondaysInYear()
+        DDays = AnnualMondayProperties.remainingMondaysInYear()
+        gaugeValue = AnnualMondayProperties.totalMondaysInYear() - AnnualMondayProperties.remainingMondaysInYear()
+        gaugeMax = AnnualMondayProperties.totalMondaysInYear()
     }
 }

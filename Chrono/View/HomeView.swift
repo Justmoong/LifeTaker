@@ -13,7 +13,6 @@ struct HomeView: View {
     @StateObject private var userDataModel = UserData(userName: "", userSex: "", userAge: 0, userBirthday: Date(), userDeathAge: 80, userExpectedLifespan: 80)
     @StateObject var eventList = EventsArray(events: [])
     
-    
     @State var isPresented: Bool = false
     
     var body: some View {
