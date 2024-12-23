@@ -20,18 +20,30 @@ class EventsArray: ObservableObject {
     }
     
     func christmas() {
-        let christmas = EventsProperties()
+        let christmas = EventsProperties(
+            name: "Christmas",
+            count: ChrisrtmasProperties.remainingChristmasDays(),
+            gaugeValue: ChrisrtmasProperties.daysPassedInYear(),
+            min: 0,
+            max: calendar.lengthOfYear()
+        )
         christmas.name = "Christmas"
-        christmas.DDay = ChrisrtmasProperties.remainingChristmasDays()
+        christmas.count = ChrisrtmasProperties.remainingChristmasDays() + 1
         christmas.gaugeValue = ChrisrtmasProperties.daysPassedInYear()
         christmas.max = calendar.lengthOfYear()
         self.events.append(christmas)
     }
     
     func monday() {
-            let monday = EventsProperties()
+            let monday = EventsProperties(
+                name: "Christmas",
+                count: ChrisrtmasProperties.remainingChristmasDays(),
+                gaugeValue: ChrisrtmasProperties.daysPassedInYear(),
+                min: 0,
+                max: calendar.lengthOfYear()
+            )
             monday.name = "Mondays"
-            monday.DDay = AnnualMondayProperties.remainingMondaysInYear()
+            monday.count = AnnualMondayProperties.remainingMondaysInYear()
             monday.gaugeValue = AnnualMondayProperties.totalMondaysInYear() - AnnualMondayProperties.remainingMondaysInYear()
             monday.max = AnnualMondayProperties.totalMondaysInYear()
             self.events.append(monday)

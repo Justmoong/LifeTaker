@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 //디데이
 class ChrisrtmasProperties: ObservableObject {
-    @Published var DDays: Int = 0
+    @Published var count: Int = 0
     @Published var gaugeValue: Int = 0
     @Published var gaugeMax: Int = 0
     let calendar = ChronoCalendar()
@@ -54,7 +54,7 @@ class ChrisrtmasProperties: ObservableObject {
     }
     
     func update() {
-        DDays = ChrisrtmasProperties.remainingChristmasDays()
+        count = ChrisrtmasProperties.remainingChristmasDays()
         gaugeValue = ChrisrtmasProperties.daysPassedInYear()
         gaugeMax = calendar.lengthOfYear()
     }

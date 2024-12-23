@@ -17,7 +17,7 @@ struct EventView: View {
                 Text(eventStore.name)
                     .font(.callout)
                 Spacer()
-                Text("\(eventStore.DDay)")
+                Text("\(eventStore.count)")
                     .foregroundStyle(Color.accentColor)
                     .font(.title3)
                     .fontWeight(.bold)

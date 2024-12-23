@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class AnnualMondayProperties: ObservableObject {
-    @Published var DDays: Int = 0
+    @Published var count: Int = 0
     @Published var gaugeValue: Int = 0
     @Published var gaugeMax: Int = 0
 
@@ -58,7 +58,7 @@ class AnnualMondayProperties: ObservableObject {
     }
 
     func update() {
-        DDays = AnnualMondayProperties.remainingMondaysInYear()
+        count = AnnualMondayProperties.remainingMondaysInYear()
         gaugeValue = AnnualMondayProperties.totalMondaysInYear() - AnnualMondayProperties.remainingMondaysInYear()
         gaugeMax = AnnualMondayProperties.totalMondaysInYear()
     }
