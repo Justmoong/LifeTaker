@@ -45,6 +45,11 @@
 			path = Chrono;
 			sourceTree = "<group>";
 		};
+		F92278FE2D27CE07000EFE08 /* TestPlayground */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TestPlayground;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,7 @@
 		F905326E2CA569200041E8AB = {
 			isa = PBXGroup;
 			children = (
+				F92278FE2D27CE07000EFE08 /* TestPlayground */,
 				F90532792CA569200041E8AB /* Chrono */,
 				F9007C052D01B71400DA3EB8 /* ChronoTests */,
 				F90532782CA569200041E8AB /* Products */,
@@ -123,6 +129,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				F90532792CA569200041E8AB /* Chrono */,
+				F92278FE2D27CE07000EFE08 /* TestPlayground */,
 			);
 			name = Chrono;
 			packageProductDependencies = (
