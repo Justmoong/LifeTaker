@@ -11,8 +11,6 @@ struct UserProfileView: View {
     
     @StateObject var userData: UserData
     
-    let calendar = ChronoCalendar()
-    
     var body: some View {
         VStack (alignment: .leading, spacing: 16){
             HStack {
@@ -21,12 +19,12 @@ struct UserProfileView: View {
                     .scaledToFill()
                     .frame(width:48 , height:  48)
                 VStack (alignment: .leading){
-                    Text(userData.userName)
+                    Text(userData.name)
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Text(
-                        calendar.dateFormatter.string(from: userData.userBirthday)
+                        userData.birthday
                     )
                         .font(.subheadline)
                         .foregroundStyle(Color.gray)
@@ -54,5 +52,5 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView(userData: UserData(userName: "", userSex: "", userAge: 0, userBirthday: Date(), userDeathAge: 0, userExpectedLifespan: 0))
+    UserProfileView(userData: UserData())
 }

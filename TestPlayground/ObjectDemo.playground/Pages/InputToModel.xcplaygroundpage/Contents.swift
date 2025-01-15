@@ -1,11 +1,6 @@
-//
-//  UserProfile.swift
-//  Chrono
-//
-//  Created by 윤무영 on 11/8/24.
-//
-
 import Foundation
+import SwiftUI
+import PlaygroundSupport
 
 class UserData: ObservableObject {
     @Published var name: String
@@ -25,3 +20,20 @@ class UserData: ObservableObject {
     }
 }
 
+struct InputUserDataView: View {
+    @StateObject var userData = UserData()
+    
+    var body: some View {
+        VStack {
+            TextField("Enter Name", text: $userData.name)
+            DatePicker("Your Birthday", selection: $userData.birthday, displayedComponents: .date)
+            TextField("Enter Age", value: $userData.age, formatter: NumberFormatter())
+        }
+    }
+}
+
+
+
+
+
+//PlaygroundPage.current.setLiveView(InputUserDataView())

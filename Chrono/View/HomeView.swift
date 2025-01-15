@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     
-    @StateObject private var userDataModel = UserData(userName: "", userSex: "", userAge: 0, userBirthday: Date(), userDeathAge: 80, userExpectedLifespan: 80)
+    @StateObject private var userData = UserData()
     @StateObject var eventList = EventsArray(events: [])
     
     @State var isPresented: Bool = false
@@ -18,15 +18,9 @@ struct HomeView: View {
     var body: some View {
         List {
             Section(header: EmptyView()) {
-                UserProfileView(userData: userDataModel)
+                UserProfileView(userData: userData)
                     .sheet(isPresented: $isPresented) {
-                        InputUserInfoView(
-                            userInfo: userDataModel,
-                            inputedName: $userDataModel.userName,
-                            inputedBirthday: $userDataModel.userBirthday,
-                            inputedAge: $userDataModel.userAge,
-                            inputedSex: $userDataModel.userSex
-                        )
+                        InputUserInfoView()
                     }
                     .onTapGesture {
                         isPresented = true

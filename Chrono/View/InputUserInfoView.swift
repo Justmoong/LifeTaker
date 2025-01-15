@@ -8,31 +8,14 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
-    @StateObject var userInfo: UserData
+    @StateObject var userData = UserData()
     @Environment(\.dismiss) private var dismiss
-    
-    let updateMonday = AnnualMondayProperties()
-    let updateChristmas = ChrisrtmasProperties()
-    let updateEventsArray = EventsArray()
-    
-    @Binding public var inputedName: String
-    @Binding public var inputedBirthday: Date
-    @Binding public var inputedAge: Int
-    @Binding public var inputedSex: String
-    
+
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 Button(action: {
-                    userInfo.userName = inputedName
-                    userInfo.userBirthday = inputedBirthday
-                    userInfo.userSex = inputedSex
-                    userInfo.userAge = inputedAge
-                    updateMonday.update()
-                    updateChristmas.update()
-                    updateEventsArray.monday()
-                    updateEventsArray.christmas()
                     dismiss()
                 }) {
                     Text("Done")
@@ -42,15 +25,15 @@ struct InputUserInfoView: View {
             }
             VStack {
                 HStack {
-                    TextField("Enter Name", text: $inputedName)
+                    TextField("Enter Name", text: $userData.name)
                         .textFieldStyle(.roundedBorder)
                         .foregroundStyle(
-                            inputedName.isEmpty ? .secondary : .primary
+                            userData.name.isEmpty ? .secondary : .primary
                         )
                 }
-                DatePicker("Your Birthday :", selection: $inputedBirthday, displayedComponents: .date)
+                DatePicker("Your Birthday :", selection: $userData.birthday, displayedComponents: .date)
                 HStack {
-                    Picker("Select Sex", selection: $inputedSex) {
+                    Picker("Select Sex", selection: $userData.sex) {
                         Text("Male").tag("Male")
                         Text("Female").tag("Female")
                     }
