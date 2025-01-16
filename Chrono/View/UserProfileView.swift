@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     
-    @StateObject var userData = UserData()
+    @ObservedObject var userData: UserData
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16){
@@ -23,9 +23,7 @@ struct UserProfileView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(
-                        userData.name
-                    )
+                    Text("\(dateFormatter.string(from: userData.birthday))")
                         .font(.subheadline)
                         .foregroundStyle(Color.gray)
                         .frame(maxWidth: .infinity, alignment: .leading)

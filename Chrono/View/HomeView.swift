@@ -16,14 +16,13 @@ struct HomeView: View {
     private var annualMondays = AnnualMondayProperties()
     
     @State var isPresented: Bool = false
-    private let lengthOfYear: Int = 365
     
     var body: some View {
         List {
             Section(header: EmptyView()) {
                 UserProfileView(userData: userData)
                     .sheet(isPresented: $isPresented) {
-                        InputUserInfoView()
+                        InputUserInfoView(userData: userData)
                     }
                     .onTapGesture {
                         isPresented = true
@@ -36,7 +35,6 @@ struct HomeView: View {
                 EventView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
                 EventView(title: annualMondays.name, count: annualMondays.count, gaugeValue: annualMondays.gaugeValue, min: annualMondays.gaugeMin, max: annualMondays.gaugeMax)
             }
-
         }
     }
 }

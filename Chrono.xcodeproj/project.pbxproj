@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F9F7F7432D397FFE0062999A /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F7F7422D397FFE0062999A /* DateUtility.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F9007C082D01B71400DA3EB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -19,6 +23,7 @@
 /* Begin PBXFileReference section */
 		F9007C042D01B71400DA3EB8 /* ChronoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90532772CA569200041E8AB /* Chrono.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chrono.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9F7F7422D397FFE0062999A /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -73,6 +78,7 @@
 		F905326E2CA569200041E8AB = {
 			isa = PBXGroup;
 			children = (
+				F9F7F7412D397FE60062999A /* Utility */,
 				F92278FE2D27CE07000EFE08 /* TestPlayground */,
 				F90532792CA569200041E8AB /* Chrono */,
 				F9007C052D01B71400DA3EB8 /* ChronoTests */,
@@ -87,6 +93,14 @@
 				F9007C042D01B71400DA3EB8 /* ChronoTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F9F7F7412D397FE60062999A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F9F7F7422D397FFE0062999A /* DateUtility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F7F7432D397FFE0062999A /* DateUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

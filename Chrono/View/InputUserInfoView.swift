@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
-    @StateObject var userData = UserData()
+    @ObservedObject var userData: UserData
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -16,6 +16,8 @@ struct InputUserInfoView: View {
             HStack {
                 Spacer()
                 Button(action: {
+                    userData.setAge()
+                    userData.setDeathDate()
                     dismiss()
                 }) {
                     Text("Done")
