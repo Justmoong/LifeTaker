@@ -12,8 +12,7 @@ class ChristmasProperties {
     let name: String = "Christmas"
     var count: Int = 0
     var gaugeValue: Int = 0
-    let gaugeMin: Int = 0
-    var gaugeMax: Int = 0
+
     
     init() {
         self.update()

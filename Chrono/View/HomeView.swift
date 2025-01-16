@@ -13,8 +13,10 @@ struct HomeView: View {
     @StateObject private var userData = UserData()
     
     private var christmas = ChristmasProperties()
+    private var annualMondays = AnnualMondayProperties()
     
     @State var isPresented: Bool = false
+    private let lengthOfYear: Int = 365
     
     var body: some View {
         List {
@@ -31,8 +33,10 @@ struct HomeView: View {
                     }
             }
             Section(header: Text("Annual Events")) {
-                EventView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: christmas.gaugeMin, max: christmas.gaugeMax)
+                EventView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
+                EventView(title: annualMondays.name, count: annualMondays.count, gaugeValue: annualMondays.gaugeValue, min: annualMondays.gaugeMin, max: annualMondays.gaugeMax)
             }
+
         }
     }
 }
