@@ -24,7 +24,7 @@ struct UserProfileView: View {
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Text(
-                        userData.birthday
+                        userData.name
                     )
                         .font(.subheadline)
                         .foregroundStyle(Color.gray)
@@ -32,8 +32,8 @@ struct UserProfileView: View {
                 }
                 // TODO: Sex Icon will place here!!!!!!
                 .frame(maxWidth: .infinity, alignment: .leading)
-                Gauge(value: Double(userData.userAge),  in: 0...Double(userData.userExpectedLifespan)) {
-                    Text(String(format: "%.0f", Double(userData.userAge)))
+                Gauge(value: Double(userData.age),  in: 0...Double(userData.deathAge)) {
+                    Text(String(format: "%.0f", Double(userData.age)))
                         .font(.headline)
                 }
                         .gaugeStyle(.accessoryCircularCapacity)
@@ -41,7 +41,7 @@ struct UserProfileView: View {
                         .tint(Color.accentColor)
             }
             HStack{
-                Gauge(value: Float(userData.userAge),  in: 0...Float(userData.userExpectedLifespan)) {
+                Gauge(value: Float(userData.age),  in: 0...Float(userData.deathAge)) {
                     
                 }
                 .gaugeStyle(.accessoryLinearCapacity)

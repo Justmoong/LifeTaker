@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 
 class AnnualMondayProperties: ObservableObject {
+    let name: String = "Monday"
     @Published var count: Int = 0
     @Published var gaugeValue: Int = 0
+    let guageMin: Int = 0
     @Published var gaugeMax: Int = 0
 
     private let calendar: Calendar

@@ -11,7 +11,8 @@ import SwiftData
 struct HomeView: View {
     
     @StateObject private var userData = UserData()
-    @StateObject var eventList = EventsArray(events: [])
+    
+    private var christmas = ChristmasProperties()
     
     @State var isPresented: Bool = false
     
@@ -28,7 +29,7 @@ struct HomeView: View {
                     }
             }
             Section(header: Text("Annual Events")) {
-                EncodedEventsListView(eventList:eventList)
+                EventView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: christmas.gaugeMin, max: christmas.gaugeMax)
             }
         }
     }

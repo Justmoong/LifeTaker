@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct EventView: View {
-    
-    @StateObject var eventStore: EventsProperties
+
+    var title: String
+    var count: Int
+    var gaugeValue: Int
+    var min: Int
+    var max: Int
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             HStack {
-                Text(eventStore.name)
+                Text(title)
                     .font(.callout)
                 Spacer()
-                Text("\(eventStore.count)")
+                Text("\(count)")
                     .foregroundStyle(Color.accentColor)
                     .font(.title3)
                     .fontWeight(.bold)
             }
-            Gauge(value: Double(eventStore.gaugeValue), in: Double(eventStore.min)...Double(eventStore.max)) {
+            Gauge(value: Double(gaugeValue), in: Double(min)...Double(max)) {
                 Text("Progress") // 레이블로 사용할 텍스트
             }
             .gaugeStyle(.accessoryLinearCapacity)
@@ -32,4 +36,14 @@ struct EventView: View {
         }
         .padding(.vertical, 8)
     }
+}
+
+#Preview {
+    EventView(
+        title: "Christmas",
+        count: 1,
+        gaugeValue: 1,
+        min: 1,
+        max: 365
+    )
 }

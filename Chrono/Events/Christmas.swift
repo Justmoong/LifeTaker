@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 //디데이
-class ChristmasProperties: ObservableObject {
-    @Published var count: Int = 0
-    @Published var gaugeValue: Int = 0
-    @Published var gaugeMax: Int = 0
+class ChristmasProperties {
+    let name: String = "Christmas"
+    var count: Int = 0
+    var gaugeValue: Int = 0
+    let gaugeMin: Int = 0
+    var gaugeMax: Int = 0
     
     static func remainingChristmasDays() -> Int {
         
