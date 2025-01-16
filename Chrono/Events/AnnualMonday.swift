@@ -8,18 +8,33 @@
 import Foundation
 import SwiftUI
 
-class AnnualMondayProperties: ObservableObject {
-    let name: String = "Monday"
-    @Published var count: Int = 0
-    @Published var gaugeValue: Int = 0
+class AnnualMondayProperties {
+    let name: String = "Mondays"
+    var count: Int = 0
+    var gaugeValue: Int = 0
     let gaugeMin: Int = 0
-    @Published var gaugeMax: Int = 0
+    var gaugeMax: Int = 0
 
     init() {
-        self.update()
+            self.update()
+        }
+
+    func calculateMondays(from startDate: Date, to endDate: Date) -> Int {
+        let calendar = Calendar.current
+        var mondaysCount = 0
+        var date = startDate
+
+        while date <= endDate {
+            if calendar.component(.weekday, from: date) == 2 { // 월요일
+                mondaysCount += 1
+            }
+            date = calendar.date(byAdding: .day, value: 1, to: date)!
+        }
+
+        return mondaysCount
     }
 
-    static func remainingMondaysInYear() -> Int {
+    func remainingMondaysInYear() -> Int {
         let now = Date()
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: now)
@@ -35,7 +50,7 @@ class AnnualMondayProperties: ObservableObject {
         return totalMondays - mondaysPassed
     }
 
-    static func totalMondaysInYear() -> Int {
+    func totalMondaysInYear() -> Int {
         let now = Date()
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: now)
@@ -49,24 +64,12 @@ class AnnualMondayProperties: ObservableObject {
         return calculateMondays(from: startOfYear, to: endOfYear)
     }
 
-    static func calculateMondays(from startDate: Date, to endDate: Date) -> Int {
-        let calendar = Calendar.current
-        var mondaysCount = 0
-        var date = startDate
-
-        while date <= endDate {
-            if calendar.component(.weekday, from: date) == 2 { // 월요일
-                mondaysCount += 1
-            }
-            date = calendar.date(byAdding: .day, value: 1, to: date)!
-        }
-
-        return mondaysCount
-    }
-
     func update() {
-        self.count = AnnualMondayProperties.remainingMondaysInYear()
-        self.gaugeMax = AnnualMondayProperties.totalMondaysInYear()
-        self.gaugeValue = self.gaugeMax - self.count
+        let remainingMondays = self.remainingMondaysInYear()
+        let totalMondays = self.totalMondaysInYear()
+
+        self.count = remainingMondays
+        self.gaugeMax = totalMondays
+        self.gaugeValue = totalMondays - remainingMondays
     }
 }
