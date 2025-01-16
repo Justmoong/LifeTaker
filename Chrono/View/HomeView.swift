@@ -25,7 +25,9 @@ struct HomeView: View {
                     }
                     .onTapGesture {
                         isPresented = true
+                        christmas.update()
                         print(#function, "isPresented: \(isPresented)")
+                        
                     }
             }
             Section(header: Text("Annual Events")) {

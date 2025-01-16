@@ -15,6 +15,10 @@ class ChristmasProperties {
     let gaugeMin: Int = 0
     var gaugeMax: Int = 0
     
+    init() {
+        self.update()
+    }
+    
     static func remainingChristmasDays() -> Int {
         
         let calendar = Calendar.current
@@ -38,9 +42,8 @@ class ChristmasProperties {
         
         let days = calendar.dateComponents([.day], from: now, to: christmasDate).day ?? 0
         print("[remainingChristmasDays] Days until Christmas: \(days)")
-        return days
+        return days + 1
     }
-    //게이지의 값
     static func daysPassedInYear() -> Int {
         
         let calendar = Calendar.current
