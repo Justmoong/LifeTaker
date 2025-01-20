@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InputUserInfoView: View {
     @ObservedObject var userData: UserData
+    @ObservedObject var monthCount: MonthCount
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -18,6 +19,7 @@ struct InputUserInfoView: View {
                 Button(action: {
                     userData.setAge()
                     userData.setDeathDate()
+                    monthCount.calculateMonths()
                     dismiss()
                 }) {
                     Text("Done")
