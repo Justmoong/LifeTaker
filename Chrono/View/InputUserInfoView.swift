@@ -51,4 +51,6 @@ struct InputUserInfoView: View {
     }
 }
 
-
+#Preview {
+    InputUserInfoView(userData: UserData(), monthCount: MonthCount(userData: UserData()))
+}
