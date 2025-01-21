@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 //디데이
-class ChristmasProperties {
-    let name: String = "Christmas"
+class AnnualChristmasProperties {
+    let name: String = "Next Christmas :"
     var count: Int = 0
     var gaugeValue: Int = 0
 
@@ -57,7 +57,7 @@ class ChristmasProperties {
     }
     
     func update() {
-        count = ChristmasProperties.remainingChristmasDays()
-        gaugeValue = ChristmasProperties.daysPassedInYear()
+        count = AnnualChristmasProperties.remainingChristmasDays()
+        gaugeValue = AnnualChristmasProperties.daysPassedInYear()
     }
 }

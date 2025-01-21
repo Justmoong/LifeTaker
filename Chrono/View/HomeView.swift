@@ -12,9 +12,11 @@ struct HomeView: View {
     
     @StateObject private var userData = UserData()
     
-    private var christmas = ChristmasProperties()
+    private var christmas = AnnualChristmasProperties()
     private var annualMondays = AnnualMondayProperties()
     @StateObject private var monthCount: MonthCount
+    @StateObject private var weekCount: WeekCount
+    @StateObject private var dayCount: DayCount
     
     @State var isPresented: Bool = false
     
@@ -22,6 +24,8 @@ struct HomeView: View {
         let userData = UserData()
         _userData = StateObject(wrappedValue: userData)
         _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
+        _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
+        _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
     }
     
     var body: some View {
@@ -38,6 +42,8 @@ struct HomeView: View {
 
             Section(header: Text("Remaining Lifetime")) {
                 EventView(title: "Months", count: monthCount.leftMonths, gaugeValue: monthCount.passedMonths, min: 0, max: monthCount.totalMonths)
+                EventView(title: "Weeks", count: weekCount.leftWeeks, gaugeValue: weekCount.passedWeeks, min: 0, max: weekCount.totalWeeks)
+                EventView(title: "Days", count: dayCount.leftDays, gaugeValue: dayCount.passedDays, min: 0, max: dayCount.totalDays)
             }
             Section(header: Text("Annual Events")) {
                 EventView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)

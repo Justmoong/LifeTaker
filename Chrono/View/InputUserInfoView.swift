@@ -19,7 +19,6 @@ struct InputUserInfoView: View {
                 Button(action: {
                     userData.setAge()
                     userData.setDeathDate()
-                    monthCount.calculateMonths()
                     dismiss()
                 }) {
                     Text("Done")

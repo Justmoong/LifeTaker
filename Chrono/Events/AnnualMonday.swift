@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class AnnualMondayProperties {
-    let name: String = "Mondays"
+    let name: String = "Remining Mondays :"
     var count: Int = 0
     var gaugeValue: Int = 0
     let gaugeMin: Int = 0
