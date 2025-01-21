@@ -15,3 +15,6 @@ public let dateFormatter: DateFormatter = {
 }()
 
 public let lengthOfYear: Int = 365
+
+let now = Date()
+let calendar = Calendar.current

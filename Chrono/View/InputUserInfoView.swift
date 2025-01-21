@@ -16,7 +16,7 @@ struct InputUserInfoView: View {
     @State var isCalcAuto: Bool = true
 
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             HStack {
                 Spacer()
                 Button(action: {
@@ -32,30 +32,38 @@ struct InputUserInfoView: View {
                 }
                 .padding()
             }
-            VStack {
-                HStack {
-                    TextField("Enter Name", text: $userData.name)
-                        .textFieldStyle(.roundedBorder)
-                        .foregroundStyle(
-                            userData.name.isEmpty ? .secondary : .primary
-                        )
-                }
-                Toggle("Auto Calculate", isOn: $isCalcAuto)
-                    .tint(.accentColor)
-                DatePicker("Your Birthday :", selection: $userData.birthday, displayedComponents: .date)
+            Section(header: Text("User Info")
+                .font(.footnote)
+                .fontWeight(.medium)
+                .foregroundStyle(.secondary)
+                .textCase(.uppercase)
+                .padding(.leading, 16)
+            )
+            {
+                VStack {
+                    HStack {
+                        TextField("Enter Name", text: $userData.name)
+                            .textFieldStyle(.roundedBorder)
+                            .foregroundStyle(
+                                userData.name.isEmpty ? .secondary : .primary
+                            )
                     }
-            if isCalcAuto {
-                
-                HStack {
-                    Picker("Select Sex", selection: $userData.sex) {
-                        Text("Male").tag("Male")
-                        Text("Female").tag("Female")
-                    }
-                    .pickerStyle(.segmented)
-                    .labelsHidden()
+                    Toggle("Auto Calculate", isOn: $isCalcAuto)
+                        .tint(.accentColor)
+                    DatePicker("Your Birthday :", selection: $userData.birthday, displayedComponents: .date)
                 }
-            } else {
-                DatePicker("Your Deathday :", selection: $userData.deathDate, displayedComponents: .date)
+                if isCalcAuto {
+                    HStack {
+                        Picker("Select Sex", selection: $userData.sex) {
+                            Text("Male").tag("Male")
+                            Text("Female").tag("Female")
+                        }
+                        .pickerStyle(.segmented)
+                        .labelsHidden()
+                    }
+                } else {
+                    DatePicker("Your Deathday :", selection: $userData.deathDate, displayedComponents: .date)
+                }
             }
         }
         .padding()
