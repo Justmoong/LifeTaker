@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EventView: View {
+struct EventGaugeView: View {
 
     var title: String
     var count: Int
@@ -23,7 +23,7 @@ struct EventView: View {
                 Spacer()
                 Text("\(count)")
                     .foregroundStyle(Color.accentColor)
-                    .font(.title3)
+                    .font(.headline)
                     .fontWeight(.bold)
             }
             Gauge(value: Double(gaugeValue), in: Double(min)...Double(max)) {
@@ -39,7 +39,7 @@ struct EventView: View {
 }
 
 #Preview {
-    EventView(
+    EventGaugeView(
         title: "Christmas",
         count: 1,
         gaugeValue: 1,

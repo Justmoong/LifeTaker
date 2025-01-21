@@ -39,16 +39,14 @@ struct HomeView: View {
                         isPresented = true
                     }
             }
-
             Section(header: Text("Remaining Lifetime")) {
-                EventView(title: "Months", count: monthCount.leftMonths, gaugeValue: monthCount.passedMonths, min: 0, max: monthCount.totalMonths)
-                EventView(title: "Weeks", count: weekCount.leftWeeks, gaugeValue: weekCount.passedWeeks, min: 0, max: weekCount.totalWeeks)
-                EventView(title: "Days", count: dayCount.leftDays, gaugeValue: dayCount.passedDays, min: 0, max: dayCount.totalDays)
+                EventPlainView(title: "Months", count: monthCount.leftMonths, gaugeValue: monthCount.passedMonths, min: 0, max: monthCount.totalMonths)
+                EventPlainView(title: "Weeks", count: weekCount.leftWeeks, gaugeValue: weekCount.passedWeeks, min: 0, max: weekCount.totalWeeks)
+                EventPlainView(title: "Days", count: dayCount.leftDays, gaugeValue: dayCount.passedDays, min: 0, max: dayCount.totalDays)
             }
             Section(header: Text("Annual Events")) {
-                EventView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
-                EventView(title: annualMondays.name, count: annualMondays.count, gaugeValue: annualMondays.gaugeValue, min: annualMondays.gaugeMin, max: annualMondays.gaugeMax)
-                
+                EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
+                EventGaugeView(title: annualMondays.name, count: annualMondays.count, gaugeValue: annualMondays.gaugeValue, min: annualMondays.gaugeMin, max: annualMondays.gaugeMax)
             }
         }
     }
