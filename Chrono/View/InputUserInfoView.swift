@@ -10,7 +10,10 @@ import SwiftUI
 struct InputUserInfoView: View {
     @ObservedObject var userData: UserData
     @ObservedObject var monthCount: MonthCount
+    @ObservedObject var weekCount: WeekCount
+    @ObservedObject var dayCount: DayCount
     @Environment(\.dismiss) private var dismiss
+    @State var isCalcAuto: Bool = true
 
     var body: some View {
         VStack {
@@ -19,6 +22,9 @@ struct InputUserInfoView: View {
                 Button(action: {
                     userData.setAge()
                     userData.setDeathDate()
+                    monthCount.calculateMonths()
+                    weekCount.calculateWeeks()
+                    dayCount.calculateDays()
                     dismiss()
                 }) {
                     Text("Done")
@@ -34,7 +40,12 @@ struct InputUserInfoView: View {
                             userData.name.isEmpty ? .secondary : .primary
                         )
                 }
+                Toggle("Auto Calculate", isOn: $isCalcAuto)
+                    .tint(.accentColor)
                 DatePicker("Your Birthday :", selection: $userData.birthday, displayedComponents: .date)
+                    }
+            if isCalcAuto {
+                
                 HStack {
                     Picker("Select Sex", selection: $userData.sex) {
                         Text("Male").tag("Male")
@@ -43,13 +54,15 @@ struct InputUserInfoView: View {
                     .pickerStyle(.segmented)
                     .labelsHidden()
                 }
+            } else {
+                DatePicker("Your Deathday :", selection: $userData.deathDate, displayedComponents: .date)
             }
-            .padding()
-            Spacer()
         }
+        .padding()
+        Spacer()
     }
 }
 
 #Preview {
-    InputUserInfoView(userData: UserData(), monthCount: MonthCount(userData: UserData()))
+    InputUserInfoView(userData: UserData(), monthCount: MonthCount(userData: UserData()), weekCount: WeekCount(userData: UserData()), dayCount: DayCount(userData: UserData()))
 }

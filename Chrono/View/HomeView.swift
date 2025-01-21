@@ -33,13 +33,18 @@ struct HomeView: View {
             Section(header: EmptyView()) {
                 UserProfileView(userData: userData)
                     .sheet(isPresented: $isPresented) {
-                        InputUserInfoView(userData: userData, monthCount: monthCount)
+                        InputUserInfoView(userData: userData,
+                                          monthCount: monthCount,
+                                          weekCount: weekCount,
+                                          dayCount: dayCount,
+                                          isCalcAuto: true
+                        )
                     }
                     .onTapGesture {
                         isPresented = true
                     }
             }
-            Section(header: Text("Remaining Lifetime")) {
+            Section(header: Text("In Remaining Lifetime")) {
                 EventPlainView(title: "Months", count: monthCount.leftMonths, gaugeValue: monthCount.passedMonths, min: 0, max: monthCount.totalMonths)
                 EventPlainView(title: "Weeks", count: weekCount.leftWeeks, gaugeValue: weekCount.passedWeeks, min: 0, max: weekCount.totalWeeks)
                 EventPlainView(title: "Days", count: dayCount.leftDays, gaugeValue: dayCount.passedDays, min: 0, max: dayCount.totalDays)
