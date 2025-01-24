@@ -13,7 +13,7 @@ struct InputUserInfoView: View {
     @ObservedObject var weekCount: WeekCount
     @ObservedObject var dayCount: DayCount
     @Environment(\.dismiss) private var dismiss
-    @State var isCalcAuto: Bool = true
+    @AppStorage("isCalcAuto") private var isCalcAuto: Bool = true
     
     var body: some View {
         NavigationView {

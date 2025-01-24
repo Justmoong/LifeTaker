@@ -31,12 +31,14 @@ final class UserData: ObservableObject {
         $birthday
             .sink { [weak self] _ in
                 self?.saveToUserDefaults()
+                self?.setAge()
             }
             .store(in: &cancellables)
 
         $deathDate
             .sink { [weak self] _ in
                 self?.saveToUserDefaults()
+                self?.setAge()
             }
             .store(in: &cancellables)
 
@@ -48,8 +50,6 @@ final class UserData: ObservableObject {
     }
     
     func setAge() {
-        let calendar = Calendar.current
-        let now = Date()
         let calculatedAge = calendar.dateComponents([.year], from: birthday, to: now).year ?? 0
         self.age = calculatedAge
     }
