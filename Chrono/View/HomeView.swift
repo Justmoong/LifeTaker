@@ -37,8 +37,7 @@ struct HomeView: View {
                     InputUserInfoView(userData: userData,
                                       monthCount: monthCount,
                                       weekCount: weekCount,
-                                      dayCount: dayCount,
-                                      isCalcAuto: true
+                                      dayCount: dayCount
                     ).interactiveDismissDisabled(true)
             }
             .onTapGesture {

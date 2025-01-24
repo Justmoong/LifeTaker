@@ -17,40 +17,38 @@ struct InputUserInfoView: View {
     
     var body: some View {
         NavigationView {
-            VStack (alignment: .leading) {
-                    VStack {
-                        HStack {
-                            TextField("Enter Name", text: $userData.name)
-                                .textFieldStyle(.roundedBorder)
-                                .foregroundStyle(
-                                    userData.name.isEmpty ? .secondary : .primary
-                                )
-                        }
-                        Toggle("Auto Calculate", isOn: $isCalcAuto)
-                            .tint(.accentColor)
-                        DatePicker("Birthday :", selection: $userData.birthday, displayedComponents: .date)
+            VStack {
+                VStack {
+                    HStack {
+                        TextField("Enter Name", text: $userData.name)
+                            .textFieldStyle(.roundedBorder)
+                            .foregroundStyle(
+                                userData.name.isEmpty ? .secondary : .primary
+                            )
                     }
-                    if isCalcAuto {
-                        HStack {
-                            Picker("Select Sex", selection: $userData.sex) {
-                                Text("Male").tag("Male")
-                                Text("Female").tag("Female")
-                            }
-                            .pickerStyle(.segmented)
-                            .labelsHidden()
-                        }
-                    } else {
-                        DatePicker("Last day :", selection: $userData.deathDate, displayedComponents: .date)
-                    }
+                    Toggle("Auto Calculate", isOn: $isCalcAuto)
+                        .tint(.accentColor)
+                    DatePicker("Birthday :", selection: $userData.birthday, displayedComponents: .date)
                 }
-            Spacer()
+                if isCalcAuto {
+                    HStack {
+                        Picker("Select Sex", selection: $userData.sex) {
+                            Text("Male").tag("Male")
+                            Text("Female").tag("Female")
+                        }
+                        .pickerStyle(.segmented)
+                        .labelsHidden()
+                    }
+                } else {
+                    DatePicker("Last day :", selection: $userData.deathDate, displayedComponents: .date)
+                }
+                Spacer()
             }
-            .padding()
-            .navigationTitle("User Info")
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationTitle("About You")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                ToolbarItem {
+                    Button("Done") {
                         userData.setAge()
                         if isCalcAuto {
                             userData.setDeathDate()
@@ -59,12 +57,10 @@ struct InputUserInfoView: View {
                         weekCount.calculateWeeks()
                         dayCount.calculateDays()
                         dismiss()
-                    }) {
-                        Text("Done")
-                            .fontWeight(.semibold)
-                    
+                    }
                 }
             }
+            .padding()
         }
     }
 }
