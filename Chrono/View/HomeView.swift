@@ -32,17 +32,17 @@ struct HomeView: View {
         List {
             Section(header: EmptyView()) {
                 UserProfileView(userData: userData)
-                    .sheet(isPresented: $isPresented) {
-                        InputUserInfoView(userData: userData,
-                                          monthCount: monthCount,
-                                          weekCount: weekCount,
-                                          dayCount: dayCount,
-                                          isCalcAuto: true
-                        )
-                    }
-                    .onTapGesture {
-                        isPresented = true
-                    }
+            }
+            .sheet(isPresented: $isPresented) {
+                    InputUserInfoView(userData: userData,
+                                      monthCount: monthCount,
+                                      weekCount: weekCount,
+                                      dayCount: dayCount,
+                                      isCalcAuto: true
+                    ).interactiveDismissDisabled(true)
+            }
+            .onTapGesture {
+                isPresented = true
             }
             Section(header: Text("In Remaining Lifetime")) {
                 EventPlainView(title: "Months", count: monthCount.leftMonths, gaugeValue: monthCount.passedMonths, min: 0, max: monthCount.totalMonths)
