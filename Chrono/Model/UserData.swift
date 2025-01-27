@@ -21,6 +21,8 @@ final class UserData: ObservableObject {
     
     init() {
         loadFromUserDefaults()
+        setAge()
+        setDeathDate()
         
         $name
             .sink { [weak self] _ in

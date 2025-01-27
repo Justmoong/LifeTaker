@@ -17,6 +17,7 @@ struct HomeView: View {
     @StateObject private var monthCount: MonthCount
     @StateObject private var weekCount: WeekCount
     @StateObject private var dayCount: DayCount
+    @StateObject private var lifetimeMonday: LifetimeMondayProperties
     
     @State var isPresented: Bool = false
     
@@ -26,6 +27,7 @@ struct HomeView: View {
         _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
         _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
         _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
+        _lifetimeMonday = StateObject(wrappedValue: LifetimeMondayProperties(userData: userData))
     }
     
     var body: some View {
@@ -37,7 +39,8 @@ struct HomeView: View {
                     InputUserInfoView(userData: userData,
                                       monthCount: monthCount,
                                       weekCount: weekCount,
-                                      dayCount: dayCount
+                                      dayCount: dayCount,
+                                      lifetimeMondays: lifetimeMonday
                     ).interactiveDismissDisabled(true)
             }
             .onTapGesture {
@@ -47,6 +50,7 @@ struct HomeView: View {
                 EventPlainView(title: "Months", count: monthCount.leftMonths, gaugeValue: monthCount.passedMonths, min: 0, max: monthCount.totalMonths)
                 EventPlainView(title: "Weeks", count: weekCount.leftWeeks, gaugeValue: weekCount.passedWeeks, min: 0, max: weekCount.totalWeeks)
                 EventPlainView(title: "Days", count: dayCount.leftDays, gaugeValue: dayCount.passedDays, min: 0, max: dayCount.totalDays)
+                EventGaugeView(title: lifetimeMonday.name, count: lifetimeMonday.count, gaugeValue: lifetimeMonday.gaugeValue, min: 0, max: lifetimeMonday.gaugeMax)
             }
             Section(header: Text("Annual Events")) {
                 EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)

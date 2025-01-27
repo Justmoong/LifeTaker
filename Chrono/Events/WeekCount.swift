@@ -15,7 +15,6 @@ class WeekCount: ObservableObject {
     @Published var leftWeeks: Int = 0
     @Published var totalWeeks: Int = 0
     
-    private let calendar = Calendar.current
     private var cancellables = Set<AnyCancellable>()
     @ObservedObject var userData: UserData
     
