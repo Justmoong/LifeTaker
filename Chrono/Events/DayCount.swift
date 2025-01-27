@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class DayCount: ObservableObject {
     
@@ -14,7 +15,28 @@ class DayCount: ObservableObject {
     @Published var leftDays: Int = 0
     @Published var totalDays: Int = 0
     
-    @EnvironmentObject var userData: UserData
+    private var userData: UserData
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init(userData: UserData) {
+        self.userData = userData
+        setupBindings()
+        calculateDays()
+    }
+    
+    private func setupBindings() {
+        userData.$birthday
+                   .sink { [weak self] _ in
+                       self?.calculateDays()
+                   }
+                   .store(in: &cancellables)
+
+               userData.$deathDate
+                   .sink { [weak self] _ in
+                       self?.calculateDays()
+                   }
+                   .store(in: &cancellables)
+    }
     
     func calculateDays() {
         

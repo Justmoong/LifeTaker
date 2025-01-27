@@ -6,30 +6,44 @@
 //
 import Foundation
 import SwiftUI
+import Combine
 
 class MonthCount: ObservableObject {
-    
     @Published var passedMonths: Int = 0
     @Published var leftMonths: Int = 0
     @Published var totalMonths: Int = 0
 
-    @EnvironmentObject var userData: UserData
-    
-    func calculateMonths() {
+    private var userData: UserData
+    private var cancellables: Set<AnyCancellable> = []
 
+    init(userData: UserData) {
+        self.userData = userData
+        setupBindings()
+        calculateMonths()
+    }
+
+    private func setupBindings() {
+        userData.$birthday
+                   .sink { [weak self] _ in
+                       self?.calculateMonths()
+                   }
+                   .store(in: &cancellables)
+
+               userData.$deathDate
+                   .sink { [weak self] _ in
+                       self?.calculateMonths()
+                   }
+                   .store(in: &cancellables)
+    }
+
+    func calculateMonths() {
         let passedComponents = calendar.dateComponents([.year, .month], from: userData.birthday, to: now)
-        let passedYears = passedComponents.year ?? 0
-        let passedMonths = passedComponents.month ?? 0
-        self.passedMonths = passedYears * 12 + passedMonths
-        
+        self.passedMonths = (passedComponents.year ?? 0) * 12 + (passedComponents.month ?? 0)
+
         let leftComponents = calendar.dateComponents([.year, .month], from: now, to: userData.deathDate)
-        let leftYears = leftComponents.year ?? 0
-        let leftMonths = leftComponents.month ?? 0
-        self.leftMonths = max(leftYears * 12 + leftMonths, 0)
-        
+        self.leftMonths = max((leftComponents.year ?? 0) * 12 + (leftComponents.month ?? 0), 0)
+
         let totalComponents = calendar.dateComponents([.year, .month], from: userData.birthday, to: userData.deathDate)
-        let totalYears = totalComponents.year ?? 0
-        let totalMonths = totalComponents.month ?? 0
-        self.totalMonths = totalYears * 12 + totalMonths
+        self.totalMonths = (totalComponents.year ?? 0) * 12 + (totalComponents.month ?? 0)
     }
 }

@@ -13,6 +13,10 @@ struct InputView: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("isCalcAuto") private var isCalcAuto: Bool = false
     
+    @EnvironmentObject var monthCount: MonthCount
+    @EnvironmentObject var weekCount: WeekCount
+    @EnvironmentObject var dayCount: DayCount
+    
     var body: some View {
         NavigationView {
             Form {
@@ -43,10 +47,13 @@ struct InputView: View {
             .toolbar {
                 ToolbarItem {
                     Button("Done") {
-                        userData.setAge()
                         if isCalcAuto {
                             userData.setDeathDate()
                         }
+                        userData.setAge()
+                        monthCount.calculateMonths()
+                        weekCount.calculateWeeks()
+                        dayCount.calculateDays()
                         dismiss()
                     }
                 }
@@ -55,7 +62,3 @@ struct InputView: View {
     }
 }
 
-#Preview {
-    InputView()
-        .environmentObject(UserData())
-}

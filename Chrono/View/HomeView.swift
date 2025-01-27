@@ -14,9 +14,16 @@ struct HomeView: View {
     
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
-    @StateObject var monthCount = MonthCount()
-    @StateObject var weekCount = WeekCount()
-    @StateObject var dayCount = DayCount()
+
+    @StateObject private var monthCount: MonthCount
+    @StateObject private var weekCount: WeekCount
+    @StateObject private var dayCount: DayCount
+    
+    init(userData: UserData) {
+        _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
+        _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
+        _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
+    }
     
     @State var isPresented: Bool = false
         
@@ -45,9 +52,8 @@ struct HomeView: View {
         }
     }
 }
-    
 
 #Preview {
-    HomeView()
+    HomeView(userData: UserData())
         .environmentObject(UserData())
 }
