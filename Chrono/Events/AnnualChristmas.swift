@@ -13,15 +13,12 @@ class AnnualChristmasProperties {
     var count: Int = 0
     var gaugeValue: Int = 0
 
-    
     init() {
         self.update()
     }
     
     static func remainingChristmasDays() -> Int {
-        
-        let calendar = Calendar.current
-        let now = Date()
+
         let currentYear = calendar.component(.year, from: now)
         
         guard let christmasDate = calendar.date(from: DateComponents(year: currentYear, month: 12, day: 25)) else {
@@ -44,9 +41,6 @@ class AnnualChristmasProperties {
         return days + 1
     }
     static func daysPassedInYear() -> Int {
-        
-        let calendar = Calendar.current
-        let now = Date()
         
         guard let startOfYear = calendar.date(from: DateComponents(year: calendar.component(.year, from: now), month: 1, day: 1)) else {
             print("Failed to calculate start of year date.")

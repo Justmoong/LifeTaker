@@ -35,5 +35,5 @@ func daysInYear(for year: Int) -> Int {
 }
 
 
-let now = Date()
+var now = Date()
 let calendar = Calendar.current

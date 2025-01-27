@@ -35,7 +35,6 @@ class DayCount: ObservableObject {
     }
     
     func calculateDays() {
-        let now = Date()
         
         let passedDays = calendar.dateComponents([.day], from: userData.birthday, to: now).day ?? 0
         self.passedDays = passedDays

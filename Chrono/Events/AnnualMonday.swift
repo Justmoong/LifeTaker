@@ -20,7 +20,7 @@ class AnnualMondayProperties {
         }
 
     func calculateMondays(from startDate: Date, to endDate: Date) -> Int {
-        let calendar = Calendar.current
+
         var mondaysCount = 0
         var date = startDate
 
@@ -35,8 +35,7 @@ class AnnualMondayProperties {
     }
 
     func remainingMondaysInYear() -> Int {
-        let now = Date()
-        let calendar = Calendar.current
+
         let currentYear = calendar.component(.year, from: now)
 
         guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
@@ -51,8 +50,7 @@ class AnnualMondayProperties {
     }
 
     func totalMondaysInYear() -> Int {
-        let now = Date()
-        let calendar = Calendar.current
+
         let currentYear = calendar.component(.year, from: now)
 
         guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),

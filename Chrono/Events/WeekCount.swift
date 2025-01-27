@@ -35,8 +35,7 @@ class WeekCount: ObservableObject {
     }
     
     func calculateWeeks() {
-        let now = Date()
-        
+
         let passedDays = calendar.dateComponents([.day], from: userData.birthday, to: now).day ?? 0
         self.passedWeeks = passedDays / 7
         

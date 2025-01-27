@@ -34,8 +34,7 @@ class MonthCount: ObservableObject {
     }
     
     func calculateMonths() {
-        let now = Date()
-        
+
         let passedComponents = calendar.dateComponents([.year, .month], from: userData.birthday, to: now)
         let passedYears = passedComponents.year ?? 0
         let passedMonths = passedComponents.month ?? 0
