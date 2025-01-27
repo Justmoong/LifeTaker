@@ -6,91 +6,70 @@
 //
 
 import Foundation
-import Combine
 
 final class UserData: ObservableObject {
-    @Published var name: String = ""
-    @Published var birthday: Date = Date()
-    @Published var deathDate: Date = Date()
-    @Published var age: Int = 0
-    @Published var deathAge: Int = 0
-    @Published var sex: String = "Male"
+    @Published var name: String = "" {
+        didSet { saveToUserDefaults() }
+    }
+    @Published var birthday: Date = Date() {
+        didSet {
+            setAge()
+            saveToUserDefaults()
+        }
+    }
+    @Published var deathDate: Date = Date() {
+        didSet { saveToUserDefaults() }
+    }
+    @Published var age: Int = 0 {
+        didSet { saveToUserDefaults() }
+    }
+    @Published var deathAge: Int = 80 {
+        didSet { saveToUserDefaults() }
+    }
+    @Published var sex: String = "Male" {
+        didSet {
+            setDeathDate()
+            saveToUserDefaults()
+        }
+    }
     
     private let userDefaultsKey = "UserData"
-    private var cancellables = Set<AnyCancellable>()
     
     init() {
         loadFromUserDefaults()
-        setAge()
-        setDeathDate()
-        
-        $name
-            .sink { [weak self] _ in
-                self?.saveToUserDefaults()
-            }
-            .store(in: &cancellables)
-
-        $birthday
-            .sink { [weak self] _ in
-                self?.saveToUserDefaults()
-                self?.setAge()
-            }
-            .store(in: &cancellables)
-
-        $deathDate
-            .sink { [weak self] _ in
-                self?.saveToUserDefaults()
-                self?.setAge()
-            }
-            .store(in: &cancellables)
-
-        $sex
-            .sink { [weak self] _ in
-                self?.saveToUserDefaults()
-            }
-            .store(in: &cancellables)
     }
     
     func setAge() {
-        let calculatedAge = calendar.dateComponents([.year], from: birthday, to: now).year ?? 0
+        let calculatedAge = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year ?? 0
         self.age = calculatedAge
     }
     
     func setDeathDate() {
-        let lifeExpectancy: Int
-        switch sex {
-        case "Male":
-            lifeExpectancy = 80
-        case "Female":
-            lifeExpectancy = 89
-        default:
-            lifeExpectancy = 80
-        }
-        
-        deathAge = lifeExpectancy
-        
-        if let deathDate = Calendar.current.date(byAdding: .year, value: lifeExpectancy, to: birthday) {
-            self.deathDate = deathDate
-        } else {
-            print("Error: Failed to calculate death date.")
-        }
+        let lifeExpectancy = (sex == "Female") ? 89 : 80
+        self.deathAge = lifeExpectancy
+        self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExpectancy, to: birthday) ?? Date()
     }
     
-    // MARK: - UserDefaults
+    private var saveTask: DispatchWorkItem?
+
     private func saveToUserDefaults() {
-        let encoder = JSONEncoder()
-        let snapshot = UserDataSnapshot(
-            name: name,
-            birthday: birthday,
-            deathDate: deathDate,
-            age: age,
-            deathAge: deathAge,
-            sex: sex
-        )
-        
-        if let encoded = try? encoder.encode(snapshot) {
-            UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
+        saveTask?.cancel()
+        saveTask = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            let encoder = JSONEncoder()
+            let snapshot = UserDataSnapshot(
+                name: self.name,
+                birthday: self.birthday,
+                deathDate: self.deathDate,
+                age: self.age,
+                deathAge: self.deathAge,
+                sex: self.sex
+            )
+            if let encoded = try? encoder.encode(snapshot) {
+                UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
+            }
         }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5, execute: saveTask!)
     }
     
     private func loadFromUserDefaults() {
@@ -107,7 +86,6 @@ final class UserData: ObservableObject {
     }
 }
 
-// MARK: - Codable Compability Struct
 private struct UserDataSnapshot: Codable {
     var name: String
     var birthday: Date

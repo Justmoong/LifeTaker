@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventGaugeView: View {
-
+    
     var title: String
     var count: Int
     var gaugeValue: Int
@@ -27,7 +27,7 @@ struct EventGaugeView: View {
                     .fontWeight(.bold)
             }
             Gauge(value: Double(gaugeValue), in: Double(min)...Double(max)) {
-                Text("Progress") // 레이블로 사용할 텍스트
+                Text("\(gaugeValue)")
             }
             .gaugeStyle(.accessoryLinearCapacity)
             .foregroundStyle(Color.accentColor)

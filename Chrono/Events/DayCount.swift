@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
 class DayCount: ObservableObject {
     
@@ -15,23 +14,10 @@ class DayCount: ObservableObject {
     @Published var leftDays: Int = 0
     @Published var totalDays: Int = 0
     
-    private let calendar = Calendar.current
-    private var cancellables = Set<AnyCancellable>()
-    @ObservedObject var userData: UserData
+    @ObservedObject var userData = UserData()
     
     init(userData: UserData) {
-        self.userData = userData
         calculateDays()
-        
-        Publishers.Merge3(
-            userData.$birthday.map { _ in },
-            userData.$deathDate.map { _ in },
-            userData.$sex.map { _ in }
-        )
-        .sink { [weak self] in
-            self?.calculateDays()
-        }
-        .store(in: &cancellables)
     }
     
     func calculateDays() {

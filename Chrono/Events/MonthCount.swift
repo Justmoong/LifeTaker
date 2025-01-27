@@ -6,31 +6,17 @@
 //
 import Foundation
 import SwiftUI
-import Combine
 
 class MonthCount: ObservableObject {
     
     @Published var passedMonths: Int = 0
     @Published var leftMonths: Int = 0
     @Published var totalMonths: Int = 0
-    
-    private let calendar = Calendar.current
-    private var cancellables = Set<AnyCancellable>()
-    @ObservedObject var userData: UserData
+
+    @ObservedObject var userData = UserData()
     
     init(userData: UserData) {
-        self.userData = userData
         calculateMonths()
-        
-        Publishers.Merge3(
-            userData.$birthday.map { _ in },
-            userData.$deathDate.map { _ in },
-            userData.$sex.map { _ in }
-        )
-        .sink { [weak self] in
-            self?.calculateMonths()
-        }
-        .store(in: &cancellables)
     }
     
     func calculateMonths() {

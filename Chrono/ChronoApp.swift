@@ -13,7 +13,8 @@ struct ChronoApp: App {
         
     var body: some Scene {
             WindowGroup {
-                HomeView()
+                HomeView(userData: UserData())
+                    .environmentObject(UserData())
         }
     }
 }

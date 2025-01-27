@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     
-    @StateObject var userData: UserData
+    @ObservedObject var userData: UserData
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {

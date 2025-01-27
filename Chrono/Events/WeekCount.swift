@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
 class WeekCount: ObservableObject {
     
@@ -15,22 +14,10 @@ class WeekCount: ObservableObject {
     @Published var leftWeeks: Int = 0
     @Published var totalWeeks: Int = 0
     
-    private var cancellables = Set<AnyCancellable>()
-    @ObservedObject var userData: UserData
+    @ObservedObject var userData = UserData()
     
     init(userData: UserData) {
-        self.userData = userData
         calculateWeeks()
-        
-        Publishers.Merge3(
-            userData.$birthday.map { _ in },
-            userData.$deathDate.map { _ in },
-            userData.$sex.map { _ in }
-        )
-        .sink { [weak self] in
-            self?.calculateWeeks()
-        }
-        .store(in: &cancellables)
     }
     
     func calculateWeeks() {

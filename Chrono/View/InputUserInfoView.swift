@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
-    @StateObject var userData: UserData
-    @ObservedObject var monthCount: MonthCount
-    @ObservedObject var weekCount: WeekCount
-    @ObservedObject var dayCount: DayCount
-    @ObservedObject var lifetimeMondays : LifetimeMondayProperties
+    @EnvironmentObject var userData: UserData
     @Environment(\.dismiss) private var dismiss
     @AppStorage("isCalcAuto") private var isCalcAuto: Bool = true
     
@@ -54,10 +50,6 @@ struct InputUserInfoView: View {
                         if isCalcAuto {
                             userData.setDeathDate()
                         }
-                        monthCount.calculateMonths()
-                        weekCount.calculateWeeks()
-                        dayCount.calculateDays()
-                        lifetimeMondays.update()
                         dismiss()
                     }
                 }
@@ -68,6 +60,6 @@ struct InputUserInfoView: View {
 }
 
 #Preview {
-    InputUserInfoView(userData: UserData(), monthCount: MonthCount(userData: UserData()), weekCount: WeekCount(userData: UserData()), dayCount: DayCount(userData: UserData()), lifetimeMondays: LifetimeMondayProperties(userData: UserData())
-        )
+    InputUserInfoView()
+        .environmentObject(UserData())
 }
