@@ -34,8 +34,7 @@ struct HomeView: View {
                 UserProfileView(userData: userData)
             }
             .sheet(isPresented: $isPresented) {
-                InputUserInfoView()
-                    .environmentObject(userData)
+                InputView(userData: userData)
                     .interactiveDismissDisabled(true)
             }
             .onTapGesture {

@@ -1,45 +1,42 @@
 //
-//  InputUserInfoView.swift
+//  InputView.swift
 //  Chrono
 //
-//  Created by 윤무영 on 10/14/24.
+//  Created by ymy on 1/27/25.
 //
 
 import SwiftUI
 
-struct InputUserInfoView: View {
-    @EnvironmentObject var userData: UserData
+struct InputView: View {
+    
+    @StateObject var userData = UserData()
     @Environment(\.dismiss) private var dismiss
     @AppStorage("isCalcAuto") private var isCalcAuto: Bool = true
     
     var body: some View {
         NavigationView {
-            VStack {
-                VStack {
-                    HStack {
-                        TextField("Enter Name", text: $userData.name)
-                            .textFieldStyle(.roundedBorder)
-                            .foregroundStyle(
-                                userData.name.isEmpty ? .secondary : .primary
-                            )
-                    }
+            Form {
+                Section {
+                    TextField("Name", text: $userData.name)
+                    
+                    DatePicker("Birthday", selection: $userData.birthday, displayedComponents: .date)
+                    DatePicker("Death Date", selection: $userData.deathDate, displayedComponents: .date)
+                        .foregroundStyle(isCalcAuto ? .secondary : .primary)
+                        .tint(isCalcAuto ? .secondary : .primary)
+                        .disabled(isCalcAuto)
+                }
+                Section {
                     Toggle("Auto Calculate", isOn: $isCalcAuto)
                         .tint(.accentColor)
-                    DatePicker("Birthday :", selection: $userData.birthday, displayedComponents: .date)
                 }
                 if isCalcAuto {
-                    HStack {
+                    Section {
                         Picker("Select Sex", selection: $userData.sex) {
                             Text("Male").tag("Male")
                             Text("Female").tag("Female")
                         }
-                        .pickerStyle(.segmented)
-                        .labelsHidden()
                     }
-                } else {
-                    DatePicker("Last day :", selection: $userData.deathDate, displayedComponents: .date)
                 }
-                Spacer()
             }
             .navigationTitle("About You")
             .navigationBarTitleDisplayMode(.inline)
@@ -54,12 +51,10 @@ struct InputUserInfoView: View {
                     }
                 }
             }
-            .padding()
         }
     }
 }
 
 #Preview {
-    InputUserInfoView()
-        .environmentObject(UserData())
+    InputView()
 }
