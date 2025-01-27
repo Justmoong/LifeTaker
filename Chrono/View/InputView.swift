@@ -47,10 +47,10 @@ struct InputView: View {
             .toolbar {
                 ToolbarItem {
                     Button("Done") {
-                        userData.setAge()
                         if isCalcAuto {
                             userData.setDeathDate()
                         }
+                        userData.setAge()
                         monthCount.calculateMonths()
                         weekCount.calculateWeeks()
                         dayCount.calculateDays()
