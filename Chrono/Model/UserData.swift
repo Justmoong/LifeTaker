@@ -7,36 +7,17 @@
 
 import Foundation
 
-final class UserData: ObservableObject {
-    @Published var name: String = "" {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var birthday: Date = Date() {
-        didSet {
-            setAge()
-            saveToUserDefaults()
-        }
-    }
-    @Published var deathDate: Date = Date() {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var age: Int = 0 {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var deathAge: Int = 80 {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var sex: String = "Male" {
-        didSet {
-            setDeathDate()
-            saveToUserDefaults()
-        }
-    }
-    
-    private let userDefaultsKey = "UserData"
-    
+class UserData: ObservableObject {
+    @Published var name: String = ""
+    @Published var birthday: Date = Date()
+    @Published var deathDate: Date = Date()
+    @Published var age: Int = 0
+    @Published var deathAge: Int = 80
+    @Published var sex: String = "Male"
+
     init() {
-        loadFromUserDefaults()
+        setAge()
+        setDeathDate()
     }
     
     func setAge() {
@@ -45,10 +26,12 @@ final class UserData: ObservableObject {
     }
     
     func setDeathDate() {
-        let lifeExpectancy = (sex == "Female") ? 89 : 80
+        let lifeExpectancy: Int = (sex == "Female") ? 89 : 80
         self.deathAge = lifeExpectancy
         self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExpectancy, to: birthday) ?? Date()
     }
+    
+    private let userDefaultsKey = "UserData"
     
     private var saveTask: DispatchWorkItem?
 

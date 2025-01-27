@@ -10,10 +10,11 @@ import SwiftData
 
 @main
 struct ChronoApp: App {
+    @StateObject var userData = UserData()
         
     var body: some Scene {
             WindowGroup {
-                HomeView(userData: UserData())
+                HomeView()
                     .environmentObject(UserData())
         }
     }

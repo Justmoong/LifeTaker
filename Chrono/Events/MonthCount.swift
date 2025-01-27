@@ -13,11 +13,7 @@ class MonthCount: ObservableObject {
     @Published var leftMonths: Int = 0
     @Published var totalMonths: Int = 0
 
-    @ObservedObject var userData = UserData()
-    
-    init(userData: UserData) {
-        calculateMonths()
-    }
+    @EnvironmentObject var userData: UserData
     
     func calculateMonths() {
 

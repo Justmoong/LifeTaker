@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     
-    @ObservedObject var userData: UserData
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -59,5 +59,6 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView(userData: UserData())
+    UserProfileView()
+        .environmentObject(UserData())
 }

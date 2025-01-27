@@ -14,27 +14,19 @@ struct HomeView: View {
     
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
-    @StateObject var monthCount: MonthCount
-    @StateObject var weekCount: WeekCount
-    @StateObject var dayCount: DayCount
-    @StateObject var lifetimeMonday: LifetimeMondayProperties
+    @StateObject var monthCount = MonthCount()
+    @StateObject var weekCount = WeekCount()
+    @StateObject var dayCount = DayCount()
     
     @State var isPresented: Bool = false
-    
-    init(userData: UserData) {
-        _monthCount = StateObject(wrappedValue: MonthCount(userData: UserData()))
-        _weekCount = StateObject(wrappedValue: WeekCount(userData: UserData()))
-        _dayCount = StateObject(wrappedValue: DayCount(userData: UserData()))
-        _lifetimeMonday = StateObject(wrappedValue: LifetimeMondayProperties(userData: UserData()))
-    }
         
     var body: some View {
         List {
             Section(header: EmptyView()) {
-                UserProfileView(userData: userData)
+                UserProfileView()
             }
             .sheet(isPresented: $isPresented) {
-                InputView(userData: userData)
+                InputView()
                     .interactiveDismissDisabled(true)
             }
             .onTapGesture {
@@ -44,7 +36,6 @@ struct HomeView: View {
                 EventPlainView(title: "Months", count: monthCount.leftMonths)
                 EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
                 EventPlainView(title: "Days", count: dayCount.leftDays)
-                EventGaugeView(title: "Lifetime Mondays", count: lifetimeMonday.remainingMondays, gaugeValue: lifetimeMonday.passedMondays, min: 0, max: lifetimeMonday.totalMondays)
             }
             Section(header: Text("Annual Events")) {
                 EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
@@ -57,6 +48,6 @@ struct HomeView: View {
     
 
 #Preview {
-    HomeView(userData: UserData())
+    HomeView()
         .environmentObject(UserData())
 }

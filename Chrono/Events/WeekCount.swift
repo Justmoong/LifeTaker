@@ -14,11 +14,7 @@ class WeekCount: ObservableObject {
     @Published var leftWeeks: Int = 0
     @Published var totalWeeks: Int = 0
     
-    @ObservedObject var userData = UserData()
-    
-    init(userData: UserData) {
-        calculateWeeks()
-    }
+    @EnvironmentObject var userData: UserData
     
     func calculateWeeks() {
 

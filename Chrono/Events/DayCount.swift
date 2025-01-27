@@ -14,11 +14,7 @@ class DayCount: ObservableObject {
     @Published var leftDays: Int = 0
     @Published var totalDays: Int = 0
     
-    @ObservedObject var userData = UserData()
-    
-    init(userData: UserData) {
-        calculateDays()
-    }
+    @EnvironmentObject var userData: UserData
     
     func calculateDays() {
         

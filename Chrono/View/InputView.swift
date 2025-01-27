@@ -9,9 +9,9 @@ import SwiftUI
 
 struct InputView: View {
     
-    @StateObject var userData = UserData()
+    @EnvironmentObject var userData: UserData
     @Environment(\.dismiss) private var dismiss
-    @AppStorage("isCalcAuto") private var isCalcAuto: Bool = true
+    @AppStorage("isCalcAuto") private var isCalcAuto: Bool = false
     
     var body: some View {
         NavigationView {
@@ -21,8 +21,8 @@ struct InputView: View {
                     
                     DatePicker("Birthday", selection: $userData.birthday, displayedComponents: .date)
                     DatePicker("Death Date", selection: $userData.deathDate, displayedComponents: .date)
-                        .foregroundStyle(isCalcAuto ? .secondary : .primary)
                         .tint(isCalcAuto ? .secondary : .primary)
+                        .opacity(isCalcAuto ? 0.25 : 1)
                         .disabled(isCalcAuto)
                 }
                 Section {
@@ -57,4 +57,5 @@ struct InputView: View {
 
 #Preview {
     InputView()
+        .environmentObject(UserData())
 }
