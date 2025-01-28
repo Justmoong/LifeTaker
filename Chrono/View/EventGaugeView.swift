@@ -9,11 +9,11 @@ import SwiftUI
 
 struct EventGaugeView: View {
     
-    @State var title: String
-    @State var count: Int
-    @State var gaugeValue: Int
-    @State var min: Int
-    @State var max: Int
+    var title: String
+    var count: Int
+    var gaugeValue: Int
+    var min: Int
+    var max: Int
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {

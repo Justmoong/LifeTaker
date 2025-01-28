@@ -37,9 +37,6 @@ class UserData: ObservableObject {
     init() {
         loadFromUserDefaults()
         setupBindings()
-        setAge()
-        setDeathDate()
-        calculateDeathAge()
     }
     
     func setAge() {

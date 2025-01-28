@@ -30,24 +30,27 @@ struct HomeView: View {
     var body: some View {
         List {
             Section(header: EmptyView()) {
-                UserProfileView()
-                    .sheet(isPresented: $isPresented) {
-                        InputView()
-                            .interactiveDismissDisabled(true)
-                    }
-                    .onTapGesture {
-                        isPresented = true
-                    }
-                EventPlainView(title: "Months", count: monthCount.leftMonths)
-                EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
-                EventPlainView(title: "Days", count: dayCount.leftDays)
-            }
+            UserProfileView()
+                .sheet(isPresented: $isPresented) {
+                    InputView()
+                        .interactiveDismissDisabled(true)
+                }
+                .onTapGesture {
+                    isPresented = true
+                }
+            EventPlainView(title: "Months", count: $monthCount.leftMonths)
+            EventPlainView(title: "Weeks", count: $weekCount.leftWeeks)
+            EventPlainView(title: "Days", count: $dayCount.leftDays)
+        }
+            
             Section(header: Text("Annual Events")) {
                 EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
                 EventGaugeView(title: annualMondays.name, count: annualMondays.count, gaugeValue: annualMondays.gaugeValue, min: 0, max: annualMondays.gaugeMax)
                 
             }
         }
+
+            
     }
 }
 

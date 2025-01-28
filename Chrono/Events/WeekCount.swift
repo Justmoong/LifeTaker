@@ -42,9 +42,11 @@ class WeekCount: ObservableObject {
             
             let passedDays = calendar.dateComponents([.day], from: userData.birthday, to: now).day ?? 0
             self.passedWeeks = passedDays / 7
+            print("Passed weeks: \(self.passedWeeks)")
             
             let remainingDays = calendar.dateComponents([.day], from: now, to: userData.deathDate).day ?? 0
             self.leftWeeks = max(remainingDays / 7, 0)
+            print("Remaining weeks: \(self.leftWeeks)")
             
             let totalDays = calendar.dateComponents([.day], from: userData.birthday, to: userData.deathDate).day ?? 0
             self.totalWeeks = totalDays / 7

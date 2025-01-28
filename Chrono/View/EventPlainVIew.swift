@@ -10,8 +10,8 @@ import SwiftUI
 
 struct EventPlainView: View {
     
-    @State var title: String
-    @State var count: Int
+    var title: String
+    @Binding var count: Int
     
     var body: some View {
         HStack (spacing: 16) {
