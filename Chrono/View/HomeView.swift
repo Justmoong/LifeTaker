@@ -10,14 +10,14 @@ import SwiftData
 
 struct HomeView: View {
     
-    @EnvironmentObject var userData: UserData
+    @StateObject var userData = UserData()
     
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
 
-    @EnvironmentObject private var monthCount: MonthCount
-    @EnvironmentObject private var weekCount: WeekCount
-    @EnvironmentObject private var dayCount: DayCount
+    @StateObject private var monthCount: MonthCount = MonthCount(userData: UserData())
+    @StateObject private var weekCount: WeekCount = WeekCount(userData: UserData())
+    @StateObject private var dayCount: DayCount = DayCount(userData: UserData())
     
 //    init(userData: UserData) {
 //        _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
