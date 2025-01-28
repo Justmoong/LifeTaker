@@ -15,15 +15,15 @@ struct HomeView: View {
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
 
-    @StateObject private var monthCount: MonthCount
-    @StateObject private var weekCount: WeekCount
-    @StateObject private var dayCount: DayCount
+    @EnvironmentObject private var monthCount: MonthCount
+    @EnvironmentObject private var weekCount: WeekCount
+    @EnvironmentObject private var dayCount: DayCount
     
-    init(userData: UserData) {
-        _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
-        _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
-        _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
-    }
+//    init(userData: UserData) {
+//        _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
+//        _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
+//        _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
+//    }
     
     @State var isPresented: Bool = false
         
@@ -31,15 +31,13 @@ struct HomeView: View {
         List {
             Section(header: EmptyView()) {
                 UserProfileView()
-            }
-            .sheet(isPresented: $isPresented) {
-                InputView()
-                    .interactiveDismissDisabled(true)
-            }
-            .onTapGesture {
-                isPresented = true
-            }
-            Section {
+                    .sheet(isPresented: $isPresented) {
+                        InputView()
+                            .interactiveDismissDisabled(true)
+                    }
+                    .onTapGesture {
+                        isPresented = true
+                    }
                 EventPlainView(title: "Months", count: monthCount.leftMonths)
                 EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
                 EventPlainView(title: "Days", count: dayCount.leftDays)
@@ -54,6 +52,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(userData: UserData())
+    HomeView()
         .environmentObject(UserData())
+        .environmentObject(MonthCount(userData: UserData()))
+        .environmentObject(WeekCount(userData: UserData()))
+        .environmentObject(DayCount(userData: UserData()))
 }

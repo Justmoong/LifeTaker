@@ -11,17 +11,14 @@ import SwiftData
 @main
 struct ChronoApp: App {
     @StateObject var userData = UserData()
-    @StateObject private var monthCount = MonthCount(userData: UserData())
-    @StateObject private var weekCount = WeekCount(userData: UserData())
-    @StateObject private var dayCount = DayCount(userData: UserData())
         
     var body: some Scene {
             WindowGroup {
-                HomeView(userData: userData)
+                HomeView()
                     .environmentObject(userData)
-                    .environmentObject(monthCount)
-                    .environmentObject(weekCount)
-                    .environmentObject(dayCount)
+                    .environmentObject(MonthCount(userData: userData))
+                    .environmentObject(WeekCount(userData: userData))
+                    .environmentObject(DayCount(userData: userData))
         }
     }
 }

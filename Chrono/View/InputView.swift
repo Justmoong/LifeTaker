@@ -24,7 +24,7 @@ struct InputView: View {
                     TextField("Name", text: $userData.name)
                     
                     DatePicker("Birthday", selection: $userData.birthday, displayedComponents: .date)
-                    DatePicker("Death Date", selection: $userData.deathDate, displayedComponents: .date)
+                    DatePicker("End Date", selection: $userData.deathDate, displayedComponents: .date)
                         .tint(isCalcAuto ? .secondary : .primary)
                         .opacity(isCalcAuto ? 0.25 : 1)
                         .disabled(isCalcAuto)
@@ -47,10 +47,10 @@ struct InputView: View {
             .toolbar {
                 ToolbarItem {
                     Button("Done") {
+                        userData.setAge()
                         if isCalcAuto {
                             userData.setDeathDate()
                         }
-                        userData.setAge()
                         monthCount.calculateMonths()
                         weekCount.calculateWeeks()
                         dayCount.calculateDays()
@@ -62,3 +62,10 @@ struct InputView: View {
     }
 }
 
+#Preview {
+    InputView()
+        .environmentObject(UserData())
+        .environmentObject(MonthCount(userData: UserData()))
+        .environmentObject(WeekCount(userData: UserData()))
+        .environmentObject(DayCount(userData: UserData()))
+}

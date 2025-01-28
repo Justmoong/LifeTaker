@@ -10,8 +10,8 @@ import SwiftUI
 
 struct EventPlainView: View {
     
-    var title: String
-    var count: Int
+    @State var title: String
+    @State var count: Int
     
     var body: some View {
         HStack (spacing: 16) {
@@ -24,11 +24,4 @@ struct EventPlainView: View {
                 .foregroundStyle(Color.accentColor)
         }
     }
-}
-
-#Preview {
-    EventPlainView(
-        title: "Christmas",
-        count: 1
-    )
 }

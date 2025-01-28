@@ -17,8 +17,8 @@ class UserData: ObservableObject {
     }
     @Published var deathDate: Date = Date() {
         didSet {
-            saveToUserDefaults()
             calculateDeathAge()
+            saveToUserDefaults()
         }
     }
     @Published var age: Int = 0 {
@@ -37,6 +37,9 @@ class UserData: ObservableObject {
     init() {
         loadFromUserDefaults()
         setupBindings()
+        setAge()
+        setDeathDate()
+        calculateDeathAge()
     }
     
     func setAge() {
