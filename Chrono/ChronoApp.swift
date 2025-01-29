@@ -14,7 +14,7 @@ struct ChronoApp: App {
         
     var body: some Scene {
             WindowGroup {
-                HomeView()
+                HomeView(monthCount: MonthCount(), weekCount: WeekCount(userData: UserData()), dayCount: DayCount(userData: UserData()))
                     .environmentObject(UserData())
         }
     }

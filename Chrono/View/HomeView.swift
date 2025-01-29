@@ -10,21 +10,21 @@ import SwiftData
 
 struct HomeView: View {
     
-    @StateObject var userData = UserData()
+    var userData = UserData()
+
+    var monthCount: MonthCount
+    var weekCount: WeekCount
+    var dayCount: DayCount
     
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
 
-    @StateObject private var monthCount: MonthCount = MonthCount(userData: UserData())
-    @StateObject private var weekCount: WeekCount = WeekCount(userData: UserData())
-    @StateObject private var dayCount: DayCount = DayCount(userData: UserData())
-    
 //    init(userData: UserData) {
 //        _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
 //        _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
 //        _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
 //    }
-    
+//    
     @State var isPresented: Bool = false
         
     var body: some View {
@@ -41,8 +41,8 @@ struct HomeView: View {
             }
             Section {
                 EventPlainView(title: "Months", count: monthCount.leftMonths)
-                EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
-                EventPlainView(title: "Days", count: dayCount.leftDays)
+//                EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
+//                EventPlainView(title: "Days", count: dayCount.leftDays)
             }
             Section(header: Text("Annual Events")) {
                 EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
@@ -50,15 +50,13 @@ struct HomeView: View {
                 
             }
         }
-
-            
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(monthCount: MonthCount(), weekCount: WeekCount(userData: UserData()), dayCount: DayCount(userData: UserData()))
         .environmentObject(UserData())
-        .environmentObject(MonthCount(userData: UserData()))
+        .environmentObject(MonthCount())
         .environmentObject(WeekCount(userData: UserData()))
         .environmentObject(DayCount(userData: UserData()))
 }
