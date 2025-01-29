@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-let dateComponents = DateComponents()
+var dateComponents = DateComponents()
 
 let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()

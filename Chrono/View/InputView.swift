@@ -51,9 +51,6 @@ struct InputView: View {
                             userData.setDeathDate()
                         }
                         userData.setAge()
-                        monthCount.leftMonths = monthCount.calculateMonths()
-                        weekCount.calculateWeeks()
-                        dayCount.calculateDays()
                         dismiss()
                     }
                 }
@@ -64,8 +61,7 @@ struct InputView: View {
 
 #Preview {
     InputView()
-        .environmentObject(UserData())
-        .environmentObject(MonthCount())
-        .environmentObject(WeekCount(userData: UserData()))
-        .environmentObject(DayCount(userData: UserData()))
+        .environmentObject(MonthCount(viewModel: UserData()))
+        .environmentObject(WeekCount(viewModel: UserData()))
+        .environmentObject(DayCount(viewModel: UserData()))
 }

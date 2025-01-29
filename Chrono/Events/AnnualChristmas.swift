@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUI
+
 //디데이
 class AnnualChristmasProperties {
     let name: String = "Next Christmas :"

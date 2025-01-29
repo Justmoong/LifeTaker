@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     
-    var userData = UserData()
+    @EnvironmentObject var userData: UserData
 
     var monthCount: MonthCount
     var weekCount: WeekCount
@@ -19,12 +19,6 @@ struct HomeView: View {
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
 
-//    init(userData: UserData) {
-//        _monthCount = StateObject(wrappedValue: MonthCount(userData: userData))
-//        _weekCount = StateObject(wrappedValue: WeekCount(userData: userData))
-//        _dayCount = StateObject(wrappedValue: DayCount(userData: userData))
-//    }
-//    
     @State var isPresented: Bool = false
         
     var body: some View {
@@ -54,9 +48,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(monthCount: MonthCount(), weekCount: WeekCount(userData: UserData()), dayCount: DayCount(userData: UserData()))
+    HomeView(monthCount: MonthCount(viewModel: UserData()), weekCount: WeekCount(viewModel: UserData()), dayCount: DayCount(viewModel: UserData()))
         .environmentObject(UserData())
-        .environmentObject(MonthCount())
-        .environmentObject(WeekCount(userData: UserData()))
-        .environmentObject(DayCount(userData: UserData()))
+        .environmentObject(MonthCount(viewModel: UserData()))
+        .environmentObject(WeekCount(viewModel: UserData()))
+        .environmentObject(DayCount(viewModel: UserData()))
 }

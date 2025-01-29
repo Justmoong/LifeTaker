@@ -10,15 +10,27 @@ import SwiftData
 
 @main
 struct ChronoApp: App {
+    @StateObject var userData = UserData()
+    @StateObject var monthCount: MonthCount
+    @StateObject var weekCount: WeekCount
+    @StateObject var dayCount: DayCount
 
-        
+    init() {
+        let sharedUserData = UserData()
+        _userData = StateObject(wrappedValue: sharedUserData) // StateObject를 init에서 초기화
+        _monthCount = StateObject(wrappedValue: MonthCount(viewModel: sharedUserData))
+        _weekCount = StateObject(wrappedValue: WeekCount(viewModel: sharedUserData))
+        _dayCount = StateObject(wrappedValue: DayCount(viewModel: sharedUserData))
+    }
+
     var body: some Scene {
-            WindowGroup {
-                HomeView(monthCount: MonthCount(), weekCount: WeekCount(userData: UserData()), dayCount: DayCount(userData: UserData()))
-                    .environmentObject(UserData())
+        WindowGroup {
+            HomeView(monthCount: monthCount, weekCount: weekCount, dayCount: dayCount)
+                .environmentObject(userData)
+                .environmentObject(monthCount)
+                .environmentObject(weekCount)
+                .environmentObject(dayCount)
         }
     }
 }
-
-
 

@@ -5,49 +5,27 @@
 //  Created by 윤무영 on 11/29/24.
 //
 import Foundation
-import SwiftUI
 import Combine
+import SwiftUICore
 
 class MonthCount: ObservableObject {
-//    @Published var passedMonths: Int = 0
-    @Published var leftMonths: Int = 0
-//    @Published var totalMonths: Int = 0
+    @Published var leftMonths: Int = 0 {
+        didSet {
+            print("Remaining months: \(leftMonths)")
+        }
+    }
 
-    private var userData = UserData()
-//    private var cancellables: Set<AnyCancellable> = []
+    @ObservedObject var userData: UserData
 //
-    init() {
-//        self.userData = userData
-//        setupBindings()
+    init(viewModel: UserData) {
+        self.userData = viewModel
         calculateMonths()
     }
-//
-//    private func setupBindings() {
-//        userData.$birthday
-//                   .sink { [weak self] _ in
-//                       self?.calculateMonths()
-//                   }
-//                   .store(in: &cancellables)
-//
-//               userData.$deathDate
-//                   .sink { [weak self] _ in
-//                       self?.calculateMonths()
-//                   }
-//                   .store(in: &cancellables)
-//    }
+    func calculateMonths() {
+        let deathDate = userData.deathDate
 
-    func calculateMonths() -> Int {
-//        let passedComponents = calendar.dateComponents([.year, .month], from: userData.birthday, to: now)
-//        self.passedMonths = (passedComponents.year ?? 0) * 12 + (passedComponents.month ?? 0)
-
-        let leftComponents = calendar.dateComponents([.year, .month], from: now, to: userData.deathDate)
+        let leftComponents = calendar.dateComponents([.year, .month], from: now, to: deathDate)
         leftMonths = max((leftComponents.year ?? 0) * 12 + (leftComponents.month ?? 0), 0)
-        return 0
-//        let totalComponents = calendar.dateComponents([.year, .month], from: userData.birthday, to: userData.deathDate)
-//        self.totalMonths = (totalComponents.year ?? 0) * 12 + (totalComponents.month ?? 0)
-    }
-    
-    func update() {
-        leftMonths = calculateMonths()
+        print(#function, #file, #line, "Remaining months: \(leftMonths)")
     }
 }
