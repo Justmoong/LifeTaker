@@ -16,13 +16,19 @@ class WeekCount: ObservableObject {
         }
     }
     
-    @ObservedObject var userData: UserData
+    @Published var userData: UserData
+    private var cancellables: Set<AnyCancellable> = []
     
     init(viewModel: UserData) {
         self.userData = viewModel
         calculateWeeks()
-    }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWeeks), name: .deathDateUpdated, object: nil)
+    }
+
+    @objc private func updateWeeks() {
+        calculateWeeks()
+    }
         func calculateWeeks() {
 
             let remainingDays = calendar.dateComponents([.day], from: now, to: userData.deathDate).day ?? 0

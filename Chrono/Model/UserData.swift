@@ -18,8 +18,13 @@ class UserData: ObservableObject {
     @Published var deathDate: Date = Date() {
         didSet {
             calculateDeathAge()
+            updateCounts()
             saveToUserDefaults()
         }
+    }
+
+    private func updateCounts() {
+        NotificationCenter.default.post(name: .deathDateUpdated, object: nil)
     }
     @Published var age: Int = 0 {
         didSet { saveToUserDefaults() }
@@ -47,6 +52,7 @@ class UserData: ObservableObject {
     func setDeathDate() {
         let lifeExpectancy: Int = (sex == "Female") ? 89 : 80
         self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExpectancy, to: birthday) ?? Date()
+        calculateDeathAge()
     }
     
     private func calculateDeathAge() {
@@ -95,7 +101,10 @@ class UserData: ObservableObject {
             .store(in: &cancellables)
         
         $birthday
-            .sink { [weak self] _ in self?.saveToUserDefaults() }
+            .sink { [weak self] _ in
+                self?.setAge()
+                self?.setDeathDate()
+            }
             .store(in: &cancellables)
         
         $deathDate
@@ -111,7 +120,16 @@ class UserData: ObservableObject {
             .store(in: &cancellables)
         
         $sex
-            .sink { [weak self] _ in self?.saveToUserDefaults() }
+            .sink { [weak self] _ in
+                self?.setDeathDate()
+            }
+            .store(in: &cancellables)
+        
+        $deathDate
+            .sink { [weak self] _ in
+                self?.calculateDeathAge()
+                
+            }
             .store(in: &cancellables)
     }
 }
@@ -123,4 +141,8 @@ private struct UserDataSnapshot: Codable {
     var age: Int
     var deathAge: Int
     var sex: String
+}
+
+extension Notification.Name {
+    static let deathDateUpdated = Notification.Name("deathDateUpdated")
 }

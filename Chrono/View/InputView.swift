@@ -61,6 +61,7 @@ struct InputView: View {
 
 #Preview {
     InputView()
+        .environmentObject(UserData())
         .environmentObject(MonthCount(viewModel: UserData()))
         .environmentObject(WeekCount(viewModel: UserData()))
         .environmentObject(DayCount(viewModel: UserData()))

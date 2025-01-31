@@ -12,9 +12,9 @@ struct HomeView: View {
     
     @EnvironmentObject var userData: UserData
 
-    var monthCount: MonthCount
-    var weekCount: WeekCount
-    var dayCount: DayCount
+    @EnvironmentObject var monthCount: MonthCount
+    @EnvironmentObject var weekCount: WeekCount
+    @EnvironmentObject var dayCount: DayCount
     
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
@@ -34,9 +34,12 @@ struct HomeView: View {
                 isPresented = true
             }
             Section {
-                EventPlainView(title: "Months", count: monthCount.leftMonths)
-//                EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
-//                EventPlainView(title: "Days", count: dayCount.leftDays)
+                EventPlainView(title: "Months")
+                    .environmentObject(monthCount)
+                EventPlainView(title: "Weeks")
+                    .environmentObject(weekCount)
+                EventPlainView(title: "Days")
+                    .environmentObject(dayCount)
             }
             Section(header: Text("Annual Events")) {
                 EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
@@ -48,7 +51,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(monthCount: MonthCount(viewModel: UserData()), weekCount: WeekCount(viewModel: UserData()), dayCount: DayCount(viewModel: UserData()))
+    HomeView()
         .environmentObject(UserData())
         .environmentObject(MonthCount(viewModel: UserData()))
         .environmentObject(WeekCount(viewModel: UserData()))
