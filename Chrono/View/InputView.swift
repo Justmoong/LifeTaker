@@ -12,6 +12,9 @@ struct InputView: View {
     @EnvironmentObject var userData: UserData
     @Environment(\.dismiss) private var dismiss
     @AppStorage("isCalcAuto") private var isCalcAuto: Bool = false
+    @StateObject private var healthManager = HealthManager.shared
+    @State private var showHealthKitAlert = false
+    @State private var healthKitAlertMessage = ""
     
     @EnvironmentObject var monthCount: MonthCount
     @EnvironmentObject var weekCount: WeekCount
@@ -38,6 +41,30 @@ struct InputView: View {
                         Picker("Select Sex", selection: $userData.sex) {
                             Text("Male").tag("Male")
                             Text("Female").tag("Female")
+                        }
+                        Button("Import Health Data") {
+                            healthManager.requestHealthKitPermission { success in
+                                if success {
+                                    healthManager.fetchHeartRateData { heartRate in
+                                        if let heartRate = heartRate, heartRate > 0 {
+                                            print("Fetched Heart Rate: \(heartRate) bpm")
+                                        } else {
+                                            healthKitAlertMessage = "Failed to fetch heart rate data. Please ensure HealthKit permissions are granted and there is valid data."
+                                            showHealthKitAlert = true
+                                        }
+                                    }
+                                } else {
+                                    healthKitAlertMessage = "HealthKit access was denied. Please enable access in Settings."
+                                    showHealthKitAlert = true
+                                }
+                            }
+                        }
+                        .alert(isPresented: $showHealthKitAlert) {
+                            Alert(
+                                title: Text("Health Data Error"),
+                                message: Text(healthKitAlertMessage),
+                                dismissButton: .default(Text("OK"))
+                            )
                         }
                     }
                 }
