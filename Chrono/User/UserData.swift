@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class UserData: ObservableObject {
+    
     @Published var name: String = ""
     @Published var birthday: Date = Date()
     @Published var deathDate: Date = Date() {
@@ -25,8 +26,7 @@ class UserData: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
-        loadFromUserDefaults()
-//        setupBindings()
+        self.loadFromUserDefaults()
     }
     
     // MARK: - Basic Age Methods

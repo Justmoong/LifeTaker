@@ -70,14 +70,14 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private func getLifeExpectancy(for continent: String) -> Int {
            let lifeExpectancyData: [String: Int] = [
-               "America": 79,
-               "Europe": 81,
-               "Africa": 64,
-               "Australia": 83,
-               "Asia": 76,
+               "America": 76,
+               "Europe": 78,
+               "Africa": 62,
+               "Australia": 80,
+               "Asia": 73,
                "Antarctica": 0 // 극지방 (의미 없음)
            ]
-           return lifeExpectancyData[continent] ?? 75 // 기본값: 75세
+           return lifeExpectancyData[continent] ?? 75
        }
     
     func stopUpdatingLocation() {
