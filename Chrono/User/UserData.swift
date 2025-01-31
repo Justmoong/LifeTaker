@@ -9,41 +9,27 @@ import Foundation
 import Combine
 
 class UserData: ObservableObject {
-    @Published var name: String = "" {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var birthday: Date = Date() {
-        didSet { saveToUserDefaults() }
-    }
+    @Published var name: String = ""
+    @Published var birthday: Date = Date()
     @Published var deathDate: Date = Date() {
         didSet {
             calculateDeathAge()
-            updateCounts()
-            saveToUserDefaults()
         }
-    }
 
-    private func updateCounts() {
-        NotificationCenter.default.post(name: .deathDateUpdated, object: nil)
     }
-    @Published var age: Int = 0 {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var deathAge: Int = 80 {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var sex: String = "Male" {
-        didSet { saveToUserDefaults() }
-    }
+    @Published var age: Int = 0
+    @Published var deathAge: Int = 80
+    @Published var sex: String = "Male"
     
     private let userDefaultsKey = "UserData"
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
         loadFromUserDefaults()
-        setupBindings()
+//        setupBindings()
     }
     
+    // MARK: - Basic Age Methods
     func setAge() {
         let calculatedAge = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year ?? 0
         self.age = calculatedAge
@@ -67,7 +53,7 @@ class UserData: ObservableObject {
     
     
     // MARK: - UserDefaults
-    private func saveToUserDefaults() {
+    func saveToUserDefaults() {
         let encoder = JSONEncoder()
         let snapshot = UserDataSnapshot(
             name: self.name,
@@ -94,45 +80,8 @@ class UserData: ObservableObject {
             self.sex = snapshot.sex
         }
     }
-    
-    private func setupBindings() {
-        $name
-            .sink { [weak self] _ in self?.saveToUserDefaults() }
-            .store(in: &cancellables)
-        
-        $birthday
-            .sink { [weak self] _ in
-                self?.setAge()
-                self?.setDeathDate()
-            }
-            .store(in: &cancellables)
-        
-        $deathDate
-            .sink { [weak self] _ in self?.saveToUserDefaults() }
-            .store(in: &cancellables)
-        
-        $age
-            .sink { [weak self] _ in self?.saveToUserDefaults() }
-            .store(in: &cancellables)
-        
-        $deathAge
-            .sink { [weak self] _ in self?.saveToUserDefaults() }
-            .store(in: &cancellables)
-        
-        $sex
-            .sink { [weak self] _ in
-                self?.setDeathDate()
-            }
-            .store(in: &cancellables)
-        
-        $deathDate
-            .sink { [weak self] _ in
-                self?.calculateDeathAge()
-                
-            }
-            .store(in: &cancellables)
-    }
 }
+
 
 private struct UserDataSnapshot: Codable {
     var name: String
@@ -141,8 +90,4 @@ private struct UserDataSnapshot: Codable {
     var age: Int
     var deathAge: Int
     var sex: String
-}
-
-extension Notification.Name {
-    static let deathDateUpdated = Notification.Name("deathDateUpdated")
 }

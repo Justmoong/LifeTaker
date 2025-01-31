@@ -17,16 +17,10 @@ class MonthCount: ObservableObject {
 
     @ObservedObject var userData: UserData
     private var cancellables: Set<AnyCancellable> = []
-//
+
     init(viewModel: UserData) {
         self.userData = viewModel
         calculateMonths(from: viewModel)
-        
-        userData.$deathDate
-            .sink { [weak self] _ in
-                self?.calculateMonths(from: viewModel)
-            }
-            .store(in: &cancellables)
     }
     func calculateMonths(from userData: UserData) {
         let deathDate = userData.deathDate

@@ -22,12 +22,6 @@ class DayCount: ObservableObject {
     init(viewModel: UserData) {
         self.userData = viewModel
         calculateDays(from: viewModel)
-        
-        userData.$deathDate
-            .sink { [weak self] _ in
-                self?.calculateDays(from: viewModel)
-            }
-            .store(in: &cancellables)
     }
 
     func calculateDays(from userData: UserData) {

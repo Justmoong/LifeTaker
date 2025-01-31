@@ -54,6 +54,7 @@ struct InputView: View {
                         weekCount.calculateWeeks(from: userData)
                         dayCount.calculateDays(from: userData)
                         userData.setAge()
+                        userData.saveToUserDefaults()
                         dismiss()
                     }
                 }
