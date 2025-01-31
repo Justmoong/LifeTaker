@@ -20,19 +20,19 @@ class MonthCount: ObservableObject {
 //
     init(viewModel: UserData) {
         self.userData = viewModel
-        calculateMonths()
+        calculateMonths(from: viewModel)
         
         userData.$deathDate
             .sink { [weak self] _ in
-                self?.calculateMonths()
+                self?.calculateMonths(from: viewModel)
             }
             .store(in: &cancellables)
     }
-    func calculateMonths() {
+    func calculateMonths(from userData: UserData) {
         let deathDate = userData.deathDate
 
         let leftComponents = calendar.dateComponents([.year, .month], from: now, to: deathDate)
         leftMonths = max((leftComponents.year ?? 0) * 12 + (leftComponents.month ?? 0), 0)
-        print(#function, #file, #line, "Remaining months: \(leftMonths)")
+        print(#file, #line, #function,  "Remaining months: \(leftMonths)")
     }
 }

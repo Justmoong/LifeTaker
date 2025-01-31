@@ -17,15 +17,23 @@ class DayCount: ObservableObject {
     }
     
     @ObservedObject var userData: UserData
+    private var cancellables: Set<AnyCancellable> = []
     
     init(viewModel: UserData) {
         self.userData = viewModel
-        calculateDays()
+        calculateDays(from: viewModel)
+        
+        userData.$deathDate
+            .sink { [weak self] _ in
+                self?.calculateDays(from: viewModel)
+            }
+            .store(in: &cancellables)
     }
 
-    func calculateDays() {
+    func calculateDays(from userData: UserData) {
+        let deathDate = userData.deathDate
         
-        let remainingDays = calendar.dateComponents([.day], from: now, to: userData.deathDate).day ?? 0
+        let remainingDays = calendar.dateComponents([.day], from: now, to: deathDate).day ?? 0
         leftDays = max(remainingDays, 0)
         print("Remaining days: \(self.leftDays)")
     }

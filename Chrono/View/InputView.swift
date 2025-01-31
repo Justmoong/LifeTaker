@@ -50,6 +50,9 @@ struct InputView: View {
                         if isCalcAuto {
                             userData.setDeathDate()
                         }
+                        monthCount.calculateMonths(from: userData)
+                        weekCount.calculateWeeks(from: userData)
+                        dayCount.calculateDays(from: userData)
                         userData.setAge()
                         dismiss()
                     }

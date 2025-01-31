@@ -21,18 +21,21 @@ class WeekCount: ObservableObject {
     
     init(viewModel: UserData) {
         self.userData = viewModel
-        calculateWeeks()
+        calculateWeeks(from: viewModel)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWeeks), name: .deathDateUpdated, object: nil)
-    }
+        userData.$deathDate
+            .sink { [weak self] _ in
+                self?.calculateWeeks(from: viewModel)
+            }
+            .store(in: &cancellables)
 
-    @objc private func updateWeeks() {
-        calculateWeeks()
     }
-        func calculateWeeks() {
+    
+    func calculateWeeks(from userData: UserData) {
+        let deathDate = userData.deathDate
 
-            let remainingDays = calendar.dateComponents([.day], from: now, to: userData.deathDate).day ?? 0
-            leftWeeks = max(remainingDays / 7, 0)
-            print("Remaining weeks: \(self.leftWeeks)")
+        let remainingDays = calendar.dateComponents([.day], from: now, to: deathDate).day ?? 0
+        leftWeeks = max(remainingDays / 7, 0)
+        print(#file, #line, #function, "Remaining weeks: \(self.leftWeeks)")
     }
 }
