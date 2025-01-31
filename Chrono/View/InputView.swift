@@ -12,6 +12,7 @@ struct InputView: View {
     @EnvironmentObject var userData: UserData
     @Environment(\.dismiss) private var dismiss
     @AppStorage("isCalcAuto") private var isCalcAuto: Bool = false
+    
     @StateObject private var healthManager = HealthManager.shared
     @State private var showHealthKitAlert = false
     @State private var healthKitAlertMessage = ""
