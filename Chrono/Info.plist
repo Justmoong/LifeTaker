@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Location</key>
-	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location data is needed to reflect the average life expectancy of the area where the user lives.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Your health data is used to calculate remaining lifetimes.</string>
 	<key>LSMinimumSystemVersion</key>
