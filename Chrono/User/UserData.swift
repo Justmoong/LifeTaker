@@ -35,9 +35,16 @@ class UserData: ObservableObject {
         self.age = calculatedAge
     }
     
-    func setDeathDate() {
-        let lifeExpectancy: Int = (sex == "Female") ? 89 : 80
-        self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExpectancy, to: birthday) ?? Date()
+    func setDeathDate(with location: CoreLocation?) {
+        guard let location = location, let continent = location.continent else {
+            let defaultLifeExp = (sex == "Male") ? 80 : 80 + 8
+            self.deathDate = Calendar.current.date(byAdding: .year, value: defaultLifeExp, to: birthday) ?? Date()
+            calculateDeathAge()
+            return
+        }
+        let maleLifeExp = location.getLifeExpectancy(for: continent)
+        let lifeExp = (sex == "Male") ? maleLifeExp : maleLifeExp + 8
+        self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExp, to: birthday) ?? Date()
         calculateDeathAge()
     }
     

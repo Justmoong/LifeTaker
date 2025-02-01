@@ -17,6 +17,10 @@ struct InputView: View {
     @State private var showHealthKitAlert = false
     @State private var healthKitAlertMessage = ""
     
+    @StateObject private var locationManager = CoreLocation()
+    @State private var showLocationAlert = false
+    @State private var locationAlertMessage = ""
+    
     @EnvironmentObject var monthCount: MonthCount
     @EnvironmentObject var weekCount: WeekCount
     @EnvironmentObject var dayCount: DayCount
@@ -68,6 +72,9 @@ struct InputView: View {
                             )
                         }
                     }
+                    Button("Import Location Data") {
+                        locationManager.requestLocationPermission()
+                    }
                 }
             }
             .navigationTitle("About You")
@@ -76,7 +83,7 @@ struct InputView: View {
                 ToolbarItem {
                     Button("Done") {
                         if isCalcAuto {
-                            userData.setDeathDate()
+                            userData.setDeathDate(with: locationManager)
                         }
                         monthCount.calculateMonths(from: userData)
                         weekCount.calculateWeeks(from: userData)

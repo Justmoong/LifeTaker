@@ -21,6 +21,29 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    func requestLocationPermission() {
+        if CLLocationManager.locationServicesEnabled() {
+            switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                print(#file, #line, #function, "Location permission requested: not determined")
+            case .restricted, .denied:
+                print(#file, #line, #function, "Location access denied or restricted. Please update your settings.")
+            case .authorizedWhenInUse, .authorizedAlways:
+                print(#file, #line, #function, "Location access already granted.")
+                locationManager.startUpdatingLocation()
+            @unknown default:
+                print(#file, #line, #function, "Unknown authorization status encountered.")
+            }
+        } else {
+            print(#file, #line, #function, "Location services are disabled.")
+        }
+    }
+    
+    func updateLocation() {
+        locationManager.requestLocation()
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.first else { return }
         location = newLocation
@@ -68,7 +91,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    private func getLifeExpectancy(for continent: String) -> Int {
+    func getLifeExpectancy(for continent: String) -> Int {
            let lifeExpectancyData: [String: Int] = [
                "America": 76,
                "Europe": 78,
