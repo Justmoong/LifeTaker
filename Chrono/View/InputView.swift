@@ -74,6 +74,7 @@ struct InputView: View {
                     }
                     Button("Import Location Data") {
                         locationManager.requestLocationPermission()
+                        print("\(locationManager.location), \(locationManager.continent)")
                     }
                 }
             }

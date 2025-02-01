@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private var locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     @Published var location: CLLocation?
     @Published var continent: String?
     @Published var continentLifeExpectancy: Int?
@@ -17,8 +17,6 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
     }
     
     func requestLocationPermission() {
@@ -63,7 +61,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    private func fetchContinent(from location: CLLocation) {
+    func fetchContinent(from location: CLLocation) {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
@@ -72,7 +70,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.continentLifeExpectancy = getLifeExpectancy(for: determinedContinent)
     }
     
-    private func determineContinent(latitude: Double, longitude: Double) -> String {
+    func determineContinent(latitude: Double, longitude: Double) -> String {
         switch (latitude, longitude) {
         case (-90 ... 90, -180 ... -30):
             return "America"
@@ -102,9 +100,4 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
            ]
            return lifeExpectancyData[continent] ?? 75
        }
-    
-    func stopUpdatingLocation() {
-        locationManager.stopUpdatingLocation()
-        print(#file, #line, #function, "Location updates stopped")
-    }
 }
