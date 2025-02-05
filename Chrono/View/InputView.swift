@@ -47,6 +47,30 @@ struct InputView: View {
                             Text("Male").tag("Male")
                             Text("Female").tag("Female")
                         }
+                        HStack {
+                            Text("Heart Rate")
+                            Spacer()
+                            Text("\(Int(healthManager.heartRate ?? 0)) bpm")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        HStack {
+                            Text("Step Count:")
+                            Spacer()
+                            Text("\(Int(healthManager.stepCount ?? 0)) steps")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        HStack {
+                            Text("Active Calories: ")
+                            Spacer()
+                            Text("\(Int(healthManager.activeCalories ?? 0)) kcal")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        HStack {
+                            Text("Sleep Duration: ")
+                            Spacer()
+                            Text(healthManager.formatSleepDuration(healthManager.sleepDuration ?? 0))
+                                .foregroundStyle(Color.accentColor)
+                        }
                         Button("Import Health Data") {
                             healthManager.requestHealthKitPermission { success in
                                 if success {
@@ -54,7 +78,31 @@ struct InputView: View {
                                         if let heartRate = heartRate, heartRate > 0 {
                                             print("Fetched Heart Rate: \(heartRate) bpm")
                                         } else {
-                                            healthKitAlertMessage = "Failed to fetch heart rate data. Please ensure HealthKit permissions are granted and there is valid data."
+                                            healthKitAlertMessage = "Failed to fetch heart rate data."
+                                            showHealthKitAlert = true
+                                        }
+                                    }
+                                    healthManager.fetchStepCountData { stepCount in
+                                        if let stepCount = stepCount, stepCount > 0 {
+                                            print("Fetched Step Count: \(stepCount) steps")
+                                        } else {
+                                            healthKitAlertMessage = "Failed to fetch step count data."
+                                            showHealthKitAlert = true
+                                        }
+                                    }
+                                    healthManager.fetchActiveCaloriesData { activeCalories in
+                                        if let activeCalories = activeCalories, activeCalories > 0 {
+                                            print("Fetched Active Calories: \(activeCalories) kcal")
+                                        } else {
+                                            healthKitAlertMessage = "Failed to fetch active calories data."
+                                            showHealthKitAlert = true
+                                        }
+                                    }
+                                    healthManager.fetchSleepData { sleepDuration in
+                                        if let sleepDuration = sleepDuration, sleepDuration > 0 {
+                                            print("Fetched Sleep Duration: \(sleepDuration) minutes")
+                                        } else {
+                                            healthKitAlertMessage = "Failed to fetch your sleep data."
                                             showHealthKitAlert = true
                                         }
                                     }
@@ -62,7 +110,8 @@ struct InputView: View {
                                     healthKitAlertMessage = "HealthKit access was denied. Please enable access in Settings."
                                     showHealthKitAlert = true
                                 }
-                            }
+                                healthManager.saveToUserDefaults()
+                            } //Button - HealthKit
                         }
                         .alert(isPresented: $showHealthKitAlert) {
                             Alert(
@@ -95,6 +144,9 @@ struct InputView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            healthManager.loadFromUserDefaults()
         }
     }
 }

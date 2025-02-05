@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct ChronoApp: App {
-    @StateObject var userData = UserData()
+    @StateObject var userData: UserData
     @StateObject var monthCount: MonthCount
     @StateObject var weekCount: WeekCount
     @StateObject var dayCount: DayCount

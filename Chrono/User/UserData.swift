@@ -90,7 +90,7 @@ class UserData: ObservableObject {
 }
 
 
-private struct UserDataSnapshot: Codable {
+struct UserDataSnapshot: Codable {
     var name: String
     var birthday: Date
     var deathDate: Date
