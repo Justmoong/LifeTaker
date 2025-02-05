@@ -100,7 +100,7 @@ struct InputView: View {
                                     }
                                     healthManager.fetchSleepData { sleepDuration in
                                         if let sleepDuration = sleepDuration, sleepDuration > 0 {
-                                            print("Fetched Sleep Duration: \(sleepDuration) minutes")
+                                            print("Fetched Sleep Duration: \(sleepDuration)")
                                         } else {
                                             healthKitAlertMessage = "Failed to fetch your sleep data."
                                             showHealthKitAlert = true
