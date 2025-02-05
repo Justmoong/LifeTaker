@@ -147,6 +147,7 @@ struct InputView: View {
         }
         .onAppear {
             healthManager.loadFromUserDefaults()
+            locationManager.loadFromUserDefaults()
         }
     }
 }

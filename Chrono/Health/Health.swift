@@ -62,31 +62,38 @@ class HealthManager: ObservableObject {
 
     func fetchHeartRateData(completion: @escaping (Double?) -> Void) {
         guard let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate) else {
-            completion(nil)
-            return
-        }
+                completion(nil)
+                return
+            }
 
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        let query = HKSampleQuery(sampleType: heartRateType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { _, samples, error in
-            guard let sample = samples?.first as? HKQuantitySample, error == nil else {
-                print("Failed to fetch heart rate samples: \(error?.localizedDescription ?? "Unknown error")")
+            let calendar = Calendar.current
+            let now = Date()
+            guard let startDate = calendar.date(byAdding: .year, value: -1, to: now) else {
                 completion(nil)
                 return
             }
             
-            let heartRateUnit = HKUnit(from: "count/min")
-            let heartRateValue = sample.quantity.doubleValue(for: heartRateUnit)
+            let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: .strictStartDate)
             
-            DispatchQueue.main.async {
-                self.heartRate = heartRateValue
-                self.saveToUserDefaults()
+            let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: .discreteAverage) { _, result, error in
+                guard let averageQuantity = result?.averageQuantity(), error == nil else {
+                    print("Failed to fetch annual average heart rate: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(nil)
+                    return
+                }
+
+                let heartRateUnit = HKUnit(from: "count/min")
+                let averageHeartRateValue = averageQuantity.doubleValue(for: heartRateUnit)
+                
+                DispatchQueue.main.async {
+                    self.heartRate = averageHeartRateValue
+                    self.saveToUserDefaults()
+                }
+                
+                completion(averageHeartRateValue)
             }
             
-            completion(heartRateValue)
-        }
-        
-        healthStore.execute(query)
+            healthStore.execute(query)
     }
     
     func fetchStepCountData(completion: @escaping (Double?) -> Void) {
@@ -215,9 +222,4 @@ class HealthManager: ObservableObject {
 }
 
 
-struct HealthDataSnapshot: Codable {
-    var heartRate: Double
-    var stepCount: Double
-    var activeCalories: Double
-    var sleepDuration: Double
-}
+

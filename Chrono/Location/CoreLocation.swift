@@ -17,6 +17,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
+        loadFromUserDefaults()
     }
     
     func requestLocationPermission() {
@@ -68,6 +69,8 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         let determinedContinent = determineContinent(latitude: latitude, longitude: longitude)
         self.continent = determinedContinent
         self.continentLifeExpectancy = getLifeExpectancy(for: determinedContinent)
+        
+        saveToUserDefaults()
     }
     
     func determineContinent(latitude: Double, longitude: Double) -> String {
@@ -100,4 +103,35 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
            ]
            return lifeExpectancyData[continent] ?? 75
        }
+    
+    func saveToUserDefaults() {
+        let defaults = UserDefaults.standard
+        let encoder = JSONEncoder()
+        
+        guard let location = location else { return } // 위치가 없으면 저장하지 않음
+        
+        let snapshot = LocationDataSnapshot(
+            latitude: location.coordinate.latitude,
+            longitude: location.coordinate.longitude,
+            continent: self.continent ?? "Unknown",
+            continentLifeExpectancy: self.continentLifeExpectancy ?? 75
+        )
+        
+        if let encoded = try? encoder.encode(snapshot) {
+            defaults.set(encoded, forKey: "LocationData")
+        }
+    }
+    
+    func loadFromUserDefaults() {
+        let defaults = UserDefaults.standard
+        let decoder = JSONDecoder()
+        
+        if let savedData = defaults.data(forKey: "LocationData"),
+           let snapshot = try? decoder.decode(LocationDataSnapshot.self, from: savedData) {
+            self.location = CLLocation(latitude: snapshot.latitude, longitude: snapshot.longitude)
+            self.continent = snapshot.continent
+            self.continentLifeExpectancy = snapshot.continentLifeExpectancy
+        }
+    }
 }
+
