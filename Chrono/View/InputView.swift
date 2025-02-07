@@ -42,7 +42,9 @@ struct InputView: View {
                         .tint(.accentColor)
                 }
                 if isCalcAuto {
-                    Section {
+                    Section(
+                        footer: Text(openHealthApp())
+                    ) {
                         Picker("Select Sex", selection: $userData.sex) {
                             Text("Male").tag("Male")
                             Text("Female").tag("Female")
@@ -121,6 +123,12 @@ struct InputView: View {
                             )
                         }
                     }
+                    HStack {
+                        Text("Current Location: ")
+                        Spacer()
+                        Text("\(locationManager.continent ?? "N/A")")
+                            .foregroundStyle(Color.accentColor)
+                    }
                     Button("Import Location Data") {
                         locationManager.requestLocationPermission()
                         print("\(locationManager.location), \(locationManager.continent)")
@@ -149,6 +157,18 @@ struct InputView: View {
             healthManager.loadFromUserDefaults()
             locationManager.loadFromUserDefaults()
         }
+    }
+    
+    private func openHealthApp() -> AttributedString {
+        var fullText = AttributedString("The data from the Health app is used to calculate the expected life of the user.")
+
+        if let range = fullText.range(of: "Health") {
+            fullText[range].foregroundColor = .blue
+            fullText[range].underlineStyle = .single
+            fullText[range].link = URL(string: "x-apple-health://browse")
+        }
+
+        return fullText
     }
 }
 

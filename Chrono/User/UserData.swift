@@ -16,7 +16,6 @@ class UserData: ObservableObject {
         didSet {
             calculateDeathAge()
         }
-
     }
     @Published var age: Int = 0
     @Published var deathAge: Int = 80
