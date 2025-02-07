@@ -14,18 +14,10 @@ class HealthManager: ObservableObject {
     
     private let healthStore = HKHealthStore()
     
-    @Published var heartRate: Double? {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var stepCount: Double? {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var activeCalories: Double? {
-        didSet { saveToUserDefaults() }
-    }
-    @Published var sleepDuration: Double? {
-        didSet { saveToUserDefaults() }
-    }
+    @Published var heartRate: Double?
+    @Published var stepCount: Double?
+    @Published var activeCalories: Double?
+    @Published var sleepDuration: Double?
 
         private init() {
             loadFromUserDefaults()
@@ -116,7 +108,6 @@ class HealthManager: ObservableObject {
 
             let totalStepCount = sumQuantity.doubleValue(for: HKUnit.count())
 
-            // 1년 동안의 일수를 계산 (윤년 고려)
             let numberOfDays = calendar.dateComponents([.day], from: startDate, to: now).day ?? 365
             let averageDailyStepCount = totalStepCount / Double(numberOfDays)
 
@@ -153,7 +144,6 @@ class HealthManager: ObservableObject {
 
             let totalActiveCalories = sumQuantity.doubleValue(for: HKUnit.kilocalorie())
 
-            // 1년 동안의 일수를 계산 (윤년 고려)
             let numberOfDays = calendar.dateComponents([.day], from: startDate, to: now).day ?? 365
             let averageDailyActiveCalories = totalActiveCalories / Double(numberOfDays)
 

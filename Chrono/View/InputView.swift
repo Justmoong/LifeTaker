@@ -42,9 +42,7 @@ struct InputView: View {
                         .tint(.accentColor)
                 }
                 if isCalcAuto {
-                    Section(
-                        footer: Text(openHealthApp())
-                    ) {
+                    Section(footer: Text(openHealthApp())) {
                         Picker("Select Sex", selection: $userData.sex) {
                             Text("Male").tag("Male")
                             Text("Female").tag("Female")
