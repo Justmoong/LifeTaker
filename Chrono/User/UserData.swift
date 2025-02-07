@@ -41,6 +41,7 @@ class UserData: ObservableObject {
             calculateDeathAge()
             return
         }
+        
         let maleLifeExp = location.getLifeExpectancy(for: continent)
         let lifeExp = (sex == "Male") ? maleLifeExp : maleLifeExp + 8
         self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExp, to: birthday) ?? Date()

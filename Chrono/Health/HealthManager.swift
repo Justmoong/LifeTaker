@@ -67,7 +67,7 @@ class HealthManager: ObservableObject {
             
             let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: .discreteAverage) { _, result, error in
                 guard let averageQuantity = result?.averageQuantity(), error == nil else {
-                    print("Failed to fetch annual average heart rate: \(error?.localizedDescription ?? "Unknown error")")
+                    print(#file, #line, #function, "Failed to fetch annual average heart rate: \(error?.localizedDescription ?? "Unknown error")")
                     completion(nil)
                     return
                 }
@@ -101,7 +101,7 @@ class HealthManager: ObservableObject {
 
         let query = HKStatisticsQuery(quantityType: stepCountType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let sumQuantity = result?.sumQuantity(), error == nil else {
-                print("Failed to fetch annual step count: \(error?.localizedDescription ?? "Unknown error")")
+                print(#file, #line, #function, "Failed to fetch annual step count: \(error?.localizedDescription ?? "Unknown error")")
                 completion(nil)
                 return
             }
@@ -137,7 +137,7 @@ class HealthManager: ObservableObject {
 
         let query = HKStatisticsQuery(quantityType: activeEnergyType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let sumQuantity = result?.sumQuantity(), error == nil else {
-                print("Failed to fetch annual active calories: \(error?.localizedDescription ?? "Unknown error")")
+                print(#file, #line, #function, "Failed to fetch annual active calories: \(error?.localizedDescription ?? "Unknown error")")
                 completion(nil)
                 return
             }
@@ -206,7 +206,7 @@ class HealthManager: ObservableObject {
                 self.saveToUserDefaults()
             }
 
-            print("Updated average sleep duration: \(averageSleepMinutes) minutes")
+            print(#file, #line, #function, "Updated average sleep duration: \(averageSleepMinutes) minutes")
             completion(averageSleepMinutes)
         }
 

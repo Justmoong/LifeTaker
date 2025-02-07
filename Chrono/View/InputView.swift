@@ -42,13 +42,13 @@ struct InputView: View {
                         .tint(.accentColor)
                 }
                 if isCalcAuto {
-                    Section(footer: Text(openHealthApp())) {
+                    Section(footer: Text(healthKitFooter())) {
                         Picker("Select Sex", selection: $userData.sex) {
                             Text("Male").tag("Male")
                             Text("Female").tag("Female")
                         }
                         HStack {
-                            Text("Heart Rate")
+                            Text("Heart Rate: ")
                             Spacer()
                             Text("\(Int(healthManager.heartRate ?? 0)) bpm")
                                 .foregroundStyle(Color.accentColor)
@@ -121,15 +121,17 @@ struct InputView: View {
                             )
                         }
                     }
-                    HStack {
-                        Text("Current Location: ")
-                        Spacer()
-                        Text("\(locationManager.continent ?? "N/A")")
-                            .foregroundStyle(Color.accentColor)
-                    }
-                    Button("Import Location Data") {
-                        locationManager.requestLocationPermission()
-                        print("\(locationManager.location), \(locationManager.continent)")
+                    Section(footer: Text(locationFooter())) {
+                        HStack {
+                            Text("Current Location: ")
+                            Spacer()
+                            Text("\(locationManager.continent ?? "N/A")")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        Button("Import Location Data") {
+                            locationManager.requestLocationPermission()
+                            print("\(locationManager.location), \(locationManager.continent)")
+                        }
                     }
                 }
             }
@@ -157,19 +159,31 @@ struct InputView: View {
         }
     }
     
-    private func openHealthApp() -> AttributedString {
-        var fullText = AttributedString("The data from the Health app is used to calculate the expected life of the user.")
-
+    private func healthKitFooter() -> AttributedString {
+        var fullText = AttributedString("The data from the Health app is used to calculate the expected life of the user.\nUse the records of the last year to check the health status of the user.")
+        
         if let range = fullText.range(of: "Health") {
             fullText[range].foregroundColor = .blue
             fullText[range].underlineStyle = .single
             fullText[range].link = URL(string: "x-apple-health://browse")
         }
-
+        
+        return fullText
+    }
+    
+    private func locationFooter() -> AttributedString {
+        var fullText = AttributedString("The calculation incorporates statistical data provided by the World Health Organization (WHO) to estimate life expectancy based on global health trends.\nLearn more about the WHO's data...")
+        
+        if let range = fullText.range(of: "Learn more about the WHO's data...") {
+            fullText[range].foregroundColor = .blue
+            fullText[range].underlineStyle = .single
+            fullText[range].link = URL(string: "https://data.who.int/countries")
+        }
+        
         return fullText
     }
 }
-
+    
 #Preview {
     InputView()
         .environmentObject(UserData())
@@ -177,3 +191,4 @@ struct InputView: View {
         .environmentObject(WeekCount(viewModel: UserData()))
         .environmentObject(DayCount(viewModel: UserData()))
 }
+
