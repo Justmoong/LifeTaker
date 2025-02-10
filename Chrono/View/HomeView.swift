@@ -42,7 +42,6 @@ struct HomeView: View {
                     let nextBirthday = Calendar.current.nextDate(after: today, matching: Calendar.current.dateComponents([.month, .day], from: userData.birthday), matchingPolicy: .nextTimePreservingSmallerComponents) ?? today
                     let daysUntilNextBirthday = Calendar.current.dateComponents([.day], from: today, to: nextBirthday).day ?? 0
 
-                    let totalDaysInYear = lengthOfYear
                     let currentAge = userData.age
                     let nextDecade = ((currentAge / 10) + 1) * 10
                     let yearsUntilNextDecade = nextDecade - currentAge
@@ -63,9 +62,18 @@ struct HomeView: View {
                     )
             }
             Section(header: Text("Annual Events")) {
-                EventGaugeView(title: christmas.name, count: christmas.count, gaugeValue: christmas.gaugeValue, min: 0, max: lengthOfYear)
-                EventGaugeView(title: annualMondays.name, count: annualMondays.count, gaugeValue: annualMondays.gaugeValue, min: 0, max: annualMondays.gaugeMax)
-                
+                EventGaugeView(title: christmas.name,
+                               count: christmas.count,
+                               gaugeValue: christmas.gaugeValue,
+                               min: 0,
+                               max: lengthOfYear
+                )
+                EventGaugeView(title: annualMondays.name,
+                               count: annualMondays.count,
+                               gaugeValue: annualMondays.gaugeValue,
+                               min: 0,
+                               max: annualMondays.gaugeMax
+                )
             }
         }
     }

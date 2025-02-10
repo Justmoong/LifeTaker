@@ -12,6 +12,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     @Published var location: CLLocation?
     @Published var continent: String?
+    @Published var country: String?
     @Published var continentLifeExpectancy: Int?
     
     override init() {
@@ -47,6 +48,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let newLocation = locations.first else { return }
         location = newLocation
         fetchContinent(from: newLocation)
+        fetchCountry(from: newLocation)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -69,6 +71,30 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         let determinedContinent = determineContinent(latitude: latitude, longitude: longitude)
         self.continent = determinedContinent
         self.continentLifeExpectancy = getLifeExpectancy(for: determinedContinent)
+        
+        saveToUserDefaults()
+    }
+    
+    func fetchCountry(from location: CLLocation) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            guard let self = self else { return }
+
+            if let error = error {
+                print(#file, #line, #function, "Failed to reverse geocode location: \(error.localizedDescription)")
+                return
+            }
+
+            guard let placemark = placemarks?.first, let countryName = placemark.country else {
+                print(#file, #line, #function, "No valid country found.")
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.country = countryName
+                print(#file, #line, #function, "Country successfully set: \(countryName)")
+            }
+        }
         
         saveToUserDefaults()
     }
@@ -109,12 +135,13 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         let defaults = UserDefaults.standard
         let encoder = JSONEncoder()
         
-        guard let location = location else { return } // 위치가 없으면 저장하지 않음
+        guard let location = location else { return }
         
         let snapshot = LocationDataSnapshot(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
             continent: self.continent ?? "Unknown",
+            country: self.country ?? "Unknown",
             continentLifeExpectancy: self.continentLifeExpectancy ?? 75
         )
         

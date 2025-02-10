@@ -125,7 +125,7 @@ struct InputView: View {
                         HStack {
                             Text("Current Location: ")
                             Spacer()
-                            Text("\(locationManager.continent ?? "N/A")")
+                            Text("\(locationManager.continent ?? "N/A") / \(locationManager.country ?? "N/A")")
                                 .foregroundStyle(Color.accentColor)
                         }
                         Button("Import Location Data") {

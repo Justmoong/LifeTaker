@@ -10,5 +10,6 @@ struct LocationDataSnapshot: Codable {
     var latitude: Double
     var longitude: Double
     var continent: String
+    var country: String
     var continentLifeExpectancy: Int
 }
