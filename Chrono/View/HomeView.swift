@@ -11,6 +11,7 @@ import SwiftData
 struct HomeView: View {
     
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userLivedTime: UserLivedTime
 
     @EnvironmentObject var monthCount: MonthCount
     @EnvironmentObject var weekCount: WeekCount
@@ -35,6 +36,15 @@ struct HomeView: View {
                 EventPlainView(title: "Months", count: monthCount.leftMonths)
                 EventPlainView(title: "Weeks", count: weekCount.leftWeeks)
                 EventPlainView(title: "Days", count: dayCount.leftDays)
+            }
+            Section(header: Text("You Passed")) {
+                EventPlainView(title: "Months", count: userLivedTime.livedMonths)
+                
+                EventPlainView(title: "Weeks", count: userLivedTime.livedDays / 7)
+                EventPlainView(title: "Days", count: userLivedTime.livedDays)
+                EventPlainView(title: "Hours", count: userLivedTime.livedHours)
+                EventPlainView(title: "Minutes", count: userLivedTime.livedMinutes)
+                EventPlainView(title: "Seconds", count: userLivedTime.livedSeconds)
             }
             // 생일까지 남은 날짜, 다음 N0세 까지 남은 날짜
             Section(header: Text("Your Next")) {
@@ -82,6 +92,7 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environmentObject(UserData())
+        .environmentObject(UserLivedTime(model: UserData()))
         .environmentObject(MonthCount(viewModel: UserData()))
         .environmentObject(WeekCount(viewModel: UserData()))
         .environmentObject(DayCount(viewModel: UserData()))

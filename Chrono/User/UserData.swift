@@ -52,7 +52,7 @@ class UserData: ObservableObject {
         let calculatedDeathAge = Calendar.current.dateComponents([.year], from: birthday, to: deathDate).year ?? 0
         self.deathAge = calculatedDeathAge
     }
-    
+
     
     
     
