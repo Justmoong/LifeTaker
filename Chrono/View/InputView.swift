@@ -191,4 +191,3 @@ struct InputView: View {
         .environmentObject(WeekCount(viewModel: UserData()))
         .environmentObject(DayCount(viewModel: UserData()))
 }
-

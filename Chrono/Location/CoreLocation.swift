@@ -104,6 +104,7 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
            return lifeExpectancyData[continent] ?? 75
        }
     
+    // MARK: - UserDefaults
     func saveToUserDefaults() {
         let defaults = UserDefaults.standard
         let encoder = JSONEncoder()
@@ -134,4 +135,3 @@ class CoreLocation: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
 }
-
