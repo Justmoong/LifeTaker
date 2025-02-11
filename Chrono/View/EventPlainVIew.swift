@@ -12,13 +12,14 @@ import Combine
 struct EventPlainView: View {
     var title: String
     var count: Int
+    var unit: String
     
     var body: some View {
         HStack(spacing: 16) {
             Text(title)
                 .font(.callout)
             Spacer()
-            Text("\(count)")
+            Text("\(count)\(unit)")
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundStyle(Color.accentColor)

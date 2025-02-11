@@ -19,7 +19,6 @@ let dateFormatter: DateFormatter = {
 let lengthOfYear = daysInYear(for: dateComponents.year ?? 0)
 
 func daysInYear(for year: Int) -> Int {
-    // 윤년 여부를 판단하는 함수
     func isLeapYear(_ year: Int) -> Bool {
         if year % 4 == 0 {
             if year % 100 == 0 {
@@ -29,8 +28,7 @@ func daysInYear(for year: Int) -> Int {
         }
         return false
     }
-    
-    // 윤년이면 366일, 그렇지 않으면 365일 반환
+
     return isLeapYear(year) ? 366 : 365
 }
 
