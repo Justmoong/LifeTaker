@@ -30,7 +30,7 @@ class HealthManager: ObservableObject {
 
     func requestHealthKitPermission(completion: @escaping (Bool) -> Void) {
         guard HKHealthStore.isHealthDataAvailable() else {
-            print("HealthKit is not available on this device")
+            print(#file, #line, #function, "HealthKit is not available on this device")
             completion(false)
             return
         }
@@ -44,9 +44,9 @@ class HealthManager: ObservableObject {
 
         healthStore.requestAuthorization(toShare: nil, read: readTypes) { success, error in
             if success {
-                print("HealthKit authorization granted")
+                print(#file, #line, #function, "HealthKit authorization granted")
             } else {
-                print("HealthKit authorization failed: \(error?.localizedDescription ?? "Unknown error")")
+                print(#file, #line, #function, "HealthKit authorization failed: \(error?.localizedDescription ?? "Unknown error")")
             }
             completion(success)
         }
@@ -174,7 +174,7 @@ class HealthManager: ObservableObject {
 
         let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, error in
             guard let samples = samples as? [HKCategorySample], error == nil else {
-                print("Failed to fetch sleep data: \(error?.localizedDescription ?? "Unknown error")")
+                print(#file, #line, #function, "Failed to fetch sleep data: \(error?.localizedDescription ?? "Unknown error")")
                 completion(nil)
                 return
             }

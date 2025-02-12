@@ -36,6 +36,7 @@ class UserLivedTime: ObservableObject {
         livedHours = calendar.dateComponents([.hour], from: userData.birthday, to: Date()).hour ?? 0
         livedMinutes = calendar.dateComponents([.minute], from: userData.birthday, to: Date()).minute ?? 0
         livedSeconds = calendar.dateComponents([.second], from: userData.birthday, to: Date()).second ?? 0
+        print(#file, #line, #function, "Lived time: \(livedMonths) months, \(livedDays) days, \(livedHours) hours, \(livedMinutes) minutes, \(livedSeconds) seconds")
     }
     
     func startTimer() {

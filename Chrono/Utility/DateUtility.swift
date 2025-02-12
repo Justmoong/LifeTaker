@@ -28,10 +28,9 @@ func daysInYear(for year: Int) -> Int {
         }
         return false
     }
-
+    print(#file, #line, #function, "Days in this year: \(isLeapYear(year) ? 366 : 365)")
     return isLeapYear(year) ? 366 : 365
 }
-
 
 var now = Date()
 let calendar = Calendar.current

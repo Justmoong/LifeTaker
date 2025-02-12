@@ -40,7 +40,7 @@ class AnnualMondayProperties {
 
         guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
               let endOfYear = calendar.date(from: DateComponents(year: currentYear, month: 12, day: 31)) else {
-            print("[remainingMondaysInYear] Failed to calculate start or end of year.")
+            print(#file, #line, #function, "[remainingMondaysInYear] Failed to calculate start or end of year.")
             return 0
         }
 
@@ -55,7 +55,7 @@ class AnnualMondayProperties {
 
         guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
               let endOfYear = calendar.date(from: DateComponents(year: currentYear, month: 12, day: 31)) else {
-            print("[totalMondaysInYear] Failed to calculate start or end of year.")
+            print(#file, #line, #function, "[totalMondaysInYear] Failed to calculate start or end of year.")
             return 0
         }
 

@@ -29,6 +29,6 @@ class DayCount: ObservableObject {
         
         let remainingDays = calendar.dateComponents([.day], from: now, to: deathDate).day ?? 0
         leftDays = max(remainingDays, 0)
-        print("Remaining days: \(self.leftDays)")
+        print(#file, #line, #function, "Remaining days: \(self.leftDays)")
     }
 }
