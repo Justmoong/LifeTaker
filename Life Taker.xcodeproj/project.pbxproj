@@ -157,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F90532722CA569200041E8AB /* Build configuration list for PBXProject "Chrono" */;
+			buildConfigurationList = F90532722CA569200041E8AB /* Build configuration list for PBXProject "Life Taker" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -461,7 +461,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F90532722CA569200041E8AB /* Build configuration list for PBXProject "Chrono" */ = {
+		F90532722CA569200041E8AB /* Build configuration list for PBXProject "Life Taker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F90532A12CA569220041E8AB /* Debug */,

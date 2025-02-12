@@ -18,7 +18,7 @@
                BlueprintIdentifier = "F90532762CA569200041E8AB"
                BuildableName = "Chrono.app"
                BlueprintName = "Chrono"
-               ReferencedContainer = "container:Chrono.xcodeproj">
+               ReferencedContainer = "container:Life Taker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -38,7 +38,7 @@
                BlueprintIdentifier = "F9007C032D01B71400DA3EB8"
                BuildableName = "ChronoTests.xctest"
                BlueprintName = "ChronoTests"
-               ReferencedContainer = "container:Chrono.xcodeproj">
+               ReferencedContainer = "container:Life Taker.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -60,7 +60,7 @@
             BlueprintIdentifier = "F90532762CA569200041E8AB"
             BuildableName = "Chrono.app"
             BlueprintName = "Chrono"
-            ReferencedContainer = "container:Chrono.xcodeproj">
+            ReferencedContainer = "container:Life Taker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "F90532762CA569200041E8AB"
             BuildableName = "Chrono.app"
             BlueprintName = "Chrono"
-            ReferencedContainer = "container:Chrono.xcodeproj">
+            ReferencedContainer = "container:Life Taker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
