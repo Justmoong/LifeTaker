@@ -19,7 +19,7 @@ struct EventPlainView: View {
             Text(title)
                 .font(.callout)
             Spacer()
-            Text("\(count)\(unit)")
+            Text("\(count) \(unit)")
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundStyle(Color.accentColor)

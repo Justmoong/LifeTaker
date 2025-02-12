@@ -14,6 +14,7 @@ struct EventGaugeView: View {
     var gaugeValue: Int
     var min: Int
     var max: Int
+    var unit: String
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -21,7 +22,7 @@ struct EventGaugeView: View {
                 Text(title)
                     .font(.callout)
                 Spacer()
-                Text("\(count)")
+                Text("\(count) \(unit)")
                     .foregroundStyle(Color.accentColor)
                     .font(.headline)
                     .fontWeight(.bold)

@@ -38,7 +38,7 @@ struct HomeView: View {
                 EventPlainView(title: "Weeks", count: weekCount.leftWeeks, unit: "")
                 EventPlainView(title: "Days", count: dayCount.leftDays, unit: "")
                 if userData.age >= userData.deathAge {
-                    EventPlainView(title: "Congratulations! You have surpassed the expected lifespan: ", count: userData.age - userData.deathAge, unit: "")
+                    EventPlainView(title: "Congratulations! You have surpassed the expected lifespan: ", count: userData.age - userData.deathAge, unit: "Years")
                         .padding(.top)
                         .padding(.bottom)
                 }
@@ -75,30 +75,33 @@ struct HomeView: View {
                     count: daysUntilNextBirthday,
                     gaugeValue: lengthOfYear - daysUntilNextBirthday,
                     min: 0,
-                    max: lengthOfYear
+                    max: lengthOfYear,
+                    unit: "days"
                 )
                 EventGaugeView(
                     title: "To Be \(nextDecade)",
                     count: yearsUntilNextDecade,
                     gaugeValue: 10 - yearsUntilNextDecade,
                     min: 0,
-                    max: 10
+                    max: 10,
+                    unit: "Years"
                 )
             }
             Section(header: Text("Annual Events")) {
                 EventGaugeView(title: "This Year",
-                               count: christmas.gaugeValue,
+                               count: lengthOfYear - christmas.gaugeValue,
                                gaugeValue: christmas.gaugeValue,
                                min: 0,
-                               max: lengthOfYear
+                               max: lengthOfYear,
+                               unit: "days"
                 )
                 EventPlainView(title: christmas.name,
                                count: christmas.count,
-                               unit: ""
+                               unit: "days"
                 )
                 EventPlainView(title: annualMondays.name,
                                count: annualMondays.count,
-                               unit: ""
+                               unit: "times"
                 )
             
             }
