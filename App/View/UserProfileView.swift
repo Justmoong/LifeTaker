@@ -30,7 +30,7 @@ struct UserProfileView: View {
                 }
                 // TODO: Sex Icon will place here!!!!!!
                 .frame(maxWidth: .infinity, alignment: .leading)
-                Gauge(value: Double(userData.age),  in: 0...Double(userData.deathAge)) {
+                Gauge(value: max(0, Double(userData.age)), in: 0...max(1, Double(userData.deathAge))) {
 //                    Text(String(format: "%.0f", Double(userData.age)))
                     Text("\(userData.deathAge > 0 ? (Double(userData.age) / Double(userData.deathAge) * 100) : 0, specifier: "%.0f")%")
                         .font(.headline)
@@ -44,7 +44,7 @@ struct UserProfileView: View {
                     .font(.caption2)
                     .fontWeight(.bold)
                     .foregroundStyle(Color.accentColor)
-                Gauge(value: Float(userData.age),  in: 0...Float(userData.deathAge)) {
+                Gauge(value: max(0, Float(userData.age)), in: 0...max(1, Float(userData.deathAge))) {
                     
                 }
                 .gaugeStyle(.accessoryLinearCapacity)
