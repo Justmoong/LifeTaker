@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F90532762CA569200041E8AB"
-               BuildableName = "Chrono.app"
-               BlueprintName = "Chrono"
+               BuildableName = "Life Taker.app"
+               BlueprintName = "Life Taker"
                ReferencedContainer = "container:Life Taker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,8 +36,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F9007C032D01B71400DA3EB8"
-               BuildableName = "ChronoTests.xctest"
-               BlueprintName = "ChronoTests"
+               BuildableName = "Life TakerTests.xctest"
+               BlueprintName = "Life TakerTests"
                ReferencedContainer = "container:Life Taker.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F90532762CA569200041E8AB"
-            BuildableName = "Chrono.app"
-            BlueprintName = "Chrono"
+            BuildableName = "Life Taker.app"
+            BlueprintName = "Life Taker"
             ReferencedContainer = "container:Life Taker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F90532762CA569200041E8AB"
-            BuildableName = "Chrono.app"
-            BlueprintName = "Chrono"
+            BuildableName = "Life Taker.app"
+            BlueprintName = "Life Taker"
             ReferencedContainer = "container:Life Taker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

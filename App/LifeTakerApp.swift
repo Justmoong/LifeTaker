@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ChronoApp: App {
+struct LifeTakerApp: App {
     @StateObject var userData: UserData
     @StateObject var userLivedTime: UserLivedTime
     @StateObject var monthCount: MonthCount

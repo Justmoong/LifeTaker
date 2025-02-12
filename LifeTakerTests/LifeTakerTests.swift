@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-@testable import Chrono
+@testable import Life_Taker
 
 final class ChronoTests: XCTestCase {
 

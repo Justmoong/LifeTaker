@@ -39,10 +39,14 @@ struct HomeView: View {
                 EventPlainView(title: "Days", count: dayCount.leftDays, unit: "")
                 if userData.age >= userData.deathAge {
                     EventPlainView(title: "Congratulations! You have surpassed the expected lifespan: ", count: userData.age - userData.deathAge, unit: "")
+                        .padding()
                 }
                 if userData.birthday > now {
                     EventPlainView(title: "The time left until you are born: ", count: userData.daysUntilBirth(), unit: "Days")
-                    
+                        .padding()
+                }
+                if userData.birthday == now {
+                    EventPlainView(title: "Touch the profile to enter your birthday", count: 0, unit: "")
                 }
             }
             Section(header: Text("You Passed")) {
