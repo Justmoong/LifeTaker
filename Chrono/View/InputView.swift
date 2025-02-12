@@ -21,6 +21,13 @@ struct InputView: View {
     @State private var showLocationAlert = false
     @State private var locationAlertMessage = ""
     
+    @StateObject private var lifespanModifier: LifespanModifier
+    
+    init(userData: UserData) {
+            _lifespanModifier = StateObject(wrappedValue: LifespanModifier(userData: userData, healthModel: HealthManager.shared))
+    }
+
+    
     @EnvironmentObject var monthCount: MonthCount
     @EnvironmentObject var weekCount: WeekCount
     @EnvironmentObject var dayCount: DayCount
@@ -147,6 +154,8 @@ struct InputView: View {
                         weekCount.calculateWeeks(from: userData)
                         dayCount.calculateDays(from: userData)
                         userData.setAge()
+                        lifespanModifier.updateModifiers()
+                        lifespanModifier.updateLifeSpan()
                         userData.saveToUserDefaults()
                         dismiss()
                     }
@@ -185,7 +194,7 @@ struct InputView: View {
 }
     
 #Preview {
-    InputView()
+    InputView(userData: UserData())
         .environmentObject(UserData())
         .environmentObject(MonthCount(viewModel: UserData()))
         .environmentObject(WeekCount(viewModel: UserData()))
