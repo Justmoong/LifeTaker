@@ -8,12 +8,9 @@
 import Foundation
 import SwiftUI
 
-class AnnualMondayProperties {
+struct AnnualMondayProperties {
     let name: String = "Remining Mondays :"
     var count: Int = 0
-    var gaugeValue: Int = 0
-    let gaugeMin: Int = 0
-    var gaugeMax: Int = 0
 
     init() {
             self.update()
@@ -62,12 +59,9 @@ class AnnualMondayProperties {
         return calculateMondays(from: startOfYear, to: endOfYear)
     }
 
-    func update() {
+    mutating func update() {
         let remainingMondays = self.remainingMondaysInYear()
-        let totalMondays = self.totalMondaysInYear()
 
         self.count = remainingMondays
-        self.gaugeMax = totalMondays
-        self.gaugeValue = totalMondays - remainingMondays
     }
 }

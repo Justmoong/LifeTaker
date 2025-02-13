@@ -19,12 +19,15 @@ struct HomeView: View {
     
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
+    var elapsedDateInThisYear = ElapsedDateInThisYear()
+    var annualRemainingWorkingTime = AnnualRemainingWorkingTime.calculateRemainingWorkingTime()
     
     @State var isPresented: Bool = false
     
     var body: some View {
         ZStack(alignment: .top) {
-            GradientBackgroundView()
+            LeftGradientBackgroundView()
+            RightGradientBackgroundView()
                 .edgesIgnoringSafeArea(.all)
                 .ignoresSafeArea()
             List {
@@ -73,7 +76,14 @@ struct HomeView: View {
                     let currentAge = userData.age
                     let nextDecade = ((currentAge / 10) + 1) * 10
                     let yearsUntilNextDecade = nextDecade - currentAge
-                    
+                    EventGaugeView(
+                        title: "To Be \(nextDecade)",
+                        count: yearsUntilNextDecade,
+                        gaugeValue: 10 - yearsUntilNextDecade,
+                        min: 0,
+                        max: 10,
+                        unit: "years"
+                    )
                     EventGaugeView(
                         title: "Next Birthday",
                         count: daysUntilNextBirthday,
@@ -82,19 +92,11 @@ struct HomeView: View {
                         max: lengthOfYear,
                         unit: "days"
                     )
-                    EventGaugeView(
-                        title: "To Be \(nextDecade)",
-                        count: yearsUntilNextDecade,
-                        gaugeValue: 10 - yearsUntilNextDecade,
-                        min: 0,
-                        max: 10,
-                        unit: "Years"
-                    )
                 }
                 Section(header: Text("Annual Events")) {
                     EventGaugeView(title: "This Year",
-                                   count: lengthOfYear - christmas.gaugeValue,
-                                   gaugeValue: christmas.gaugeValue,
+                                   count: lengthOfYear - elapsedDateInThisYear.daysElapsedThisYear,
+                                   gaugeValue: elapsedDateInThisYear.daysElapsedThisYear,
                                    min: 0,
                                    max: lengthOfYear,
                                    unit: "days"
@@ -107,7 +109,8 @@ struct HomeView: View {
                                    count: annualMondays.count,
                                    unit: "times"
                     )
-                    
+                    EventPlainView(title: "If you work at weekdays,\n you have to go work", count: annualRemainingWorkingTime.remainingWorkingDaysThisYear, unit: "day")
+                    EventPlainView(title: "Then it means you have to work", count: annualRemainingWorkingTime.remainingWorkingHoursThisYear, unit: "hours")
                 }
             }
         }

@@ -34,3 +34,4 @@ func daysInYear(for year: Int) -> Int {
 
 var now = Date()
 let calendar = Calendar.current
+let today = calendar.startOfDay(for: now)

@@ -7,8 +7,7 @@
 
 import Foundation
 
-//디데이
-class AnnualChristmasProperties {
+struct AnnualChristmasProperties {
     let name: String = "Next Christmas :"
     var count: Int = 0
     var gaugeValue: Int = 0
@@ -50,7 +49,7 @@ class AnnualChristmasProperties {
         return calendar.dateComponents([.day], from: startOfYear, to: now).day ?? 0
     }
     
-    func update() {
+    mutating func update() {
         count = AnnualChristmasProperties.remainingChristmasDays()
         gaugeValue = AnnualChristmasProperties.daysPassedInYear()
     }
