@@ -26,7 +26,7 @@ struct LifeTakerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(lifeRemainingWorkingTime: LifeRemainingWorkingTime(userLivedTime: userLivedTime))
                 .environmentObject(userData)
                 .environmentObject(userLivedTime)
                 .environmentObject(monthCount)

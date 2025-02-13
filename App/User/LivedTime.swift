@@ -16,7 +16,11 @@ class UserLivedTime: ObservableObject {
     @Published var livedMinutes: Int = 0
     @Published var livedSeconds: Int = 0
     
-    @ObservedObject var userData: UserData
+    @ObservedObject var userData: UserData {
+        didSet {
+            self.updateTimeLived()
+        }
+    }
     private var timer: Timer?
     
     init(model: UserData) {

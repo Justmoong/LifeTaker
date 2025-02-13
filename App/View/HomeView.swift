@@ -17,6 +17,8 @@ struct HomeView: View {
     @EnvironmentObject var weekCount: WeekCount
     @EnvironmentObject var dayCount: DayCount
     
+    @ObservedObject var lifeRemainingWorkingTime: LifeRemainingWorkingTime
+    
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
     var elapsedDateInThisYear = ElapsedDateInThisYear()
@@ -34,7 +36,7 @@ struct HomeView: View {
                 Section(header: EmptyView()) {
                     UserProfileView()
                         .sheet(isPresented: $isPresented) {
-                            InputView(userData: userData)
+                            InputView(userData: userData, userLivedTime: userLivedTime)
                                 .environmentObject(userData)
                                 .interactiveDismissDisabled(true)
                         }
@@ -77,7 +79,7 @@ struct HomeView: View {
                     let nextDecade = ((currentAge / 10) + 1) * 10
                     let yearsUntilNextDecade = nextDecade - currentAge
                     EventGaugeView(
-                        title: "To Be \(nextDecade)",
+                        title: "To Be \(nextDecade) :",
                         count: yearsUntilNextDecade,
                         gaugeValue: 10 - yearsUntilNextDecade,
                         min: 0,
@@ -85,13 +87,19 @@ struct HomeView: View {
                         unit: "years"
                     )
                     EventGaugeView(
-                        title: "Next Birthday",
+                        title: "Next Birthday :",
                         count: daysUntilNextBirthday,
                         gaugeValue: lengthOfYear - daysUntilNextBirthday,
                         min: 0,
                         max: lengthOfYear,
                         unit: "days"
                     )
+                    EventGaugeView(title: "Remaining Weekdays",
+                                   count: lifeRemainingWorkingTime.remainingWorkingDays,
+                                   gaugeValue: userData.age,
+                                   min: 0,
+                                   max: userData.deathAge,
+                                   unit: "days")
                 }
                 Section(header: Text("Annual Events")) {
                     EventGaugeView(title: "This Year",
@@ -109,8 +117,8 @@ struct HomeView: View {
                                    count: annualMondays.count,
                                    unit: "times"
                     )
-                    EventPlainView(title: "If you work at weekdays,\n you have to go work", count: annualRemainingWorkingTime.remainingWorkingDaysThisYear, unit: "day")
-                    EventPlainView(title: "Then it means you have to work", count: annualRemainingWorkingTime.remainingWorkingHoursThisYear, unit: "hours")
+                    EventPlainView(title: "Weakdays remaining :", count: annualRemainingWorkingTime.remainingWorkingDaysThisYear, unit: "day")
+                    EventPlainView(title: "Then it means you have to work :", count: annualRemainingWorkingTime.remainingWorkingHoursThisYear, unit: "hours")
                 }
             }
         }
@@ -122,7 +130,7 @@ struct HomeView: View {
 
 
 #Preview {
-    HomeView()
+    HomeView(lifeRemainingWorkingTime: LifeRemainingWorkingTime(userLivedTime: UserLivedTime(model: UserData())))
         .environmentObject(UserData())
         .environmentObject(UserLivedTime(model: UserData()))
         .environmentObject(MonthCount(viewModel: UserData()))
