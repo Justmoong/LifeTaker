@@ -2,11 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSMinimumSystemVersion</key>
-	<string>17.0</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
+    <key>MinimumSystemVersion</key>
+    <string>17.0</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+    </array>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>Life Taker uses health data to analyze your activity and calculate your estimated life expectancy.</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>Life Taker needs access to your health data to help provide better insights into your estimated lifespan.</string>
 </dict>
 </plist>
