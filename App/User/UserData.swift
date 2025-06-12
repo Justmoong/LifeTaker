@@ -28,27 +28,6 @@ class UserData: ObservableObject {
         self.loadFromUserDefaults()
     }
     
-    // MARK: - Basic Age Methods
-    func setAge() {
-        let calculatedAge = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year ?? 0
-        self.age = calculatedAge
-        print(#file, #line, #function, "calculatedAge: \(age)")
-    }
-    
-    func setDeathDate(with location: CoreLocation?) {
-        guard let location = location, let continent = location.continent else {
-            let defaultLifeExp = (sex == "Male") ? 80 : 80 + 8
-            self.deathDate = Calendar.current.date(byAdding: .year, value: defaultLifeExp, to: birthday) ?? Date()
-            calculateDeathAge()
-            return
-        }
-        
-        let maleLifeExp = location.getLifeExpectancy(for: continent)
-        let lifeExp = (sex == "Male") ? maleLifeExp : maleLifeExp + 8
-        self.deathDate = Calendar.current.date(byAdding: .year, value: lifeExp, to: birthday) ?? Date()
-        calculateDeathAge()
-    }
-    
     private func calculateDeathAge() {
         let calculatedDeathAge = Calendar.current.dateComponents([.year], from: birthday, to: deathDate).year ?? 0
         self.deathAge = calculatedDeathAge

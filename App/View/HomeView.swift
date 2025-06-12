@@ -101,7 +101,7 @@ struct HomeView: View {
                                    max: userData.deathAge,
                                    unit: "days")
                 }
-                Section(header: Text("Annual Events")) {
+                Section(header: Text("Annual")) {
                     EventGaugeView(title: "This Year",
                                    count: lengthOfYear - elapsedDateInThisYear.daysElapsedThisYear,
                                    gaugeValue: elapsedDateInThisYear.daysElapsedThisYear,

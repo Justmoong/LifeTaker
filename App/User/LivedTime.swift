@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import SwiftUICore
+import SwiftUI
 
 class UserLivedTime: ObservableObject {
     @Published var livedMonths: Int = 0

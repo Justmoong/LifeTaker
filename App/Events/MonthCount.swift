@@ -6,7 +6,7 @@
 //
 import Foundation
 import Combine
-import SwiftUICore
+import SwiftUI
 
 class MonthCount: ObservableObject {
     @Published var leftMonths: Int = 0 {
