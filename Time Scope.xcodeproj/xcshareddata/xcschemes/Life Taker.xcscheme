@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F90532762CA569200041E8AB"
-               BuildableName = "Life Taker.app"
-               BlueprintName = "Life Taker"
-               ReferencedContainer = "container:Life Taker.xcodeproj">
+               BuildableName = "Time Scope.app"
+               BlueprintName = "Time Scope"
+               ReferencedContainer = "container:Time Scope.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F90532762CA569200041E8AB"
-            BuildableName = "Life Taker.app"
-            BlueprintName = "Life Taker"
-            ReferencedContainer = "container:Life Taker.xcodeproj">
+            BuildableName = "Time Scope.app"
+            BlueprintName = "Time Scope"
+            ReferencedContainer = "container:Time Scope.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F90532762CA569200041E8AB"
-            BuildableName = "Life Taker.app"
-            BlueprintName = "Life Taker"
-            ReferencedContainer = "container:Life Taker.xcodeproj">
+            BuildableName = "Time Scope.app"
+            BlueprintName = "Time Scope"
+            ReferencedContainer = "container:Time Scope.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

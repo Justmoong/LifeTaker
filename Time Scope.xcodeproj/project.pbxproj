@@ -17,17 +17,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F9007C042D01B71400DA3EB8 /* Life TakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Life TakerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F90532772CA569200041E8AB /* Life Taker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life Taker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9007C042D01B71400DA3EB8 /* Time ScopeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time ScopeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F90532772CA569200041E8AB /* Time Scope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Scope.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F905329D2CA569220041E8AB /* Exceptions for "App" folder in "Life Taker" target */ = {
+		F905329D2CA569220041E8AB /* Exceptions for "App" folder in "Time Scope" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = F90532762CA569200041E8AB /* Life Taker */;
+			target = F90532762CA569200041E8AB /* Time Scope */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -40,7 +40,7 @@
 		F90532792CA569200041E8AB /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				F905329D2CA569220041E8AB /* Exceptions for "App" folder in "Life Taker" target */,
+				F905329D2CA569220041E8AB /* Exceptions for "App" folder in "Time Scope" target */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -83,8 +83,8 @@
 		F90532782CA569200041E8AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F90532772CA569200041E8AB /* Life Taker.app */,
-				F9007C042D01B71400DA3EB8 /* Life TakerTests.xctest */,
+				F90532772CA569200041E8AB /* Time Scope.app */,
+				F9007C042D01B71400DA3EB8 /* Time ScopeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,9 +92,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F9007C032D01B71400DA3EB8 /* Life TakerTests */ = {
+		F9007C032D01B71400DA3EB8 /* Time ScopeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9007C0C2D01B71400DA3EB8 /* Build configuration list for PBXNativeTarget "Life TakerTests" */;
+			buildConfigurationList = F9007C0C2D01B71400DA3EB8 /* Build configuration list for PBXNativeTarget "Time ScopeTests" */;
 			buildPhases = (
 				F9007C002D01B71400DA3EB8 /* Sources */,
 				F9007C012D01B71400DA3EB8 /* Frameworks */,
@@ -108,16 +108,16 @@
 			fileSystemSynchronizedGroups = (
 				F9007C052D01B71400DA3EB8 /* LifeTakerTests */,
 			);
-			name = "Life TakerTests";
+			name = "Time ScopeTests";
 			packageProductDependencies = (
 			);
 			productName = ChronoTests;
-			productReference = F9007C042D01B71400DA3EB8 /* Life TakerTests.xctest */;
+			productReference = F9007C042D01B71400DA3EB8 /* Time ScopeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F90532762CA569200041E8AB /* Life Taker */ = {
+		F90532762CA569200041E8AB /* Time Scope */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F905329E2CA569220041E8AB /* Build configuration list for PBXNativeTarget "Life Taker" */;
+			buildConfigurationList = F905329E2CA569220041E8AB /* Build configuration list for PBXNativeTarget "Time Scope" */;
 			buildPhases = (
 				F90532732CA569200041E8AB /* Sources */,
 				F90532742CA569200041E8AB /* Frameworks */,
@@ -131,11 +131,11 @@
 				F90532792CA569200041E8AB /* App */,
 				F92278FE2D27CE07000EFE08 /* TestPlayground */,
 			);
-			name = "Life Taker";
+			name = "Time Scope";
 			packageProductDependencies = (
 			);
 			productName = "Regret Vaccine";
-			productReference = F90532772CA569200041E8AB /* Life Taker.app */;
+			productReference = F90532772CA569200041E8AB /* Time Scope.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -157,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F90532722CA569200041E8AB /* Build configuration list for PBXProject "Life Taker" */;
+			buildConfigurationList = F90532722CA569200041E8AB /* Build configuration list for PBXProject "Time Scope" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -173,8 +173,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F90532762CA569200041E8AB /* Life Taker */,
-				F9007C032D01B71400DA3EB8 /* Life TakerTests */,
+				F90532762CA569200041E8AB /* Time Scope */,
+				F9007C032D01B71400DA3EB8 /* Time ScopeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,7 +216,7 @@
 /* Begin PBXTargetDependency section */
 		F9007C092D01B71400DA3EB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F90532762CA569200041E8AB /* Life Taker */;
+			target = F90532762CA569200041E8AB /* Time Scope */;
 			targetProxy = F9007C082D01B71400DA3EB8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -235,7 +235,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Life Taker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Life Taker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Time Scope.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Time Scope";
 			};
 			name = Debug;
 		};
@@ -252,7 +252,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Life Taker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Life Taker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Time Scope.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Time Scope";
 			};
 			name = Release;
 		};
@@ -462,7 +462,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F9007C0C2D01B71400DA3EB8 /* Build configuration list for PBXNativeTarget "Life TakerTests" */ = {
+		F9007C0C2D01B71400DA3EB8 /* Build configuration list for PBXNativeTarget "Time ScopeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9007C0A2D01B71400DA3EB8 /* Debug */,
@@ -471,7 +471,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F90532722CA569200041E8AB /* Build configuration list for PBXProject "Life Taker" */ = {
+		F90532722CA569200041E8AB /* Build configuration list for PBXProject "Time Scope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F90532A12CA569220041E8AB /* Debug */,
@@ -480,7 +480,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F905329E2CA569220041E8AB /* Build configuration list for PBXNativeTarget "Life Taker" */ = {
+		F905329E2CA569220041E8AB /* Build configuration list for PBXNativeTarget "Time Scope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F905329F2CA569220041E8AB /* Debug */,
