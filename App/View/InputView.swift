@@ -38,6 +38,7 @@ struct InputView: View {
             .toolbar {
                 ToolbarItem {
                     Button("Done") {
+                        userData.setAge()
                         monthCount.calculateMonths(from: userData)
                         weekCount.calculateWeeks(from: userData)
                         dayCount.calculateDays(from: userData)

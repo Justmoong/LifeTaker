@@ -33,6 +33,12 @@ class UserData: ObservableObject {
         self.deathAge = calculatedDeathAge
         print(#file, #line, #function, "calculatedDeathAge: \(deathAge)")
     }
+    
+    func setAge() {
+        let calculatedAge = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year ?? 0
+        self.age = calculatedAge
+        print(#file, #line, #function, "calculatedAge: \(age)")
+    }
 
     
     

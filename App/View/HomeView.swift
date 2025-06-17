@@ -22,7 +22,6 @@ struct HomeView: View {
     var christmas = AnnualChristmasProperties()
     var annualMondays = AnnualMondayProperties()
     var elapsedDateInThisYear = ElapsedDateInThisYear()
-    var annualRemainingWorkingTime = AnnualRemainingWorkingTime.calculateRemainingWorkingTime()
     
     @State var isPresented: Bool = false
     
@@ -117,8 +116,6 @@ struct HomeView: View {
                                    count: annualMondays.count,
                                    unit: "times"
                     )
-                    EventPlainView(title: "Weakdays remaining :", count: annualRemainingWorkingTime.remainingWorkingDaysThisYear, unit: "day")
-                    EventPlainView(title: "Then it means you have to work :", count: annualRemainingWorkingTime.remainingWorkingHoursThisYear, unit: "hours")
                 }
             }
         }

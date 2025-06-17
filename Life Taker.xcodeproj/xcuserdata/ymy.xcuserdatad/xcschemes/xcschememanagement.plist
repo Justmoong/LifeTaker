@@ -14,11 +14,6 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Chrono.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
 		<key>ChronoTests copy.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -29,10 +24,28 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Life Taker.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>ObjectDemo (Playground).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
 		<key>Regret Vaccine.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F90532762CA569200041E8AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
