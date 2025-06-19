@@ -8,9 +8,9 @@
 import Foundation
 import XCTest
 
-@testable import Life_Taker
+@testable import Time_Scopes
 
-final class ChronoTests: XCTestCase {
+final class TimeScopeTests: XCTestCase {
 
     func testHelloWorld_ConstString_ConstString() {
         //PreCondition

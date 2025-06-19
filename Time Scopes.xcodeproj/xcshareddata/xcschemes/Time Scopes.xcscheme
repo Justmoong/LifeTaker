@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "2600"
+   LastUpgradeVersion = "1640"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F90532762CA569200041E8AB"
-               BuildableName = "Time Scope.app"
-               BlueprintName = "Time Scope"
-               ReferencedContainer = "container:Time Scope.xcodeproj">
+               BuildableName = "Time Scopes.app"
+               BlueprintName = "Time Scopes"
+               ReferencedContainer = "container:Time Scopes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F90532762CA569200041E8AB"
-            BuildableName = "Time Scope.app"
-            BlueprintName = "Time Scope"
-            ReferencedContainer = "container:Time Scope.xcodeproj">
+            BuildableName = "Time Scopes.app"
+            BlueprintName = "Time Scopes"
+            ReferencedContainer = "container:Time Scopes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F90532762CA569200041E8AB"
-            BuildableName = "Time Scope.app"
-            BlueprintName = "Time Scope"
-            ReferencedContainer = "container:Time Scope.xcodeproj">
+            BuildableName = "Time Scopes.app"
+            BlueprintName = "Time Scopes"
+            ReferencedContainer = "container:Time Scopes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

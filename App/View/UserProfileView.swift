@@ -28,7 +28,6 @@ struct UserProfileView: View {
                         .foregroundStyle(Color.gray)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                // TODO: Sex Icon will place here!!!!!!
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Gauge(value: max(0, Double(userData.age)), in: 0...max(1, Double(userData.deathAge))) {
 //                    Text(String(format: "%.0f", Double(userData.age)))

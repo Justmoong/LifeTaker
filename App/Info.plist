@@ -4,9 +4,5 @@
 <dict>
 	<key>MinimumSystemVersion</key>
 	<string>17.0</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
 </dict>
 </plist>
